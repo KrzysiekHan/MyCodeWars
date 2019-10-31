@@ -10,7 +10,7 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _7KYU.DigitalRoot(493193);
+            _7KYU.WordsToMarks("friendship");
         }
     }
 }
