@@ -10,7 +10,7 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _8KYU.CountBits(1234);
+            _7KYU.DigitalRoot(493193);
         }
     }
 }
