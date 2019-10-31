@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyCodeWars
 {
-    class Program
+    class _7KYU
     {
-        static void Main(string[] args)
-        {
-            _8KYU.CountBits(1234);
-        }
     }
 }

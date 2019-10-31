@@ -9,11 +9,19 @@ namespace MyCodeWars
     public static class _8KYU
     {
 
+         //Write a function that takes an integer as input, and returns the number of bits that are equal to one in 
+         //the binary representation of that number. You can guarantee that input is non-negative.
+         //Example: The binary representation of 1234 is 10011010010, so the function should return 5 in this case
+        
+        public static int CountBits(int n)
+        {
+            string bits = Convert.ToString(n, 2);       
+            return bits.Count(x => x == '1');
+        }
 
-
-        /*Write a function that takes in a string of one or more words, and returns the same string, but with all five or more 
-         letter words reversed (Just like the name of this Kata). 
-         Strings passed in will consist of only letters and spaces. Spaces will be included only when more than one word is present.*/
+        //Write a function that takes in a string of one or more words, and returns the same string, but with all five or more 
+        //letter words reversed (Just like the name of this Kata). 
+        //Strings passed in will consist of only letters and spaces. Spaces will be included only when more than one word is present.
         public static string SpinWords(string sentence)
         {
             string[] words = { };
