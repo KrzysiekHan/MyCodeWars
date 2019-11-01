@@ -8,6 +8,37 @@ namespace MyCodeWars
 {
     public static class _7KYU
     {
+        //Given two arrays of strings a1 and a2 return a sorted array r in lexicographical order of the strings of a1 which are substrings of strings of a2.
+        //#Example 1: a1 = ["arp", "live", "strong"]
+        //a2 = ["lively", "alive", "harp", "sharp", "armstrong"]
+        //returns ["arp", "live", "st
+        //  CLEVER  -----------------------------------------------
+        //public static string[] inArray(string[] array1, string[] array2)
+        //{
+        //    return array1.Distinct()
+        //                 .Where(s1 => array2.Any(s2 => s2.Contains(s1)))
+        //                 .OrderBy(s => s)
+        //                 .ToArray();
+        //}
+        public static string[] inArray(string[] array1, string[] array2)
+        {
+
+            List<string> result = new List<string>();
+
+            foreach (var item in array1)
+            {
+                foreach (var itemx in array2)
+                {
+                    if ((itemx.IndexOf(item) != -1) && (!result.Contains(item)))
+                    {
+                        result.Add(item);
+                    }
+                }
+            }
+            result.Sort();
+            return result.ToArray();
+        }
+
         //MorseCodeDecoder.Decode(".... . -.--   .--- ..- -.. .")
         //should return "HEY JUDE"
         public static string Decode(string morseCode)
@@ -92,6 +123,8 @@ namespace MyCodeWars
         //and f + r + i + e + n + d + s + h + i + p = 108
         //So friendship is twice stronger than love :-)
         //The input will always be in lowercase and never be empty.
+        //  CLEVER  -----------------------------------------------
+        //public static int WordsToMarks(string str) => str.Sum(v => v - 96);
         public static int WordsToMarks(string str)
         {
             int suma = 0;
@@ -101,14 +134,12 @@ namespace MyCodeWars
             }
             return suma;
         }
-
         private static int charToNumber(char c)
         {
             char temp = c.ToString().ToUpper().ToCharArray().Single();
             int resp = (int)temp - 64;
             return resp;
         }
-        // LOL!!! same could be wrote as   public static int WordsToMarks(string str) => str.Sum(v => v - 96);
 
         //The new "Avengers" movie has just been released! There are a lot of people at the cinema box office standing in a huge line.Each of them has a single 100, 50 or 25 dollar bill.An "Avengers" ticket costs 25 dollars.
         //Vasya is currently working as a clerk. He wants to sell a ticket to every single person in this line.

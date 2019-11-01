@@ -10,7 +10,9 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _7KYU.Decode("       ...---... -.-.--   - .... .   --.- ..- .. -.-. -.-   -... .-. --- .-- -.   ..-. --- -..-   .--- ..- -- .--. ...   --- ...- . .-.   - .... .   .-.. .- --.. -.--   -.. --- --. .-.-.-");
+            string[] a1 = new string[] { "arp", "live", "strong" };
+            string[] a2 = new string[] { "lively", "alive", "harp", "sharp", "armstrong" };
+            _7KYU.inArray(a1,a2);
         }
     }
 }
