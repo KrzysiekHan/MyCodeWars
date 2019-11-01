@@ -10,8 +10,9 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            int[] exampleTest1 = { 2, 6, 8, -10, 3 };
-            _7KYU.Find(exampleTest1);
+            _7KYU.ExpandedForm(13032);
+            _7KYU.ExpandedForm(90000);
+            _7KYU.ExpandedForm(2340);
         }
     }
 }

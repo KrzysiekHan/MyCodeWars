@@ -8,6 +8,31 @@ namespace MyCodeWars
 {
     public static class _7KYU
     {
+        //You will be given a number and you will need to return it as a string in Expanded Form.For example:
+        //Kata.ExpandedForm(12); # Should return "10 + 2"
+        //Kata.ExpandedForm(42); # Should return "40 + 2"
+        //Kata.ExpandedForm(70304); # Should return "70000 + 300 + 4"
+        public static string ExpandedForm(long num)
+        {
+            string number = num.ToString();
+            int len = number.Length;
+            string result = "";
+            string zeros = "";
+            for (int i = len; i > 0; i--)
+            {
+                var item = number.Substring((number.Length - i), 1);
+                if (item.Equals("0")) continue;
+                for (int k = 1; k < i; k++)
+                {
+                    zeros += "0";
+                }
+                var temp = item + zeros +  " + " ;
+                result += temp;
+                zeros = "";
+            }
+            return result.Substring(0, result.Length - 3);
+        }
+
         //You are given an array(which will have a length of at least 3, but could be very large) containing integers.
         //The array is either entirely comprised of odd integers or entirely comprised of even integers except for a 
         //single integer N. Write a method that takes the array as an argument and returns this "outlier" N.
@@ -25,7 +50,6 @@ namespace MyCodeWars
             var result = evencount > oddcount ? integers.Where(x => x % 2 != 0).Single() : integers.Where(x => x % 2 == 0).Single();
             return (int)result;
         }
-
 
         //Given two arrays of strings a1 and a2 return a sorted array r in lexicographical order of the strings of a1 which are substrings of strings of a2.
         //#Example 1: a1 = ["arp", "live", "strong"]
