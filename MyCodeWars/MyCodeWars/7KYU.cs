@@ -16,9 +16,14 @@ namespace MyCodeWars
         //Should return: 11 (the only odd number)
         //[160, 3, 1719, 19, 11, 13, -21]
         //Should return: 160 (the only even number)
+        //  CLEVER  -----------------------------------------------
+        //return integers.GroupBy(c=> c%2).First(c=>c.Count() == 1).First();
         public static int Find(int[] integers)
         {
-            return -1;
+            var evencount = integers.Where(x => x % 2 == 0).Count();
+            var oddcount = integers.Where(x => x % 2 != 0).Count();
+            var result = evencount > oddcount ? integers.Where(x => x % 2 != 0).Single() : integers.Where(x => x % 2 == 0).Single();
+            return (int)result;
         }
 
 
