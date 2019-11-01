@@ -10,9 +10,8 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _7KYU.ExpandedForm(13032);
-            _7KYU.ExpandedForm(90000);
-            _7KYU.ExpandedForm(2340);
+
+            _6KYU.GetUnique(new[] { 3, 3, 5, 3, 3 });
         }
     }
 }
