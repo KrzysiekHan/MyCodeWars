@@ -8,6 +8,85 @@ namespace MyCodeWars
 {
     public static class _7KYU
     {
+        //MorseCodeDecoder.Decode(".... . -.--   .--- ..- -.. .")
+        //should return "HEY JUDE"
+        public static string Decode(string morseCode)
+        {
+            morseCode = morseCode.Trim();
+           var wordlist = morseCode.Split(' ').ToList();
+            string result = "";
+            foreach (var item in wordlist)
+            {
+                if (item.Equals("...---...")) {
+                    result += "SOS";
+                    continue;
+                }
+                
+                    if (string.IsNullOrEmpty(result))
+                {
+                    result += TranslateMorseChar(item);
+                }
+                else
+                {
+                    if (!(result[result.Length - 1] == ' ' && TranslateMorseChar(item) == " "))
+                    {
+                        result += TranslateMorseChar(item);
+                    }
+                }               
+            }
+            return result.ToUpper().Trim();
+
+        }
+        private static string TranslateMorseChar(string morseChar)
+        {
+             Dictionary<char, string> _morseAlphabetDictionary = new Dictionary<char, string>()
+                                   {
+                                       {'a', ".-"},
+                                       {'b', "-..."},
+                                       {'c', "-.-."},
+                                       {'d', "-.."},
+                                       {'e', "."},
+                                       {'f', "..-."},
+                                       {'g', "--."},
+                                       {'h', "...."},
+                                       {'i', ".."},
+                                       {'j', ".---"},
+                                       {'k', "-.-"},
+                                       {'l', ".-.."},
+                                       {'m', "--"},
+                                       {'n', "-."},
+                                       {'o', "---"},
+                                       {'p', ".--."},
+                                       {'q', "--.-"},
+                                       {'r', ".-."},
+                                       {'s', "..."},
+                                       {'t', "-"},
+                                       {'u', "..-"},
+                                       {'v', "...-"},
+                                       {'w', ".--"},
+                                       {'x', "-..-"},
+                                       {'y', "-.--"},
+                                       {'z', "--.."},
+                                       {'0', "-----"},
+                                       {'1', ".----"},
+                                       {'2', "..---"},
+                                       {'3', "...--"},
+                                       {'4', "....-"},
+                                       {'5', "....."},
+                                       {'6', "-...."},
+                                       {'7', "--..."},
+                                       {'8', "---.."},
+                                       {'9', "----."},
+                                       {'!',"-.-.--"}
+                                   };
+            if (!string.IsNullOrEmpty(morseChar))
+            {
+                var item = _morseAlphabetDictionary.Where(x => x.Value == morseChar).Single();
+                return item.Key.ToString();
+            }
+            else return " ";              
+        }
+
         //If a = 1, b = 2, c = 3... z = 26
         //Then l + o + v + e = 54
         //and f + r + i + e + n + d + s + h + i + p = 108
