@@ -10,9 +10,8 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            string[] a1 = new string[] { "arp", "live", "strong" };
-            string[] a2 = new string[] { "lively", "alive", "harp", "sharp", "armstrong" };
-            _7KYU.inArray(a1,a2);
+            int[] exampleTest1 = { 2, 6, 8, -10, 3 };
+            _7KYU.Find(exampleTest1);
         }
     }
 }

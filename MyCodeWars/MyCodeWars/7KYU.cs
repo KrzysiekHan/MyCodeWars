@@ -8,6 +8,20 @@ namespace MyCodeWars
 {
     public static class _7KYU
     {
+        //You are given an array(which will have a length of at least 3, but could be very large) containing integers.
+        //The array is either entirely comprised of odd integers or entirely comprised of even integers except for a 
+        //single integer N. Write a method that takes the array as an argument and returns this "outlier" N.
+        //Examples
+        //[2, 4, 0, 100, 4, 11, 2602, 36]
+        //Should return: 11 (the only odd number)
+        //[160, 3, 1719, 19, 11, 13, -21]
+        //Should return: 160 (the only even number)
+        public static int Find(int[] integers)
+        {
+            return -1;
+        }
+
+
         //Given two arrays of strings a1 and a2 return a sorted array r in lexicographical order of the strings of a1 which are substrings of strings of a2.
         //#Example 1: a1 = ["arp", "live", "strong"]
         //a2 = ["lively", "alive", "harp", "sharp", "armstrong"]
