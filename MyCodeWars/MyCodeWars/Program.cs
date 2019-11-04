@@ -10,6 +10,12 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
+            //_6KYU.Pyramid(3);
+            //_6KYU.HowManyMeasurements(2);
+            //_6KYU.HowManyMeasurements(3);
+            //_6KYU.HowManyMeasurements(8);
+            //_6KYU.HowManyMeasurements(100);
+            //_6KYU.Rgb(255, 255, 255);
             _6KYU.AddLetters(new char[] { 'a', 'b', 'c', 'z' });
             //_6KYU.Gap(9); 
             //_6KYU.sumStrings("712569312664357328695151392", "8100824045303269669937");

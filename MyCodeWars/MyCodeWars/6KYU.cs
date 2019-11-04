@@ -9,6 +9,136 @@ namespace MyCodeWars
 {
     public static class _6KYU
     {
+        //NOT COMPLETED
+        //Write a function that when given a number >= 0, returns an Array of ascending length subarrays.
+        //pyramid(0) => [ ]
+        //pyramid(1) => [ [1] ]
+        //pyramid(2) => [ [1], [1, 1] ]
+        //pyramid(3) => [ [1], [1, 1], [1, 1, 1] ]
+        //Note: the subarrays should be filled with 1s
+        public static int[][] Pyramid(int n)
+        {
+            int[][] jagged = new int[n][];
+            for (int i = 0; i < n; i++)
+            {
+                var newone = new int[i];
+                for (int k = 0; k < newone.Length; k++)
+                {
+                    newone[k] = 1;
+                }
+                jagged[i] = newone; 
+            }
+            return jagged;
+        }
+
+
+        //Number of measurements to spot the counterfeit coin
+        //I found this interesting interview question just today:
+        //8 coins are given where all the coins have equal weight, except one.The odd one weights less than the others, not being of pure gold.In the worst case, how many iterations are actually needed to find the odd one out on a two plates scale.
+        //I am asking you then to tell me what is the minimum amount of weighings it will take to measure n coins in every possible occurrence (including worst case scenario, ie: without relying on luck at all).
+        //n is guaranteed to be a positive integer.
+        //Tip: being able to think recursively might help here :p
+        //Note: albeit this is more clearly a logical than a coding problem, do not underestimate (or under-rank) the kata for requiring not necessarily wizard-class coding skills: a good coder is a master of pattern recognition and subsequent optimization;)
+        //Assert.AreEqual(0, Kata.HowManyMeasurements(1));
+        //Assert.AreEqual(1, Kata.HowManyMeasurements(2));
+        //Assert.AreEqual(1, Kata.HowManyMeasurements(3));
+        //Assert.AreEqual(2, Kata.HowManyMeasurements(8));
+        public static int HowManyMeasurements(int n)
+        {
+            int t = n;
+            int iter = 0;
+            while (t > 3)
+            {
+                t = t / 2;
+                iter++;
+            }
+            if (n < 4 && n > 1) iter++;
+            return iter;
+        }
+
+        //You are now to create a function that returns a Josephus permutation, taking as parameters the initial array/list of items to be permuted as 
+        //if they were in a circle and counted out every k places until none remained.
+        //Tips and notes: it helps to start counting from 1 up to n, instead of the usual range 0..n-1; k will always be >=1.
+        //For example, with n=7 and k = 3 josephus(7,3) should act this way.
+        //[1, 2, 3, 4, 5, 6, 7] - initial sequence
+        //[1, 2, 4, 5, 6, 7] => 3 is counted out and goes into the result[3]
+        //[1, 2, 4, 5, 7] => 6 is counted out and goes into the result[3, 6]
+        //[1, 4, 5, 7] => 2 is counted out and goes into the result[3, 6, 2]
+        //[1, 4, 5] => 7 is counted out and goes into the result[3, 6, 2, 7]
+        //[1, 4] => 5 is counted out and goes into the result[3, 6, 2, 7, 5]
+        //[4] => 1 is counted out and goes into the result[3, 6, 2, 7, 5, 1]
+        //[] => 4 is counted out and goes into the result[3, 6, 2, 7, 5, 1, 4]
+        //So our final result is:
+        //josephus([1,2,3,4,5,6,7],3)==[3,6,2,7,5,1,4]
+
+        //hint
+        //(josephus(n - 1, k) + k-1) % n + 1; 
+        public static List<object> JosephusPermutation(List<object> items, int k)
+        {
+            List<object> joseph = new List<object>();
+            int index = 0;
+            while (items.Count > 0)
+            {
+                for (int j = 0; j < k; j++)
+                {
+                    if (index == items.Count)
+                    {
+                        index = 0;
+                    }
+                    index++;
+                }
+                index--;
+                joseph.Add(items[index]);
+                items.RemoveAt(index);
+            }
+            return joseph;
+        }
+
+        //Write a program that will calculate the number of trailing zeros in a factorial of a given number.
+        //N! = 1 * 2 * 3 * ... * N
+        //Be careful 1000! has 2568 digits...
+        //For more info, see: http://mathworld.wolfram.com/Factorial.htm
+        //Examples
+        //zeros(6) = 1
+        //# 6! = 1 * 2 * 3 * 4 * 5 * 6 = 720 --> 1 trailing zero
+        //zeros(12) = 2
+        //# 12! = 479001600 --> 2 trailing zeros
+        //Hint: You're not meant to calculate the factorial. Find another way to find the number of zeros.
+        public static int TrailingZeros(int n)
+        {
+            // Initialize result 
+            int count = 0;
+
+            // Keep dividing n by powers  
+            // of 5 and update count 
+            for (int i = 5; n / i >= 1; i *= 5)
+                count += n / i;
+
+            return count;
+        }
+
+        //The rgb() method is incomplete.Complete the method so that passing in RGB decimal values will result in a hexadecimal representation being returned.The valid decimal values for RGB are 0 - 255. 
+        //Any(r, g, b) argument values that fall out of that range should be rounded to the closest valid value.
+        //The following are examples of expected output values:
+        //  CLEVER  -----------------------------------------------
+        //r = Math.Max(Math.Min(255, r), 0);
+        //g = Math.Max(Math.Min(255, g), 0);
+        //b = Math.Max(Math.Min(255, b), 0);
+        //return String.Format("{0:X2}{1:X2}{2:X2}", r, g, b);
+        public static string Rgb(int r, int g, int b)
+        {
+            if (r < 0) r = 0;
+            if (r > 255) r = 255;
+            if (g < 0) g = 0;
+            if (g > 255) g = 255;
+            if (b < 0) b = 0;
+            if (b > 255) b = 255;
+            string hex1 = r.ToString("X2");
+            string hex2 = g.ToString("X2");
+            string hex3 = b.ToString("X2");
+            return hex1+hex2+hex3;
+        }
+
 
         //Your task is to add up letters to one letter.
         //The function will be given an array of letters(chars), each one being a letter to add.Return a char.
@@ -23,9 +153,15 @@ namespace MyCodeWars
         //add_letters(new char[] {'z', 'a'}) = 'a'
         //add_letters(new char[] {'y', 'c', 'b'}) = 'd' // notice the letters overflowing
         //add_letters(new char[] {}) = 'z'
+        /*
+         Handling letters.Length == 0 isn't enough. answear can still be 96, and then you return '`' instead of 'z'.
+        Add a case to check if answear is 96, and return 'z' in that case.
+        Also, this is an issue with your code and now with the kata, so closing.*/
+        //  CLEVER  -----------------------------------------------
+        //var val = letters.Sum(c => c - 96) % 26;
+        //return val == 0 ? 'z' : (char) (val + 96);
         public static char AddLetters(char[] letters)
         {
-
             if (letters.Length == 0) return 'z';
             int result = 0;
             foreach (var item in letters)
@@ -34,8 +170,7 @@ namespace MyCodeWars
                 result += number;
             }
             int answear = (result % 26) + 96;
-
-            // your code here
+            if (answear == 96) return 'z';
             return (char)answear;
         }
 
