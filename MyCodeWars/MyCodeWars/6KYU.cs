@@ -3,11 +3,93 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Numerics;
 
 namespace MyCodeWars
 {
     public static class _6KYU
     {
+
+        //Your task is to add up letters to one letter.
+        //The function will be given an array of letters(chars), each one being a letter to add.Return a char.
+        //Notes:
+        //Letters will always be lowercase.
+        //Letters can overflow(see second to last example of the description)
+        //If no letters are given, the function should return 'z'
+        //Examples:
+        //add_letters(new char[] {'a', 'b', 'c'}) = 'f'
+        //add_letters(new char[] {'a', 'b'}) = 'c'
+        //add_letters(new char[] {'z'}) = 'z'
+        //add_letters(new char[] {'z', 'a'}) = 'a'
+        //add_letters(new char[] {'y', 'c', 'b'}) = 'd' // notice the letters overflowing
+        //add_letters(new char[] {}) = 'z'
+        public static char AddLetters(char[] letters)
+        {
+
+            if (letters.Length == 0) return 'z';
+            int result = 0;
+            foreach (var item in letters)
+            {
+                int number = item - 96;
+                result += number;
+            }
+            int answear = (result % 26) + 96;
+
+            // your code here
+            return (char)answear;
+        }
+
+
+        //C#7 not supported
+        //The drawing shows 6 squares the sides of which have a length of 1, 1, 2, 3, 5, 8. It's easy to see that the sum of the perimeters of these squares is : 4 * (1 + 1 + 2 + 3 + 5 + 8) = 4 * 20 = 80
+        //Could you give the sum of the perimeters of all the squares in a rectangle when there are n + 1 squares disposed in the same manner as in the drawing:
+        //public static BigInteger perimeter(BigInteger n)
+        //{
+
+        //    BigInteger number = 0;
+        //    // your code
+        //    return -1;
+        //}
+
+
+        //A binary gap within a positive number num is any sequence of consecutive zeros that is surrounded by ones at both ends in the binary representation of num.
+        //For example:
+        //9 has binary representation 1001 and contains a binary gap of length 2.
+        //529 has binary representation 1000010001 and contains two binary gaps: one of length 4 and one of length 3.
+        //20 has binary representation 10100 and contains one binary gap of length 1.
+        //15 has binary representation 1111 and has 0 binary gaps.
+        //Write function gap(num) that, given a positive num, returns the length of its longest binary gap.
+        //The function should return 0 if num doesn't contain a binary gap.
+        //  CLEVER  -----------------------------------------------
+        //var binary = Convert.ToString(num, 2);
+        //return binary.Trim('0').Split('1').Select(s => s.Length).Max();
+        public static int Gap(int num)
+        {
+            var binary = Convert.ToString(num , 2);
+            int gap = 0;
+            int longestGap = 0;
+            char previous = ' ';
+            //find first index of 1 
+            if (binary.IndexOf('1') > 0) binary = binary.Substring(binary.IndexOf('1'));
+            if (binary.LastIndexOf('1') != binary.Length) binary = binary.Substring(0, binary.LastIndexOf('1')+1);
+            for (int i = 0; i < binary.Length; i++)
+            {                
+
+                if (binary[i] == '0')
+                {
+                    gap++;
+                    if (gap > longestGap) longestGap = gap;
+                } else {
+                    gap = 0;
+                }
+                previous = binary[i];
+            }
+             return longestGap;
+        }
+
+
+
+
         //Given the string representations of two integers, return the string representation of the sum of those integers.
         //For example:
         //sumStrings('1','2') // => '3'
