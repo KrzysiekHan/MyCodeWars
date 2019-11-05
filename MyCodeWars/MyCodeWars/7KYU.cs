@@ -195,7 +195,6 @@ namespace MyCodeWars
         {
             int bill25count = 0;
             int bill50count = 0;
-            int bill100count = 0;
 
             string result = "YES";
             foreach (var item in peopleInLine)
