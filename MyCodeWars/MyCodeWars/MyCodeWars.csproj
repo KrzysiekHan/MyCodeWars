@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="5KYU.cs" />
+    <Compile Include="6KYU.cs" />
     <Compile Include="7KYU.cs" />
     <Compile Include="8KYU.cs" />
     <Compile Include="Program.cs" />

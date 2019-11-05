@@ -10,13 +10,15 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
+            double[] x = new double[] { 0.0, 0.23, 0.46, 0.69, 0.92, 1.15, 1.38, 1.61 };
+            _5KYU.Gps(20, x); //result should be 41
             //_6KYU.Pyramid(3);
             //_6KYU.HowManyMeasurements(2);
             //_6KYU.HowManyMeasurements(3);
             //_6KYU.HowManyMeasurements(8);
             //_6KYU.HowManyMeasurements(100);
             //_6KYU.Rgb(255, 255, 255);
-            _6KYU.AddLetters(new char[] { 'a', 'b', 'c', 'z' });
+            //_6KYU.AddLetters(new char[] { 'a', 'b', 'c', 'z' });
             //_6KYU.Gap(9); 
             //_6KYU.sumStrings("712569312664357328695151392", "8100824045303269669937");
             //_6KYU.Rot13("ABCD");
