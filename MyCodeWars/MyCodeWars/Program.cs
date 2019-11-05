@@ -10,8 +10,11 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            double[] x = new double[] { 0.0, 0.23, 0.46, 0.69, 0.92, 1.15, 1.38, 1.61 };
-            _5KYU.Gps(20, x); //result should be 41
+            _5KYU.IsSolved(new int[,] { { 1, 1, 1 }, { 0, 2, 2 }, { 0, 0, 0 } });
+
+
+            //double[] x = new double[] { 0.0, 0.23, 0.46, 0.69, 0.92, 1.15, 1.38, 1.61 };
+            //_5KYU.Gps(20, x); //result should be 41
             //_6KYU.Pyramid(3);
             //_6KYU.HowManyMeasurements(2);
             //_6KYU.HowManyMeasurements(3);

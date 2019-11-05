@@ -8,6 +8,94 @@ namespace MyCodeWars
 {
     public static class _5KYU
     {
+        //If we were to set up a Tic-Tac-Toe game, we would want to know whether the board's current state is solved, wouldn't we? 
+        //Our goal is to create a function that will check that for us!
+        //Assume that the board comes in the form of a 3x3 array, where the value is 0 if a spot is empty, 1 if it is an "X", or 2 if it is an "O", like so:
+        //[[0, 0, 1],
+        // [0, 1, 2],
+        // [2, 1, 0]]
+        //We want our function to return:
+        //-1 if the board is not yet finished(there are empty spots),
+        //1 if "X" won,
+        //2 if "O" won,
+        //0 if it's a cat's game(i.e.a draw).
+        //You may assume that the board passed in is valid in the context of a game of Tic-Tac-Toe.
+        public static int IsSolved(int[,] board)
+        {
+            List<results> resultsList = new List<results>();
+            for (int i = 0; i <= 2; i++)
+            {
+                resultsList.Add(checkRow(getRowFromArray(board, i)));
+                resultsList.Add(checkRow(getColumnFromArray(board, i)));
+            }
+            resultsList.Add(checkRow(getCross1FromArray(board)));
+            resultsList.Add(checkRow(getCross2FromArray(board)));
+            if (resultsList.Contains(results.X))
+            {
+                return 1;
+            }
+            if (resultsList.Contains(results.O))
+            {
+                return 2;
+            }
+            return 0;
+        }
+        public enum results { UNKNOWN = 0,X,O,EmptySpots,Draw}
+
+        private static results checkRow(int[] row)
+        {
+            results result = results.UNKNOWN;
+            int first = row[0];
+            if (row.All(s => int.Equals(first, s)))
+            {
+                if (first == 1) result = results.X;
+                if (first == 2) result = results.O;
+            }
+            if (row.Contains(1) && row.Contains(2)) result = results.Draw;
+            if (row.Count(s => s == 0) >= 2) result = results.EmptySpots;
+            return result;
+        }
+
+        private static int[] getRowFromArray(int[,] dim, int num)
+        {
+            int[] response = new int[3];
+            response[0] = dim[num, 0];
+            response[1] = dim[num, 1];
+            response[2] = dim[num, 2];
+            return response;
+        }
+        private static int[] getColumnFromArray(int[,] dim, int num)
+        {
+            int[] response = new int[3];
+            response[0] = dim[0, num];
+            response[1] = dim[1, num];
+            response[2] = dim[2, num];
+            return response;
+        }
+
+        private static int[] getCross1FromArray(int[,] dim)
+        {
+            int[] response = new int[3];
+            response[0] = dim[0, 0];
+            response[1] = dim[1, 1];
+            response[2] = dim[2, 2];
+            return response;
+        }
+
+        private static int[] getCross2FromArray(int[,] dim)
+        {
+            int[] response = new int[3];
+            response[0] = dim[0,2];
+            response[1] = dim[1,1];
+            response[2] = dim[2,0];
+            return response;
+        }
+
+
+
+
+
+
         //In John's car the GPS records every s seconds the distance travelled from an origin 
         //(distances are measured in an arbitrary but consistent unit). For example, below is part of a record with s = 15:
         //x = [0.0, 0.19, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25]
@@ -36,7 +124,10 @@ namespace MyCodeWars
             {
                 speed[i] = (int)Math.Floor((3600 * (x[i] - x[i - 1])) / s);
             }
+            
             return speed.Max();
         }
+
+
     }
 }
