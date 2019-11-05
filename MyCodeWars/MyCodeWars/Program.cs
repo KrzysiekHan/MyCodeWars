@@ -6,13 +6,31 @@ using System.Threading.Tasks;
 
 namespace MyCodeWars
 {
+    public class Node
+    {
+        public Node Left;
+        public Node Right;
+        public int Value;
+
+        public Node(Node l, Node r, int v)
+        {
+            Left = l;
+            Right = r;
+            Value = v;
+        }
+    }
+
     class Program
     {
+
+
         static void Main(string[] args)
         {
-            _5KYU.IsSolved(new int[,] { { 1, 1, 1 }, { 0, 2, 2 }, { 0, 0, 0 } });
 
-
+            //assert new List<int>(){1,2,3,4,5,6},
+            _5KYU.TreeByLevels(new Node(new Node(null, new Node(null, null, 4), 2), new Node(new Node(null, null, 5), new Node(null, null, 6), 3), 1));
+            
+            //_5KYU.IsSolved(new int[,] { { 1, 1, 1 }, { 0, 2, 2 }, { 0, 0, 0 } });
             //double[] x = new double[] { 0.0, 0.23, 0.46, 0.69, 0.92, 1.15, 1.38, 1.61 };
             //_5KYU.Gps(20, x); //result should be 41
             //_6KYU.Pyramid(3);

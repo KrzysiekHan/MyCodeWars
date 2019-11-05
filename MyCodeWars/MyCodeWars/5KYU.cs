@@ -3,11 +3,62 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static MyCodeWars.Program;
 
 namespace MyCodeWars
 {
     public static class _5KYU
     {
+        //You are given a binary tree:
+        //public class Node
+        //{
+        //    public Node Left;
+        //    public Node Right;
+        //    public int Value;
+
+        //    public Node(Node l, Node r, int v)
+        //    {
+        //        Left = l;
+        //        Right = r;
+        //        Value = v;
+        //    }
+        //}
+        //Your task is to return the list with elements from tree sorted by levels, which means the root element 
+        //goes first, then root children(from left to right) are second and third, and so on.
+        //Return empty list if root is 'null'.
+        //Example 1 - following tree:
+
+        //         2
+        //    8        9
+        //  1  3     4   5
+        //Should return following list:
+        //       [2,8,9,1,3,4,5]
+        //Example 2 - following tree:
+        //                 1
+        //            8        4
+        //              3        5
+        //                         7
+        //Should return following list:
+        //       [1,8,4,3,5,7]
+
+
+        public static List<int> TreeByLevels(Node node)
+        {
+            List<int> response = new List<int>();
+
+            return response;
+        }
+        public static void DisplayTree(Node root, out List<int> response)
+        {
+            if (root == null) return;
+
+
+        }
+    }
+
+
+
+
         //If we were to set up a Tic-Tac-Toe game, we would want to know whether the board's current state is solved, wouldn't we? 
         //Our goal is to create a function that will check that for us!
         //Assume that the board comes in the form of a 3x3 array, where the value is 0 if a spot is empty, 1 if it is an "X", or 2 if it is an "O", like so:
@@ -38,7 +89,11 @@ namespace MyCodeWars
             {
                 return 2;
             }
-            return 0;
+            if (resultsList.All(s => s == results.Draw))
+            {
+                return 0;
+            }
+            return -1;
         }
         public enum results { UNKNOWN = 0,X,O,EmptySpots,Draw}
 
@@ -52,7 +107,7 @@ namespace MyCodeWars
                 if (first == 2) result = results.O;
             }
             if (row.Contains(1) && row.Contains(2)) result = results.Draw;
-            if (row.Count(s => s == 0) >= 2) result = results.EmptySpots;
+            if (row.Count(s => s == 0) > 0) result = results.EmptySpots;
             return result;
         }
 
@@ -90,11 +145,6 @@ namespace MyCodeWars
             response[2] = dim[2,0];
             return response;
         }
-
-
-
-
-
 
         //In John's car the GPS records every s seconds the distance travelled from an origin 
         //(distances are measured in an arbitrary but consistent unit). For example, below is part of a record with s = 15:
