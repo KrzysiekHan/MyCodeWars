@@ -6,30 +6,14 @@ using System.Threading.Tasks;
 
 namespace MyCodeWars
 {
-    public class Node
-    {
-        public Node Left;
-        public Node Right;
-        public int Value;
-
-        public Node(Node l, Node r, int v)
-        {
-            Left = l;
-            Right = r;
-            Value = v;
-        }
-    }
-
     class Program
     {
-
-
         static void Main(string[] args)
         {
-
-            _5KYU.factorial(5);
-            _5KYU.factorial(9);
-            _5KYU.factorial(15);
+            _5KYU.wave(" gap ");
+            //_5KYU.factorial(5);
+            //_5KYU.factorial(9);
+            //_5KYU.factorial(15);
             //assert new List<int>(){1,2,3,4,5,6},
             //_5KYU.TreeByLevels(new Node(new Node(null, new Node(null, null, 4), 2), new Node(new Node(null, null, 5), new Node(null, null, 6), 3), 1));
 
@@ -48,6 +32,19 @@ namespace MyCodeWars
             //_6KYU.Rot13("ABCD");
             //_6KYU.Anagrams("a", new List<string> { "a", "b", "c", "d" }); // correct answear a
             //_6KYU.Anagrams("racer", new List<string> { "carer", "arcre", "carre", "racrs", "racers", "arceer", "raccer", "carrer", "cerarr" }); //answear "carer", "arcre", "carre"
+        }
+    }
+    public class Node
+    {
+        public Node Left;
+        public Node Right;
+        public int Value;
+
+        public Node(Node l, Node r, int v)
+        {
+            Left = l;
+            Right = r;
+            Value = v;
         }
     }
 }

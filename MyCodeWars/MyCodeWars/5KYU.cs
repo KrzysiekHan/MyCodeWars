@@ -9,8 +9,42 @@ namespace MyCodeWars
 {
     public static class _5KYU
     {
+        //  Mexican Wave
+        //  Task
+        //  In this simple Kata your task is to create a function that turns a string into a Mexican Wave.You will be passed a string and you must return that string in an array where an uppercase letter is a person standing up.
+        //  Rules
+        //  1.  The input string will always be lower case but maybe empty.
+        //  2.  If the character in the string is whitespace then pass over it as if it was an empty seat.
+        //  Example
+        //  wave("hello") => []string{"Hello", "hEllo", "heLlo", "helLo", "hellO"
+        //  CLEVER  -----------------------------------------------
+        //str
+        //.Select((c, i) => str.Substring(0,i) + Char.ToUpper(c) + str.Substring(i+1))
+        //.Where(x => x != str)
+        //.ToList();
+        public static List<string> wave(string str)
+        {
+            str = str.Trim();
+            List<string> response = new List<string>();
+            if (!string.IsNullOrEmpty(str))
+            {
+                for (int i = 0; i < str.Length; i++)
+                {
+                    if(!str[i].Equals(' '))
+                    {
+                       
+                        str = str.ToLower();
+                        str = str.Insert(i, char.ToUpper(str[i]).ToString()).Remove(i + 1, 1);
+                        response.Add(str);
+                    }
+                }
+            }
+            return response;
+        }
 
-           public static void factorial(int n)
+
+        //Huge factorial
+        public static void factorial(int n)
             {
                 int[] res = new int[500];
                 res[0] = 1;
