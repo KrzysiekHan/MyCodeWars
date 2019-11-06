@@ -9,6 +9,148 @@ namespace MyCodeWars
 {
     public static class _5KYU
     {
+        //You are going to be given an array of integers.Your job is to take that array and find an index N where the sum of the integers to the left of N is equal to the sum of the integers to the right of N. If there is no index that would make this happen, return -1.
+        //For example:
+        //Let's say you are given the array {1,2,3,4,3,2,1}:
+        //Your function will return the index 3, because at the 3rd position of the array, the sum of left side of the index ({ 1,2,3}) and the sum of the right side of the index({ 3,2,1}) both equal 6.
+        //Let's look at another one.
+        //You are given the array {1,100,50,-51,1,1}:
+        //Your function will return the index 1, because at the 1st position of the array, the sum of left side of the index({ 1}) and the sum of the right side of the index({ 50,-51,1,1}) both equal 1.
+        //Last one:
+        //You are given the array {20,10,-80,10,10,15,35}
+        //At index 0 the left side is {}
+        //The right side is {10,-80,10,10,15,35}
+        //They both are equal to 0 when added. (Empty arrays are equal to 0 in this problem)
+        //Index 0 is the place where the left side and right side are equal.
+        //Note: Please remember that in most programming/scripting languages the index of an array starts at 0.
+        //Input:
+        //An integer array of length 0 < arr< 1000. The numbers in the array can be any integer positive or negative.
+        //Output:
+        //The lowest index N where the side to the left of N is equal to the side to the right of N.If you do not find an index that fits these rules, then you will return -1.
+        //Note:
+        //If you are given an array with multiple answers, return the lowest correct index.
+        public static int FindEvenIndex(int[] arr)
+        {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                int sumLeft = 0;
+                int sumRight = 0;
+                for (int k = 0; k < i; k++)
+                {
+                    sumLeft += arr[k];
+                }
+                for (int f = arr.Length-1; f > i; f--)
+                {
+                    sumRight += arr[f];
+                }
+                if (sumLeft == sumRight) return i;
+
+            }
+            return -1;
+        }
+
+
+        //If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+        //Finish the solution so that it returns the sum of all the multiples of 3 or 5 below the number passed in.
+        //Note: If the number is a multiple of both 3 and 5, only count it once.
+        //  CLEVER  -----------------------------------------------
+        //return Enumerable.Range(0, n).Where(e => e % 3 == 0 || e % 5 == 0).Sum();
+        public static int Solution(int value)
+        {           
+            int result = 0;
+            for (int i = 0; i < value; i++)
+            {
+                if (i%3 == 0 && i%5 == 0)
+                {
+                    result += i;
+                    continue;
+                }
+                if(i%3 == 0)
+                {
+                    result += i;
+                }
+                if (i%5 == 0)
+                {
+                    result += i;
+                }
+            }
+            return result;
+
+        }
+
+        //Write a function, persistence, that takes in a positive parameter num and returns its multiplicative persistence, which is the number 
+        //of times you must multiply the digits in num until you reach a single digit.
+        //For example:
+        // persistence(39) == 3 // because 3*9 = 27, 2*7 = 14, 1*4=4
+        //                      // and 4 has only one digit
+        // persistence(999) == 4 // because 9*9*9 = 729, 7*2*9 = 126,
+        //                       // 1*2*6 = 12, and finally 1*2 = 2
+        // persistence(4) == 0 // because 4 is already a one-digit number
+        //  CLEVER  -----------------------------------------------
+        //int count = 0;
+        //while (n > 9)
+        //{
+        //  count++;
+        //  n = n.ToString().Select(digit => int.Parse(digit.ToString())).Aggregate((x, y) => x* y);
+        //}
+        //return count;
+        public static int Persistence(long n)
+        {
+            int iterations = 0;
+            while (n.ToString().Length > 1)
+            {
+                iterations++;
+                long result = 1;
+                foreach (var item in n.ToString())
+                {
+                    result = result * long.Parse(item.ToString());
+                }
+                n = result;
+                  
+            }
+            return iterations;
+            // your code
+        }
+
+        //Given an array, find the int that appears an odd number of times.
+        //There will always be only one integer that appears an odd number of times.
+        //  CLEVER  -----------------------------------------------
+        //return seq.GroupBy(x => x).Single(g => g.Count() % 2 == 1).Key;
+        public static int find_it(int[] seq)
+        {
+            foreach (var item in seq)
+            {
+                if(seq.Count(x => x == item)%2 == 1) return item;
+            }
+            return -1;   
+        }
+        //You have an amount of money a0 > 0 and you deposit it with a constant interest rate of p% > 0 per year on the 1st of January 2016. You want to have an amount a >= a0.
+        //Task:
+        //The function date_nb_days(or dateNbDays...) with parameters a0, a, p will return, as a string, the date on which you have just reached a.
+        //Example:
+        //date_nb_days(100, 101, 0.98) --> "2017-01-01" (366 days)
+        //date_nb_days(100, 150, 2.00) --> "2035-12-26" (7299 days)
+        //Notes:
+        //The return format of the date is "YYYY-MM-DD"
+        //The deposit is always on the "2016-01-01"
+        //If p% is the rate for a year the rate for a day is p divided by 36000 since banks consider that there are 360 days in a year.
+        //You have: a0 > 0, p% > 0, a >= a0
+        //  CLEVER  -----------------------------------------------
+        //public static string DateNbDays(double a0, double a, double p) => (new DateTime(2016, 1, 1) + TimeSpan.FromDays(Math.Log(a / a0, 1 + p / 36000) + 1)).ToString("yyyy-MM-dd");
+        public static String DateNbDays(double a0, double a, double p)
+        {
+            int days = 0;
+            while (a0<a)
+            {
+                a0 = a0 + a0 * (p / 36000);
+                days++;
+            }
+            DateTime dt = new DateTime(2016, 1, 1);
+            DateTime result =  dt.AddDays(days);
+            return result.ToString("yyyy-MM-dd");
+            // your code
+        }
+
         //  Mexican Wave
         //  Task
         //  In this simple Kata your task is to create a function that turns a string into a Mexican Wave.You will be passed a string and you must return that string in an array where an uppercase letter is a person standing up.
@@ -31,8 +173,7 @@ namespace MyCodeWars
                 for (int i = 0; i < str.Length; i++)
                 {
                     if(!str[i].Equals(' '))
-                    {
-                       
+                    {                    
                         str = str.ToLower();
                         str = str.Insert(i, char.ToUpper(str[i]).ToString()).Remove(i + 1, 1);
                         response.Add(str);

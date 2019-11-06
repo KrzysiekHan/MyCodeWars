@@ -10,7 +10,11 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _5KYU.wave(" gap ");
+            _5KYU.Solution(10);
+            //_5KYU.Persistence(999);
+            //_5KYU.find_it(new[] { 20, 1, -1, 2, -2, 3, 3, 5, 5, 1, 2, 4, 20, 4, -1, -2, 5 }); //should return 5
+            //_5KYU.DateNbDays(4281, 5087, 2);
+            //_5KYU.wave(" gap ");
             //_5KYU.factorial(5);
             //_5KYU.factorial(9);
             //_5KYU.factorial(15);
