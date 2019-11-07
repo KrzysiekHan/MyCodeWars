@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static MyCodeWars.Program;
 
@@ -9,6 +10,59 @@ namespace MyCodeWars
 {
     public static class _5KYU
     {
+        //Your task is to sort a given string. Each word in the string will contain a single number.This number is the position the word should have in the result.
+        //Note: Numbers can be from 1 to 9. So 1 will be the first word (not 0).
+        //If the input string is empty, return an empty string. The words in the input String will only contain valid consecutive numbers.
+        //Examples
+        //"is2 Thi1s T4est 3a"  -->  "Thi1s is2 3a T4est"
+        //"4of Fo1r pe6ople g3ood th5e the2"  -->  "Fo1r the2 g3ood 4of th5e pe6ople"
+        //""  -->  ""
+        public static string Order(string words)
+        {
+            var wordlist = words.Split(' ');
+            Dictionary<int,string> keyValuePairs = new Dictionary<int, string>();
+            foreach (var item in wordlist)
+            {
+                keyValuePairs.Add(item.Where(x=>char.IsDigit(x));
+            }
+            throw new NotImplementedException();
+        }
+
+        //Some numbers have funny properties.For example:
+        //89 --> 8¹ + 9² = 89 * 1
+        //695 --> 6² + 9³ + 5⁴= 1390 = 695 * 2
+        //46288 --> 4³ + 6⁴+ 2⁵ + 8⁶ + 8⁷ = 2360688 = 46288 * 51
+        //Given a positive integer n written as abcd... (a, b, c, d... being digits) and a positive integer p
+        //we want to find a positive integer k, if it exists, such as the sum of the digits of n taken to the successive powers of p is equal to k* n.
+        //In other words:
+        //Is there an integer k such as : (a ^ p + b ^ (p+1) + c ^(p+2) + d ^ (p+3) + ...) = n* k
+        //If it is the case we will return k, if not return -1.
+        //Note: n and p will always be given as strictly positive integers.
+        //digPow(89, 1) should return 1 since 8¹ + 9² = 89 = 89 * 1
+        //digPow(92, 1) should return -1 since there is no k such as 9¹ + 2² equals 92 * k
+        //digPow(695, 2) should return 2 since 6² + 9³ + 5⁴= 1390 = 695 * 2
+        //digPow(46288, 3) should return 51 since 4³ + 6⁴+ 2⁵ + 8⁶ + 8⁷ = 2360688 = 46288 * 51
+        //  CLEVER  -----------------------------------------------
+        //var sum = Convert.ToInt64(n.ToString().Select(s => Math.Pow(int.Parse(s.ToString()), p++)).Sum());
+        //return sum % n == 0 ? sum / n : -1;
+        public static long digPow(int n, int p)
+        {
+            // (a ^ p + b ^ (p+1) + c ^(p+2) + d ^ (p+3) + ...) = n*k
+            string test = n.ToString();
+            double sum = 0;
+            for (int i = 0; i < test.Length; i++)
+            {
+                sum += Math.Pow(double.Parse(test[i].ToString()), p + i);
+            }
+            double result = sum / n;        
+            bool isInteger = (result == Math.Truncate(result));
+            if (isInteger)
+            {
+                return (long)result;
+            }
+            return -1;
+        }
+
         //As the name may already reveal, it works basically like a Fibonacci, but summing the last 3 (instead of 2) numbers of the sequence to generate the next.And, worse part of it, regrettably I won't get to hear non-native Italian speakers trying to pronounce it :(
         //So, if we are to start our Tribonacci sequence with [1, 1, 1] as a starting input (AKA signature), we have this sequence:
         //[1, 1 ,1, 3, 5, 9, 17, 31, ...]
@@ -16,24 +70,16 @@ namespace MyCodeWars
         //[0, 0, 1, 1, 2, 4, 7, 13, 24, ...]
         //Well, you may have guessed it by now, but to be clear: you need to create a fibonacci function that given a signature array/list, returns the first n elements - signature included of the so seeded sequence.
         //Signature will always contain 3 numbers; n will always be a non-negative number; if n == 0, then return an empty array(except in C return NULL) and be ready for anything else which is not clearly specified ;)
-        public static double[] Tribonacci(double[] signature, int n)
+        //NOT SOLVED
+        public static double[] Tribonacci(double[] s, int n)
         {
-            double[] resp = new double[n];
-            if (n == 0) return resp;
-            for (int i = 0; i < n; i++)
-            {
-                resp.Append(fib(i));
-            }
-            return resp;
-        }
-        public static double fib(int n)
-        {
-            if (n == 0 || n == 1 || n == 2)
-                return 0;
+            double[] res = new double[n];
+            Array.Copy(s, res, Math.Min(3, n));
 
-            if (n == 3)
-                return 1;
-            return fib(n - 1) + fib(n - 2) + fib(n-3);
+            for (int i = 3; i < n; i++)
+                res[i] = res[i - 3] + res[i - 2] + res[i - 1];
+
+            return n == 0 ? new double[] { 0 } : res;
         }
 
         //Count the number of Duplicates

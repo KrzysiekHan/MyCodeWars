@@ -10,7 +10,8 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _5KYU.Tribonacci(new double[] { 1, 1, 1 }, 10);
+            _5KYU.digPow(46288, 3);
+           // _5KYU.Tribonacci(new double[] { 1, 1, 1 }, 10);
             //_5KYU.DuplicateCount("Indivisibilities");
             //_5KYU.Solution(10);
             //_5KYU.Persistence(999);
