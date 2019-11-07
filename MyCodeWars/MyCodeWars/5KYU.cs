@@ -9,6 +9,51 @@ namespace MyCodeWars
 {
     public static class _5KYU
     {
+        //As the name may already reveal, it works basically like a Fibonacci, but summing the last 3 (instead of 2) numbers of the sequence to generate the next.And, worse part of it, regrettably I won't get to hear non-native Italian speakers trying to pronounce it :(
+        //So, if we are to start our Tribonacci sequence with [1, 1, 1] as a starting input (AKA signature), we have this sequence:
+        //[1, 1 ,1, 3, 5, 9, 17, 31, ...]
+        //But what if we started with[0, 0, 1] as a signature? As starting with[0, 1] instead of[1, 1] basically shifts the common Fibonacci sequence by once place, you may be tempted to think that we would get the same sequence shifted by 2 places, but that is not the case and we would get:
+        //[0, 0, 1, 1, 2, 4, 7, 13, 24, ...]
+        //Well, you may have guessed it by now, but to be clear: you need to create a fibonacci function that given a signature array/list, returns the first n elements - signature included of the so seeded sequence.
+        //Signature will always contain 3 numbers; n will always be a non-negative number; if n == 0, then return an empty array(except in C return NULL) and be ready for anything else which is not clearly specified ;)
+        public static double[] Tribonacci(double[] signature, int n)
+        {
+            double[] resp = new double[n];
+            if (n == 0) return resp;
+            for (int i = 0; i < n; i++)
+            {
+                resp.Append(fib(i));
+            }
+            return resp;
+        }
+        public static double fib(int n)
+        {
+            if (n == 0 || n == 1 || n == 2)
+                return 0;
+
+            if (n == 3)
+                return 1;
+            return fib(n - 1) + fib(n - 2) + fib(n-3);
+        }
+
+        //Count the number of Duplicates
+        //Write a function that will return the count of distinct case-insensitive alphabetic characters and numeric digits that occur more 
+        //than once in the input string. The input string can be assumed to contain only alphabets(both uppercase and lowercase) and numeric digits.
+        //Example
+        //"abcde" -> 0 # no characters repeats more than once
+        //"aabbcde" -> 2 # 'a' and 'b'
+        //"aabBcde" -> 2 # 'a' occurs twice and 'b' twice (`b` and `B`)
+        //"indivisibility" -> 1 # 'i' occurs six times
+        //"Indivisibilities" -> 2 # 'i' occurs seven times and 's' occurs twice
+        //"aA11" -> 2 # 'a' and '1'
+        //"ABBA" -> 2 # 'A' and 'B' each occur twice
+        public static int DuplicateCount(string str)
+        {
+
+            var resp = str.ToLower().GroupBy(x => x).Where(d => d.Count() > 1).Count();
+            return resp;
+        }
+
         //You are going to be given an array of integers.Your job is to take that array and find an index N where the sum of the integers to the left of N is equal to the sum of the integers to the right of N. If there is no index that would make this happen, return -1.
         //For example:
         //Let's say you are given the array {1,2,3,4,3,2,1}:
