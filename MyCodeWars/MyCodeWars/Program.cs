@@ -10,8 +10,20 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _5KYU.digPow(46288, 3);
-           // _5KYU.Tribonacci(new double[] { 1, 1, 1 }, 10);
+            _5KYU.Test("88 96 66 51 14 88 2 92 18 72 18 88 20 30 4 82 90 100 24 46");
+            //_5KYU.SongDecoder("RWUBWUBWUBLWUB");
+            //int[][] array =
+            //{
+            //    new []{1, 2, 3},
+            //    new []{4, 5, 6},
+            //    new []{7, 8, 9}
+            //};
+            //int[][] array2 = { new int[] { } };
+            //_5KYU.Snail(array2);
+            //_5KYU.DuplicateEncode("recede"); //"()()()"
+            //_5KYU.Order("is2 Thi1s T4est 3a");
+            //_5KYU.digPow(46288, 3);
+            //_5KYU.Tribonacci(new double[] { 1, 1, 1 }, 10);
             //_5KYU.DuplicateCount("Indivisibilities");
             //_5KYU.Solution(10);
             //_5KYU.Persistence(999);

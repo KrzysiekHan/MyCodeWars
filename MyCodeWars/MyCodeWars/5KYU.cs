@@ -10,6 +10,208 @@ namespace MyCodeWars
 {
     public static class _5KYU
     {
+        //Bob is preparing to pass IQ test.The most frequent task in this test is to find out which one of the given numbers 
+        //differs from the others.Bob observed that one number usually differs from the others in evenness.Help Bob — to check 
+        //his answers, he needs a program that among the given numbers finds one that is different in evenness, and return a position of this number.
+        //Keep in mind that your task is to help Bob solve a real IQ test, which means indexes of the elements start from 1 (not 0)
+        //##Examples :
+        //IQ.Test("2 4 7 8 10") => 3 // Third number is odd, while the rest of the numbers are even
+        //IQ.Test("1 2 1 1") => 2 // Second number is even, while the rest of the numbers are odd
+        //  CLEVER  -----------------------------------------------
+        //var ints = numbers.Split(' ').Select(int.Parse).ToList();
+        //var unique = ints.GroupBy(n => n % 2).OrderBy(c => c.Count()).First().First();
+        //return ints.FindIndex(c => c == unique) + 1;
+        public static int Test(string numbers)
+        {
+            var table = numbers.Split(' ').ToArray();
+            var even = table.Where(x => int.Parse(x) % 2 == 0).ToList();
+            var odd = table.Where(x => int.Parse(x) % 2 != 0).ToList();
+            if (even.Count > 1){
+                return Array.IndexOf(table,odd[0])+1;
+            }
+            else
+            {
+                return Array.IndexOf(table, even[0]) + 1;
+            }
+        }
+
+        //For example, a song with words "I AM X" can transform into a dubstep remix as "WUBWUBIWUBAMWUBWUBX" and cannot transform into "WUBWUBIAMWUBX".
+        //Recently, Jonny has heard Polycarpus's new dubstep track, but since he isn't into modern music, he decided to 
+        //find out what was the initial song that Polycarpus remixed.Help Jonny restore the original song.
+        //Input
+        //The input consists of a single non-empty string, consisting only of uppercase English letters, the string's length doesn't exceed 200 characters
+        //Output
+        //Return the words of the initial song that Polycarpus used to make a dubsteb remix.Separate the words with a space.
+        //Examples
+        //songDecoder("WUBWEWUBAREWUBWUBTHEWUBCHAMPIONSWUBMYWUBFRIENDWUB")
+        // =>  WE ARE THE CHAMPIONS MY FRIEND
+        //  CLEVER  -----------------------------------------------
+        //return Regex.Replace(input, "(WUB)+", " " ).Trim();
+        public static string SongDecoder(string input)
+        {
+            var result = input.Replace("WUB", " ").ToString();
+            RegexOptions options = RegexOptions.None;
+            Regex regex = new Regex("[ ]{2,}", options);
+            result = regex.Replace(result, " ");
+            result = result.Trim();
+            return result;
+        }
+
+        //You probably know the "like" system from Facebook and other pages.People can "like" blog posts, pictures or other items. We want to create 
+        //the text that should be displayed next to such an item.
+        //Implement a function likes :: [String] -> String, which must take in input array, containing the names of people who like an item.It must 
+        //return the display text as shown in the examples:
+        //Kata.Likes(new string[0]) => "no one likes this"
+        //Kata.Likes(new string[] {"Peter"}) => "Peter likes this"
+        //Kata.Likes(new string[] {"Jacob", "Alex"}) => "Jacob and Alex like this"
+        //Kata.Likes(new string[] {"Max", "John", "Mark"}) => "Max, John and Mark like this"
+        //Kata.Likes(new string[] {"Alex", "Jacob", "Mark", "Max"}) => "Alex, Jacob and 2 others like this"
+        //For 4 or more names, the number in and 2 others simply increases.
+        public static string Likes(string[] name)
+        {
+            switch (name.Length)
+            {
+                case 0:
+                    return "no one likes this";
+                case 1:
+                    return name[0] + " likes this";
+                case 2:
+                    return name[0] + " and " + name[1] + " like this";
+                case 3:
+                    return name[0] + ", " + name[1] + " and " + name[2] + " like this";
+                default:
+                    return name[0] + ", " + name[1] + " and " + (name.Length - 2).ToString() + " others like this";
+            };
+            return "";
+        }
+        
+
+        //Snail Sort
+        //Given an n x n array, return the array elements arranged from outermost elements to the middle element, traveling clockwise.
+        //array = [[1,2,3],
+        //         [4,5,6],
+        //         [7,8,9]]
+        //snail(array) #=> [1,2,3,6,9,8,7,4,5]
+        //For better understanding, please follow the numbers of the next array consecutively:
+        //array = [[1,2,3],
+        //         [8,9,4],
+        //         [7,6,5]]
+        //snail(array) #=> [1,2,3,4,5,6,7,8,9]
+        //This image will illustrate things more clearly:
+        //NOTE: The idea is not sort the elements from the lowest value to the highest; the idea is to traverse the 2-d array in a clockwise snailshell pattern.
+        //NOTE 2: The 0x0 (empty matrix) is represented as en empty array inside an array [[]].
+        //  CLEVER  -----------------------------------------------
+        //public static int[] Snail(int[][] array)
+        //{
+        //    int l = array[0].Length;
+        //    int[] sorted = new int[l * l];
+        //    Snail(array, -1, 0, 1, 0, l, 0, sorted);
+        //    return sorted;
+        //}
+        //public static void Snail(int[][] array, int x, int y, int dx, int dy, int l, int i, int[] sorted)
+        //{
+        //    if (l == 0)
+        //        return;
+        //    for (int j = 0; j < l; j++)
+        //    {
+        //        x += dx;
+        //        y += dy;
+        //        sorted[i++] = array[y][x];
+        //    }
+        //    Snail(array, x, y, -dy, dx, dy == 0 ? l - 1 : l, i, sorted);
+        //}
+
+        public static int[] Snail(int[][] array)
+        {
+            if (array.Length == 1 && array[0].Length==0) return new int[] { };
+            int m = array.GetLength(0);
+            int n = m;
+            var board = array;
+
+            List<int> result = new List<int>() ;
+            var dir = "right";
+            var imin = 0;
+            var imax = m - 1;
+            var jmin = 0;
+            var jmax = n - 1;
+            var i = imin;
+            var j = jmin;
+            var done = false;
+
+            while (!done)
+            {
+
+                switch (dir)
+                {
+                    case "right":
+                        i = imin;
+                        for (j = jmin; j <= jmax; j++)
+                            result.Add(board[i][j]);
+                        dir = "down";
+                        imin++;
+                        break;
+                    case "left":
+                        i = imax;                     
+                        for (j = jmax; j >= jmin; j--)
+                            result.Add(board[i][j]);
+                        dir = "up";
+                        imax--;
+                        break;
+                    case "down":
+                      
+                        j = jmax;
+                        for (i = imin; i <= imax; i++)
+                            result.Add(board[i][j]);
+                        dir = "left";
+                        jmax--;
+                        break;
+                    case "up":
+                        
+                        j = jmin;
+                        for (i = imax; i >= imin; i--)
+                            result.Add(board[i][j]);
+
+                        dir = "right";
+                        jmin++;
+                        break;
+                }
+                if (imin > imax || jmin > jmax)
+                    done = true;
+            }
+            return result.ToArray();
+        }
+
+        //The goal of this exercise is to convert a string to a new string where each character in the new string is "(" if that character appears 
+        //only once in the original string, or ")" if that 
+        //character appears more than once in the original string. Ignore capitalization when determining if a character is a duplicate.
+        //Examples
+        //"din"      =>  "((("
+        //"recede"   =>  "()()()"
+        //"Success"  =>  ")())())"
+        //"(( @"     =>  "))((" 
+        //Notes
+        //Assertion messages may be unclear about what they display in some languages. If you 
+        //read "...It Should encode XXX", the "XXX" is the expected result, not the input!
+        //  CLEVER  -----------------------------------------------
+        //return new string (word.ToLower().Select(ch => word.ToLower().Count(innerCh => ch == innerCh) == 1 ? '(' : ')').ToArray());
+        public static string DuplicateEncode(string word)
+        {
+            word = word.ToLower();
+            char[] response = new char[word.Length];
+            for (int i = 0; i < word.Length; i++)
+            {
+                if (word.Count(x => x == word[i]) > 1)
+                {
+                    response[i] = ')';
+                } else
+                {
+                    response[i] = '(';
+                } 
+            }
+            string sresp = new string(response);
+            return sresp;
+        }
+
         //Your task is to sort a given string. Each word in the string will contain a single number.This number is the position the word should have in the result.
         //Note: Numbers can be from 1 to 9. So 1 will be the first word (not 0).
         //If the input string is empty, return an empty string. The words in the input String will only contain valid consecutive numbers.
@@ -17,15 +219,26 @@ namespace MyCodeWars
         //"is2 Thi1s T4est 3a"  -->  "Thi1s is2 3a T4est"
         //"4of Fo1r pe6ople g3ood th5e the2"  -->  "Fo1r the2 g3ood 4of th5e pe6ople"
         //""  -->  ""
+        //  CLEVER  -----------------------------------------------
+        //if (string.IsNullOrEmpty(words)) return words;
+        //return string.Join(" ", words.Split(' ').OrderBy(s => s.ToList().Find(c => char.IsDigit(c))));
         public static string Order(string words)
         {
+            if (String.IsNullOrEmpty(words)) return "";
             var wordlist = words.Split(' ');
             Dictionary<int,string> keyValuePairs = new Dictionary<int, string>();
             foreach (var item in wordlist)
             {
-                keyValuePairs.Add(item.Where(x=>char.IsDigit(x));
+                keyValuePairs.Add(int.Parse(item.Where(x=>char.IsDigit(x)).Single().ToString()),item);
             }
-            throw new NotImplementedException();
+            keyValuePairs = keyValuePairs.OrderBy(x => x.Key).ToDictionary(x=>x.Key,x=>x.Value);
+            string response = "";
+            foreach (var item in keyValuePairs)
+            {
+                response += item.Value + " ";
+            }
+            return response.Trim();
+
         }
 
         //Some numbers have funny properties.For example:
