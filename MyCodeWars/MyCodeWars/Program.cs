@@ -10,7 +10,11 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _5KYU.Test("88 96 66 51 14 88 2 92 18 72 18 88 20 30 4 82 90 100 24 46");
+            _5KYU.UniqueInOrder("AAAABBBCCDAABBB");//"ABCDAB"
+            //_5KYU.AlphabetPosition("The sunset sets at twelve o' clock.");
+            //_5KYU.dirReduc(new string[] { "NORTH", "WEST", "SOUTH", "EAST"});//WEST
+            //_5KYU.dirReduc(new string[] { "NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST" });//WEST
+            //_5KYU.Test("88 96 66 51 14 88 2 92 18 72 18 88 20 30 4 82 90 100 24 46");
             //_5KYU.SongDecoder("RWUBWUBWUBLWUB");
             //int[][] array =
             //{

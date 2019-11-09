@@ -10,6 +10,98 @@ namespace MyCodeWars
 {
     public static class _5KYU
     {
+        //Unique In Order
+        //Implement the function unique_in_order which takes as argument a sequence and returns a list of items without 
+        //any elements with the same value next to each other and preserving the original order of elements.
+        //For example:
+        //uniqueInOrder("AAAABBBCCDAABBB") == {'A', 'B', 'C', 'D', 'A', 'B'}
+        //uniqueInOrder("ABBCcAD")         == {'A', 'B', 'C', 'c', 'A', 'D'}
+        //uniqueInOrder([1,2,2,3,3])       == {1,2,3}
+        //  CLEVER  -----------------------------------------------
+        //T previous = default(T);
+        //foreach (T current in iterable)
+        //{
+        //    if (!current.Equals(previous))
+        //    {
+        //        previous = current;
+        //        yield return current;
+        //    }
+        //}
+
+        public static IEnumerable<T> UniqueInOrder<T>(IEnumerable<T> iterable)
+        {
+            var list = iterable.ToList();
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (i + 1 == list.Count) break;
+                if (list[i].Equals(list[i + 1]))
+                {
+                    list.RemoveAt(i);
+                    i--;
+                }
+            }
+            return list;
+        }
+        //Welcome.
+        //In this kata you are required to, given a string, replace every letter with its position in the alphabet.
+        //If anything in the text isn't a letter, ignore it and don't return it.
+        //"a" = 1, "b" = 2, etc.
+        //Example
+        //Kata.AlphabetPosition("The sunset sets at twelve o' clock.")
+        //Should return "20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 5 12 22 5 15 3 12 15 3 11" (as a string)
+        public static string AlphabetPosition(string text)
+        {
+            var arr = text.Replace(" ", "").ToLower().ToCharArray();
+            string result = "";
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if((int)arr[i]>=97 && (int)arr[i] <= 122)
+                {
+                    result += ((int)arr[i] - 96) + " ";
+                }             
+            }
+            return result;
+        }
+
+        //Directions Reduction
+        //The directions given to the man are, for example, the following (depending on the language):
+        //["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"].
+        //You can immediatly see that going "NORTH" and then "SOUTH" is not reasonable, better stay to the same place! So the task is to give 
+        // to the man a simplified version of the plan.A better plan in this case is simply:
+        //   ["WEST"]
+        //    Other examples:
+        //In["NORTH", "SOUTH", "EAST", "WEST"], the direction "NORTH" + "SOUTH" is going north and coming back right away.What a waste of time! Better to do nothing.
+        //The path becomes["EAST", "WEST"], now "EAST" and "WEST" annihilate each other, therefore, the final result is [] (nil in Clojure).
+        //In["NORTH", "EAST", "WEST", "SOUTH", "WEST", "WEST"], "NORTH" and "SOUTH" are not directly opposite but they become directly opposite after the reduction of "EAST" and "WEST" so the whole path is reducible to["WEST", "WEST"].
+        //Task
+        //Write a function dirReduc which will take an array of strings and returns an array of strings with the needless directions removed(W<->E or S<->N side by side).
+        //Not all paths can be made simpler.The path["NORTH", "WEST", "SOUTH", "EAST"] is not reducible. "NORTH" and "WEST", "WEST" and "SOUTH", "SOUTH" 
+        //and "EAST" are not directly opposite of each other and can't become such. Hence the result path is itself : ["NORTH", "WEST", "SOUTH", "EAST"].
+        public static string[] dirReduc(String[] arr)
+        {
+            List<string> tempList = new List<string>();
+            tempList = arr.ToList();
+            for (int i = 0; i < tempList.Count; i++)
+            {
+                if (tempList.Count == (i+1)) break;
+                if (IsOpposite(tempList[i], tempList[i + 1]))
+                {
+                    tempList.RemoveAt(i);
+                    tempList.RemoveAt(i);
+                    i = -1;
+                }
+            }           
+            return tempList.ToArray();
+        }
+        private static bool IsOpposite( string a, string b)
+        {
+            if (a.Equals("EAST") && b.Equals("WEST"))return true;
+            if (a.Equals("WEST") && b.Equals("EAST")) return true;
+            if (a.Equals("NORTH") && b.Equals("SOUTH")) return true;
+            if (a.Equals("SOUTH") && b.Equals("NORTH")) return true;
+            return false;
+        }
+
         //Bob is preparing to pass IQ test.The most frequent task in this test is to find out which one of the given numbers 
         //differs from the others.Bob observed that one number usually differs from the others in evenness.Help Bob — to check 
         //his answers, he needs a program that among the given numbers finds one that is different in evenness, and return a position of this number.
