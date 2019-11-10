@@ -10,25 +10,51 @@ namespace MyCodeWars
 {
     public static class _5KYU
     {
-        //Unique In Order
-        //Implement the function unique_in_order which takes as argument a sequence and returns a list of items without 
-        //any elements with the same value next to each other and preserving the original order of elements.
-        //For example:
-        //uniqueInOrder("AAAABBBCCDAABBB") == {'A', 'B', 'C', 'D', 'A', 'B'}
-        //uniqueInOrder("ABBCcAD")         == {'A', 'B', 'C', 'c', 'A', 'D'}
-        //uniqueInOrder([1,2,2,3,3])       == {1,2,3}
+        //Create Phone Number
+        //Write a function that accepts an array of 10 integers(between 0 and 9), that returns a string of those numbers in the form of a phone number.
+        //Kata.CreatePhoneNumber(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}) // => returns "(123) 456-7890"
+        //The returned format must be correct in order to complete this challenge.
+        //Don't forget the space after the closing parenthesis!
         //  CLEVER  -----------------------------------------------
-        //T previous = default(T);
-        //foreach (T current in iterable)
-        //{
-        //    if (!current.Equals(previous))
-        //    {
-        //        previous = current;
-        //        yield return current;
-        //    }
-        //}
+        //return long.Parse(string.Concat(numbers)).ToString("(000) 000-0000");
+        public static string CreatePhoneNumber(int[] numbers)
+        {
+            string phoneNumber = "(";
+            for (int i = 0; i < 3; i++)
+            {
+                phoneNumber += numbers[i].ToString();
+            }
+            phoneNumber += ") ";
+            for (int i = 3; i < 6; i++)
+            {
+                phoneNumber += numbers[i].ToString();
+            }
+            phoneNumber += "-";
+            for (int i = 6; i < numbers.Length; i++)
+            {
+                phoneNumber += numbers[i].ToString();
+            }
+            return phoneNumber;
+        }
+            //Unique In Order
+            //Implement the function unique_in_order which takes as argument a sequence and returns a list of items without 
+            //any elements with the same value next to each other and preserving the original order of elements.
+            //For example:
+            //uniqueInOrder("AAAABBBCCDAABBB") == {'A', 'B', 'C', 'D', 'A', 'B'}
+            //uniqueInOrder("ABBCcAD")         == {'A', 'B', 'C', 'c', 'A', 'D'}
+            //uniqueInOrder([1,2,2,3,3])       == {1,2,3}
+            //  CLEVER  -----------------------------------------------
+            //T previous = default(T);
+            //foreach (T current in iterable)
+            //{
+            //    if (!current.Equals(previous))
+            //    {
+            //        previous = current;
+            //        yield return current;
+            //    }
+            //}
 
-        public static IEnumerable<T> UniqueInOrder<T>(IEnumerable<T> iterable)
+            public static IEnumerable<T> UniqueInOrder<T>(IEnumerable<T> iterable)
         {
             var list = iterable.ToList();
             for (int i = 0; i < list.Count; i++)

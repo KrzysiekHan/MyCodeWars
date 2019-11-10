@@ -10,7 +10,8 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _5KYU.UniqueInOrder("AAAABBBCCDAABBB");//"ABCDAB"
+            _5KYU.CreatePhoneNumber(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0}); //1,2,3,4,5,6,7,8,9,0  (123) 456-7890
+            //_5KYU.UniqueInOrder("AAAABBBCCDAABBB");//"ABCDAB"
             //_5KYU.AlphabetPosition("The sunset sets at twelve o' clock.");
             //_5KYU.dirReduc(new string[] { "NORTH", "WEST", "SOUTH", "EAST"});//WEST
             //_5KYU.dirReduc(new string[] { "NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST" });//WEST
