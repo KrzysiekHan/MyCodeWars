@@ -10,6 +10,44 @@ namespace MyCodeWars
 {
     public static class _5KYU
     {
+        //Consecutive strings
+        //You are given an array strarr of strings and an integer k.Your task is to return the first longest string consisting of k consecutive strings taken in the array.
+        //longest_consec(["zone", "abigail", "theta", "form", "libe", "zas", "theta", "abigail"], 2) --> "abigailtheta"
+        //n being the length of the string array, if n = 0 or k > n or k <= 0 return "".
+        //consecutive strings : follow one after another without an interruption
+        //  CLEVER  -----------------------------------------------
+        //   return s.Length==0||s.Length<k||k<=0 ? "" 
+        //: Enumerable.Range(0,s.Length-k+1)
+        //            .Select(x=>string.Join("", s.Skip(x).Take(k)))
+        //            .OrderByDescending(x=>x.Length)
+        //            .First();
+        public static String LongestConsec(string[] strarr, int k)
+        {
+            if (strarr.Length == 0 || strarr.Length < k || k <= 0) return ""; 
+            int lengthOf3String = 0;
+            int indexL3 = 0;
+            for (int i = 0; i <= strarr.Length-k; i++)
+            {
+                int templ = 0;
+                for (int m = 0; m < k; m++)
+                {
+                    templ += strarr[i + m].Length;
+                }
+                if (templ > lengthOf3String)
+                {
+                    lengthOf3String = templ;
+                    indexL3 = i;
+                }
+            }
+            string result = "";
+            for (int i = indexL3; i < k; i++)
+            {
+                result += strarr[i];
+            }
+            // your code
+            return result;
+        }
+
         //Create Phone Number
         //Write a function that accepts an array of 10 integers(between 0 and 9), that returns a string of those numbers in the form of a phone number.
         //Kata.CreatePhoneNumber(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}) // => returns "(123) 456-7890"
