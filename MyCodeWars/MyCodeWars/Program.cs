@@ -10,6 +10,7 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
+            _4KYU.Decrypt("hsi  etTi sats!", 1);
             _4KYU.Encrypt("This is a test!", 2); //"s eT ashi tist!"
             //_4KYU.TowerBuilder(5);
             //_4KYU.validBraces("()[]{}");
@@ -27,12 +28,6 @@ namespace MyCodeWars
             //_5KYU.dirReduc(new string[] { "NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST" });//WEST
             //_5KYU.Test("88 96 66 51 14 88 2 92 18 72 18 88 20 30 4 82 90 100 24 46");
             //_5KYU.SongDecoder("RWUBWUBWUBLWUB");
-            //int[][] array =
-            //{
-            //    new []{1, 2, 3},
-            //    new []{4, 5, 6},
-            //    new []{7, 8, 9}
-            //};
             //int[][] array2 = { new int[] { } };
             //_5KYU.Snail(array2);
             //_5KYU.DuplicateEncode("recede"); //"()()()"
@@ -50,7 +45,6 @@ namespace MyCodeWars
             //_5KYU.factorial(15);
             //assert new List<int>(){1,2,3,4,5,6},
             //_5KYU.TreeByLevels(new Node(new Node(null, new Node(null, null, 4), 2), new Node(new Node(null, null, 5), new Node(null, null, 6), 3), 1));
-
             //_5KYU.IsSolved(new int[,] { { 1, 1, 1 }, { 0, 2, 2 }, { 0, 0, 0 } });
             //double[] x = new double[] { 0.0, 0.23, 0.46, 0.69, 0.92, 1.15, 1.38, 1.61 };
             //_5KYU.Gps(20, x); //result should be 41

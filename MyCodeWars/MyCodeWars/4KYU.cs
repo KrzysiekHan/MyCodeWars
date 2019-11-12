@@ -40,31 +40,29 @@ namespace MyCodeWars
                     }
                 }
                 res = string.Concat(result, result2);
+                result = "";
+                result2 = "";
             }
             return string.Concat(result, result2);
         }
 
         public static string Decrypt(string encryptedText, int n)
         {
+            char[] result = new char[encryptedText.Length];
             if (encryptedText.Length == 0 || n <= 0) return encryptedText;
-            string result = "";
-            string result2 = "";
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < encryptedText.Length; i++)
             {
-                for (int k = 0; k < encryptedText.Length; k++)
+                if (i > encryptedText.Length / 2)
                 {
-                    if (k % 2 != 0)
-                    {
-                        result += encryptedText[k];
-                    }
-                    if (k % 2 == 0)
-                    {
-                        result2 += encryptedText[k];
-                    }
+                    result[i*2+1] = encryptedText[i];
                 }
-                return string.Concat(result, result2);
+                if (i < encryptedText.Length / 2)
+                {
+
+                    result[i*2-(encryptedText.Length / 2)] = encryptedText[i];
+                }
             }
-            return encryptedText;
+            return new string(result);
         }
 
         //Build Tower
