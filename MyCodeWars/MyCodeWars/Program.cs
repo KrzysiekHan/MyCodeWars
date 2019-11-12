@@ -10,7 +10,15 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _4KYU.QueueTime(new int[] { 2, 2, 3, 3, 4, 4 }, 2); //9
+            _4KYU.Encrypt("This is a test!", 2); //"s eT ashi tist!"
+            //_4KYU.TowerBuilder(5);
+            //_4KYU.validBraces("()[]{}");
+            //_4KYU.validBraces("()[)]{[[}");
+            //_4KYU.SortArray(new int[] { 5, 3, 2, 8, 1, 4 }); //{ 1, 3, 2, 8, 5, 4 }
+            //_4KYU.comp(new int[] {}, new int[] {});
+            //_4KYU.comp(new int[] { 121, 144, 19, 161, 19, 144, 19, 11 }, new int[] { 121, 14641, 20736, 361, 25921, 361, 20736, 361 });
+            //_4KYU.FindMissingLetter(new[] { 'a', 'b', 'c', 'd', 'f' }); //e
+            //_4KYU.QueueTime(new int[] { 2, 2, 3, 3, 4, 4 }, 2); //9
             //_5KYU.LongestConsec(new String[] { "it", "wkppv", "ixoyx", "3452", "zzzzzzzzzzzz" }, 3);//new String[] {"it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"}, 3), "ixoyx3452zzzzzzzzzzzz");
             //_5KYU.CreatePhoneNumber(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0}); //1,2,3,4,5,6,7,8,9,0  (123) 456-7890
             //_5KYU.UniqueInOrder("AAAABBBCCDAABBB");//"ABCDAB"
