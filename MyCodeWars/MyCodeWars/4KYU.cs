@@ -8,6 +8,16 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //Write function bmi that calculates body mass index(bmi = weight / height ^ 2).
+        //if bmi <= 18.5 return "Underweight"
+        //if bmi <= 25.0 return "Normal"
+        //if bmi <= 30.0 return "Overweight"
+        //if bmi > 30 return "Obese"
+        public static string Bmi(double weight, double height)
+        {
+            double result = weight / (Math.Pow(height, 2));
+            return result.ToString();
+        }
         //Simple Encryption #1 - Alternating Split
         //For building the encrypted string:
         //Take every 2nd char from the string, then the other chars, that are not every 2nd char, and concat them as new String.
