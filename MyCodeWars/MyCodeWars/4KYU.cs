@@ -8,6 +8,141 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //Take a Number And Sum Its Digits Raised To The Consecutive Powers And ....¡Eureka!!
+        //The number 89 is the first integer with more than one digit that fulfills the property partially 
+        //introduced in the title of this kata.What's the use of saying "Eureka"? Because this sum gives the same number.
+        //In effect: 89 = 8^1 + 9^2
+        //The next number in having this property is 135.
+        //See this property again: 135 = 1^1 + 3^2 + 5^3
+        //We need a function to collect these numbers, that may receive two integers a, b that defines the range[a, b] 
+        //(inclusive) and outputs a list of the sorted numbers in the range that fulfills the property described above.
+        //Let's see some cases:
+        //sum_dig_pow(1, 10) == [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        //sum_dig_pow(1, 100) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 89]
+        //If there are no numbers of this kind in the range[a, b] the function should output an empty list.
+        //sum_dig_pow(90, 100) == []
+        //  CLEVER  ----------------------------------------------- 
+        //List<long> values = new List<long>();
+        //for (long x = a; x <= b; x++)
+        //{
+        //  if (x.ToString().Select((c, i) => Math.Pow(Char.GetNumericValue(c), i + 1)).Sum() == x)
+        //    values.Add(x);
+        //}
+        //return values.ToArray();
+        public static long[] SumDigPow(long a, long b)
+        {
+            List<long> response = new List<long>();
+            for (long i = a; i < b; i++)
+            {
+                if (Eureka((int)i)) response.Add(a);
+            }
+            return response.ToArray();
+        }
+
+        public static bool Eureka(int value)
+        {
+            string str = value.ToString();
+            int result = 0;
+            for (int i = 0; i < str.Length; i++)
+            {
+                result += (int)Math.Pow(Convert.ToInt32(str[i].ToString()), i+1);
+            }
+            return (value == result) ? true : false;
+        }
+
+        //A Narcissistic Number is a number which is the sum of its own digits, each raised to the power of the number of digits 
+        //in a given base. In this Kata, we will restrict ourselves to decimal (base 10).
+        //For example, take 153 (3 digits):
+        //    1^3 + 5^3 + 3^3 = 1 + 125 + 27 = 153
+        //and 1634 (4 digits):
+        //    1^4 + 6^4 + 3^4 + 4^4 = 1 + 1296 + 81 + 256 = 1634
+        //The Challenge:
+        //Your code must return true or false depending upon whether the given number is a Narcissistic number in base 10.
+        //Error checking for text strings or other invalid inputs is not required, only valid integers will be passed into the function.
+        //  CLEVER  -----------------------------------------------        
+        //var str = value.ToString();
+        //return str.Sum(c => Math.Pow(Convert.ToInt16(c.ToString()), str.Length)) == value;
+        public static bool Narcissistic(int value)
+        {
+            var temp = value.ToString().ToArray();
+            int result = 0;
+            for (int i = 0; i < temp.Length; i++)
+            {
+               result += (int)Math.Pow(int.Parse(temp[i].ToString()), temp.Length);
+            }
+            return (result == value) ? true : false;
+        }
+
+
+        //A child is playing with a ball on the nth floor of a tall building.The height of this floor, h, is known.
+        //He drops the ball out of the window.The ball bounces (for example), to two-thirds of its height(a bounce of 0.66).
+        //His mother looks out of a window 1.5 meters from the ground.
+        //How many times will the mother see the ball pass in front of her window (including when it's falling and bouncing?
+        //Three conditions must be met for a valid experiment:
+        //Float parameter "h" in meters must be greater than 0
+        //Float parameter "bounce" must be greater than 0 and less than 1
+        //Float parameter "window" must be less than h.
+        //If all three conditions above are fulfilled, return a positive integer, otherwise return -1.
+        //Note:
+        //The ball can only be seen if the height of the rebounding ball is strictly greater than the window parameter.
+        //Example:
+        //- h = 3, bounce = 0.66, window = 1.5, result is 3
+        //- h = 3, bounce = 1, window = 1.5, result is -1 
+        //(Condition 2) not fulfilled).
+        public static int bouncingBall(double h, double bounce, double window)
+        {
+            if (h<=0) return -1;
+            if (bounce >= 1) return -1;
+            if (bounce <= 0) return -1;
+            if (window >= h) return -1;
+
+            double bounceHeight = h;
+            int howMany = 0;
+
+            while (bounceHeight>window)
+            {
+                bounceHeight = bounceHeight * bounce;
+                howMany++;
+                howMany++;
+            }
+            // your code
+            return howMany-1;
+        }
+
+
+        //Highest Scoring Word
+        //Given a string of words, you need to find the highest scoring word.
+        //Each letter of a word scores points according to its position in the alphabet: a = 1, b = 2, c = 3 etc.
+        //You need to return the highest scoring word as a string
+        //If two words score the same, return the word that appears earliest in the original string.
+        //All letters will be lowercase and all inputs will be valid.
+        //  CLEVER  ----------------------------------------------- 
+        //return s.Split(' ').OrderBy(a => a.Select(b => b - 96).Sum()).Last();
+        public static string High(string s)
+        {
+            var words = s.Split(' ');
+            Dictionary<string, int> results = new Dictionary<string, int>();
+            foreach (var item in words)
+            {
+                int points = 0;
+                for (int i = 0; i < item.Length; i++)
+                {
+                    points += LetterPoints(item[i]);
+                }
+                if (!results.ContainsKey(item))
+                {
+                    results.Add(item, points);
+                }            
+            }
+            var res = results.OrderByDescending(x => x.Value);
+            return res.First().Key;      
+        }
+        public static int LetterPoints(char letter)
+        {          
+            return (int)letter - 96;
+        }
+
+
         //Roman Numerals Encoder
         //Create a function taking a positive integer as its parameter and returning a string containing the Roman Numeral representation of that integer.
         //Modern Roman numerals are written by expressing each digit separately starting with the left most digit and skipping any digit with a value of zero.

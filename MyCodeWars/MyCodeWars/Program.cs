@@ -10,8 +10,12 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _4KYU.Decrypt("hsi  etTi sats!", 1);
-            _4KYU.Encrypt("This is a test!", 2); //"s eT ashi tist!"
+            _4KYU.SumDigPow(1, 100);
+            //_4KYU.Narcissistic(371);
+            //_4KYU.bouncingBall(30.0, 0.66, 1.5);//15
+            //_4KYU.High("man i need a taxi up to ubud");
+            //_4KYU.Decrypt("hsi  etTi sats!", 1);
+            //_4KYU.Encrypt("This is a test!", 2); //"s eT ashi tist!"
             //_4KYU.TowerBuilder(5);
             //_4KYU.validBraces("()[]{}");
             //_4KYU.validBraces("()[)]{[[}");
