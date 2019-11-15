@@ -8,6 +8,105 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //Weight for weight
+        //my friend John and I are members of the "Fat to Fit Club (FFC)". John is worried because each month a list with the weights 
+        //of members is published and each month he is the last on the list which means he is the heaviest.
+        //I am the one who establishes the list so I told him: "Don't worry any more, I will modify the order of the list". It was decided 
+        //to attribute a "weight" to numbers. The weight of a number will be from now on the sum of its digits.
+        //For example 99 will have "weight" 18, 100 will have "weight" 1 so in the list 100 will come before 99. Given a string with the 
+        //weights of FFC members in normal order can you give this string ordered by "weights" of these numbers?
+        //Example:
+        //"56 65 74 100 99 68 86 180 90" ordered by numbers weights becomes: "100 180 90 56 65 74 68 86 99"
+        //When two numbers have the same "weight", let us class them as if they were strings(alphabetical ordering) and not numbers: 100 is 
+        //before 180 because its "weight" (1) is less than the one of 180 (9) and 180 is before 90 since, having the same "weight" (9), 
+        //it comes before as a string.
+        //All numbers in the list are positive numbers and the list can be empty.
+        //it may happen that the input string have leading, trailing whitespaces and more than a unique whitespace between two consecutive numbers
+        //ALGORITHMSNUMBERS
+        public static string orderWeight(string strng)
+        {
+           return string.Join(" ",strng.Split(' ').OrderBy(a => a.Select(b => char.GetNumericValue(b)).Sum()).ThenBy(c=>c).ToList());
+        }
+
+        //A pangram is a sentence that contains every single letter of the alphabet at least once.For example, 
+        //the sentence "The quick brown fox jumps over the lazy dog" is a pangram, because it uses the 
+        //letters A-Z at least once(case is irrelevant).Given a string, detect whether or not it is 
+        //a pangram.Return True if it is, False if not.Ignore numbers and punctuation.
+        //  CLEVER  -----------------------------------------------
+        //return str.Where(ch => Char.IsLetter(ch)).Select(ch => Char.ToLower(ch)).Distinct().Count() == 26;
+        public static bool IsPangram(string str)
+        {
+            var lettersArr = str.ToLower().ToCharArray();
+            List<int> letters = new List<int>(Enumerable.Range(1, 26));
+            for (int i = 0; i < lettersArr.Length; i++)
+            {
+                int letterNum = (int)lettersArr[i] - 96;
+                if (letters.Contains(letterNum)) letters.Remove(letterNum);
+            }
+            if (letters.Count > 0) return false;
+            return true;
+        }
+
+        //Rectangle into Squares
+        //The drawing below gives an idea of how to cut a given "true" rectangle into squares("true" rectangle 
+        //meaning that the two dimensions are different).
+        //Can you translate this drawing into an algorithm?
+        //You will be given two dimensions
+        //a positive integer length (parameter named lng)
+        //a positive integer width (parameter named wdth)
+        //You will return an array or a string (depending on the language; Shell bash, PowerShell and Fortran return a string) with the size of each of the squares.
+        //  sqInRect(5, 3) should return [3, 2, 1, 1]
+        //Notes:
+        //lng == wdth as a starting case would be an entirely different problem and the drawing is 
+        //planned to be interpreted with lng != wdth.
+        //When the initial parameters are so that lng == wdth, the solution [lng] would be the 
+        //most obvious but not in the spirit of this kata so, in that case, return null
+        public static List<int> sqInRect(int lng, int wdth)
+        {
+            if (lng == wdth) return null;
+            List<int> result = new List<int>();
+            while (lng != wdth)
+            {
+                int small = (lng < wdth) ? lng : wdth; 
+                int big = (lng > wdth) ? lng : wdth;
+
+                result.Add(small);
+
+                lng = small;
+                wdth = big - small;
+            }
+            result.Add(lng);
+            return result;
+        }
+
+
+        //Is a number prime?
+        //Define a function that takes an integer argument and returns logical value true or false depending on if the integer is a prime.
+        //Per Wikipedia, a prime number (or a prime) is a natural number greater than 1 that has no positive divisors other than 1 and itself.
+        //Example
+        //is_prime(1)  /* false */
+        //is_prime(2)  /* true  */
+        //is_prime(-1) /* false */
+        //Assumptions
+        //You can assume you will be given an integer input.
+        //You can not assume that the integer will be only positive.You may be given negative numbers as well(or 0).
+        //There are no fancy optimizations required, but still the most trivial solutions might time out. 
+        //Try to find a solution which does not loop all the way up to n.
+        //  CLEVER  -----------------------------------------------         
+        //if (n <= 2 || n % 2 == 0) return n == 2;
+        //for (int i = 3; i <= Math.Sqrt(n); i += 2) if (n % i == 0) return false;
+        //return true;
+        public static bool IsPrime(int n)
+        {
+            if (n <= 1) return false;
+            int bound = (int)Math.Floor(Math.Sqrt(n));
+            for (int i = 2; i <= bound; i++)
+            {
+                if (n % i == 0) return false;
+            }
+            return true;
+        }
+
         //Take a Number And Sum Its Digits Raised To The Consecutive Powers And ....¡Eureka!!
         //The number 89 is the first integer with more than one digit that fulfills the property partially 
         //introduced in the title of this kata.What's the use of saying "Eureka"? Because this sum gives the same number.
