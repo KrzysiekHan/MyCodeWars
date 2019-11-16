@@ -8,6 +8,34 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //Maximum subarray sum
+        //The maximum sum subarray problem consists in finding the maximum sum of a contiguous subsequence in an array or list of integers:
+        //maxSequence[-2, 1, -3, 4, -1, 2, 1, -5, 4]
+        //-- should be 6: [4, -1, 2, 1]
+        //Easy case is when the list is made up of only positive numbers and the maximum 
+        //sum is the sum of the whole array.If the list is made up of only negative numbers, return 0 instead.
+        //Empty list is considered to have zero greatest sum. Note that the empty list or array is also a valid sublist/subarray.
+        public static int MaxSequence(int[] arr)
+        {
+            if (arr.Length == 0) return 0;
+            if (arr.Sum() <= 0) return 0;
+            int max = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                int maxSum = 0;
+                for (int l = i; l<arr.Length; l++)
+                {
+                    maxSum = maxSum + arr[l];
+                    if (maxSum > max)
+                    {
+                        max = maxSum;
+                    }
+                }
+            }
+            return max;
+        }
+
+
         //Weight for weight
         //my friend John and I are members of the "Fat to Fit Club (FFC)". John is worried because each month a list with the weights 
         //of members is published and each month he is the last on the list which means he is the heaviest.
