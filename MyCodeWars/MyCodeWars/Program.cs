@@ -10,7 +10,8 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _4KYU.orderWeight("56 65 74 100 99 68 86 180 90");
+            _4KYU.print(5);
+            //_4KYU.orderWeight("56 65 74 100 99 68 86 180 90");
             //_4KYU.IsPangram("The quick brown fox jumps over the lazy dog.");
             //_4KYU.SumDigPow(1, 100);
             //_4KYU.Narcissistic(371);

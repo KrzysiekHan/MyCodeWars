@@ -8,6 +8,58 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //You need to return a string that looks like a diamond shape when printed on the screen, using asterisk (*) characters.
+        //Trailing spaces should be removed, and every line must be terminated with a newline character (\n).
+        //Return null/nil/None/... if the input is an even number or negative, as it is not possible to print a diamond of even or negative size.
+        //A size 3 diamond:
+        // *
+        //***
+        // *
+        //...which would appear as a string of " *\n***\n *\n"
+        //A size 5 diamond:
+        //  *
+        // ***
+        //*****
+        // ***
+        //  *
+        //...that is: " *\n ***\n*****\n ***\n *\n"
+        public static string print(int n)
+        {
+            if (n % 2 == 0 || n <= 0) return null;
+            string result = "";
+            int middle = (n / 2) + 1;
+            for (int i = 1; i <= n; i++)
+            {
+                if (i<=middle)
+                {
+                    var starCount = (i * 2) - 1;
+                    for (int y = 0; y < (n - starCount) / 2; y++)
+                    {
+                        result += ' ';
+                    }
+                    for (int o = 0; o < starCount; o++)
+                    {
+                        result += '*';
+                    }
+                    result += '\n';
+                }
+                else
+                {
+                    var starCount = ((n - i) * 2) + 1;
+                    for (int y = 0; y < (n - starCount) / 2; y++)
+                    {
+                        result += ' ';
+                    }
+                    for (int o = 0; o < starCount; o++)
+                    {
+                        result += '*';
+                    }
+                    result += '\n';
+                }
+            }
+            return result;
+        }
+
         //Maximum subarray sum
         //The maximum sum subarray problem consists in finding the maximum sum of a contiguous subsequence in an array or list of integers:
         //maxSequence[-2, 1, -3, 4, -1, 2, 1, -5, 4]
