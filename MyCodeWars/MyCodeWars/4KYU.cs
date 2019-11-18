@@ -142,6 +142,368 @@ namespace MyCodeWars
             if (a == '(' && b == ')') return true;
             return false;
         }
+        //You need to return a string that looks like a diamond shape when printed on the screen, using asterisk (*) characters.
+        //Trailing spaces should be removed, and every line must be terminated with a newline character (\n).
+        //Return null/nil/None/... if the input is an even number or negative, as it is not possible to print a diamond of even or negative size.
+        //A size 3 diamond:
+        // *
+        //***
+        // *
+        //...which would appear as a string of " *\n***\n *\n"
+        //A size 5 diamond:
+        //  *
+        // ***
+        //*****
+        // ***
+        //  *
+        //...that is: " *\n ***\n*****\n ***\n *\n"
+        public static string print(int n)
+        {
+            if (n % 2 == 0 || n <= 0) return null;
+            string result = "";
+            int middle = (n / 2) + 1;
+            for (int i = 1; i <= n; i++)
+            {
+                if (i<=middle)
+                {
+                    var starCount = (i * 2) - 1;
+                    for (int y = 0; y < (n - starCount) / 2; y++)
+                    {
+                        result += ' ';
+                    }
+                    for (int o = 0; o < starCount; o++)
+                    {
+                        result += '*';
+                    }
+                    result += '\n';
+                }
+                else
+                {
+                    var starCount = ((n - i) * 2) + 1;
+                    for (int y = 0; y < (n - starCount) / 2; y++)
+                    {
+                        result += ' ';
+                    }
+                    for (int o = 0; o < starCount; o++)
+                    {
+                        result += '*';
+                    }
+                    result += '\n';
+                }
+            }
+            return result;
+        }
+        //Maximum subarray sum
+        //The maximum sum subarray problem consists in finding the maximum sum of a contiguous subsequence in an array or list of integers:
+        //maxSequence[-2, 1, -3, 4, -1, 2, 1, -5, 4]
+        //-- should be 6: [4, -1, 2, 1]
+        //Easy case is when the list is made up of only positive numbers and the maximum 
+        //sum is the sum of the whole array.If the list is made up of only negative numbers, return 0 instead.
+        //Empty list is considered to have zero greatest sum. Note that the empty list or array is also a valid sublist/subarray.
+        public static int MaxSequence(int[] arr)
+        {
+            if (arr.Length == 0) return 0;
+            bool allNegative = true;
+            foreach (var item in arr)
+            {
+                if (item >= 0) allNegative = false;              
+            }
+            if (allNegative) return 0;
+            if (arr.Sum() <= 0) return 0;
+            int max = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                int maxSum = 0;
+                for (int l = i; l<arr.Length; l++)
+                {
+                    maxSum = maxSum + arr[l];
+                    if (maxSum > max)
+                    {
+                        max = maxSum;
+                    }
+                }
+            }
+            return max;
+        }
+
+
+        //Weight for weight
+        //my friend John and I are members of the "Fat to Fit Club (FFC)". John is worried because each month a list with the weights 
+        //of members is published and each month he is the last on the list which means he is the heaviest.
+        //I am the one who establishes the list so I told him: "Don't worry any more, I will modify the order of the list". It was decided 
+        //to attribute a "weight" to numbers. The weight of a number will be from now on the sum of its digits.
+        //For example 99 will have "weight" 18, 100 will have "weight" 1 so in the list 100 will come before 99. Given a string with the 
+        //weights of FFC members in normal order can you give this string ordered by "weights" of these numbers?
+        //Example:
+        //"56 65 74 100 99 68 86 180 90" ordered by numbers weights becomes: "100 180 90 56 65 74 68 86 99"
+        //When two numbers have the same "weight", let us class them as if they were strings(alphabetical ordering) and not numbers: 100 is 
+        //before 180 because its "weight" (1) is less than the one of 180 (9) and 180 is before 90 since, having the same "weight" (9), 
+        //it comes before as a string.
+        //All numbers in the list are positive numbers and the list can be empty.
+        //it may happen that the input string have leading, trailing whitespaces and more than a unique whitespace between two consecutive numbers
+        //ALGORITHMSNUMBERS
+        public static string orderWeight(string strng)
+        {
+           return string.Join(" ",strng.Split(' ').OrderBy(a => a.Select(b => char.GetNumericValue(b)).Sum()).ThenBy(c=>c).ToList());
+        }
+
+        //A pangram is a sentence that contains every single letter of the alphabet at least once.For example, 
+        //the sentence "The quick brown fox jumps over the lazy dog" is a pangram, because it uses the 
+        //letters A-Z at least once(case is irrelevant).Given a string, detect whether or not it is 
+        //a pangram.Return True if it is, False if not.Ignore numbers and punctuation.
+        //  CLEVER  -----------------------------------------------
+        //return str.Where(ch => Char.IsLetter(ch)).Select(ch => Char.ToLower(ch)).Distinct().Count() == 26;
+        public static bool IsPangram(string str)
+        {
+            var lettersArr = str.ToLower().ToCharArray();
+            List<int> letters = new List<int>(Enumerable.Range(1, 26));
+            for (int i = 0; i < lettersArr.Length; i++)
+            {
+                int letterNum = (int)lettersArr[i] - 96;
+                if (letters.Contains(letterNum)) letters.Remove(letterNum);
+            }
+            if (letters.Count > 0) return false;
+            return true;
+        }
+
+        //Rectangle into Squares
+        //The drawing below gives an idea of how to cut a given "true" rectangle into squares("true" rectangle 
+        //meaning that the two dimensions are different).
+        //Can you translate this drawing into an algorithm?
+        //You will be given two dimensions
+        //a positive integer length (parameter named lng)
+        //a positive integer width (parameter named wdth)
+        //You will return an array or a string (depending on the language; Shell bash, PowerShell and Fortran return a string) with the size of each of the squares.
+        //  sqInRect(5, 3) should return [3, 2, 1, 1]
+        //Notes:
+        //lng == wdth as a starting case would be an entirely different problem and the drawing is 
+        //planned to be interpreted with lng != wdth.
+        //When the initial parameters are so that lng == wdth, the solution [lng] would be the 
+        //most obvious but not in the spirit of this kata so, in that case, return null
+        public static List<int> sqInRect(int lng, int wdth)
+        {
+            if (lng == wdth) return null;
+            List<int> result = new List<int>();
+            while (lng != wdth)
+            {
+                int small = (lng < wdth) ? lng : wdth; 
+                int big = (lng > wdth) ? lng : wdth;
+
+                result.Add(small);
+
+                lng = small;
+                wdth = big - small;
+            }
+            result.Add(lng);
+            return result;
+        }
+
+
+        //Is a number prime?
+        //Define a function that takes an integer argument and returns logical value true or false depending on if the integer is a prime.
+        //Per Wikipedia, a prime number (or a prime) is a natural number greater than 1 that has no positive divisors other than 1 and itself.
+        //Example
+        //is_prime(1)  /* false */
+        //is_prime(2)  /* true  */
+        //is_prime(-1) /* false */
+        //Assumptions
+        //You can assume you will be given an integer input.
+        //You can not assume that the integer will be only positive.You may be given negative numbers as well(or 0).
+        //There are no fancy optimizations required, but still the most trivial solutions might time out. 
+        //Try to find a solution which does not loop all the way up to n.
+        //  CLEVER  -----------------------------------------------         
+        //if (n <= 2 || n % 2 == 0) return n == 2;
+        //for (int i = 3; i <= Math.Sqrt(n); i += 2) if (n % i == 0) return false;
+        //return true;
+        public static bool IsPrime(int n)
+        {
+            if (n <= 1) return false;
+            int bound = (int)Math.Floor(Math.Sqrt(n));
+            for (int i = 2; i <= bound; i++)
+            {
+                if (n % i == 0) return false;
+            }
+            return true;
+        }
+
+        //Take a Number And Sum Its Digits Raised To The Consecutive Powers And ....¡Eureka!!
+        //The number 89 is the first integer with more than one digit that fulfills the property partially 
+        //introduced in the title of this kata.What's the use of saying "Eureka"? Because this sum gives the same number.
+        //In effect: 89 = 8^1 + 9^2
+        //The next number in having this property is 135.
+        //See this property again: 135 = 1^1 + 3^2 + 5^3
+        //We need a function to collect these numbers, that may receive two integers a, b that defines the range[a, b] 
+        //(inclusive) and outputs a list of the sorted numbers in the range that fulfills the property described above.
+        //Let's see some cases:
+        //sum_dig_pow(1, 10) == [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        //sum_dig_pow(1, 100) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 89]
+        //If there are no numbers of this kind in the range[a, b] the function should output an empty list.
+        //sum_dig_pow(90, 100) == []
+        //  CLEVER  ----------------------------------------------- 
+        //List<long> values = new List<long>();
+        //for (long x = a; x <= b; x++)
+        //{
+        //  if (x.ToString().Select((c, i) => Math.Pow(Char.GetNumericValue(c), i + 1)).Sum() == x)
+        //    values.Add(x);
+        //}
+        //return values.ToArray();
+        public static long[] SumDigPow(long a, long b)
+        {
+            List<long> response = new List<long>();
+            for (long i = a; i < b; i++)
+            {
+                if (Eureka((int)i)) response.Add(a);
+            }
+            return response.ToArray();
+        }
+
+        public static bool Eureka(int value)
+        {
+            string str = value.ToString();
+            int result = 0;
+            for (int i = 0; i < str.Length; i++)
+            {
+                result += (int)Math.Pow(Convert.ToInt32(str[i].ToString()), i+1);
+            }
+            return (value == result) ? true : false;
+        }
+
+        //A Narcissistic Number is a number which is the sum of its own digits, each raised to the power of the number of digits 
+        //in a given base. In this Kata, we will restrict ourselves to decimal (base 10).
+        //For example, take 153 (3 digits):
+        //    1^3 + 5^3 + 3^3 = 1 + 125 + 27 = 153
+        //and 1634 (4 digits):
+        //    1^4 + 6^4 + 3^4 + 4^4 = 1 + 1296 + 81 + 256 = 1634
+        //The Challenge:
+        //Your code must return true or false depending upon whether the given number is a Narcissistic number in base 10.
+        //Error checking for text strings or other invalid inputs is not required, only valid integers will be passed into the function.
+        //  CLEVER  -----------------------------------------------        
+        //var str = value.ToString();
+        //return str.Sum(c => Math.Pow(Convert.ToInt16(c.ToString()), str.Length)) == value;
+        public static bool Narcissistic(int value)
+        {
+            var temp = value.ToString().ToArray();
+            int result = 0;
+            for (int i = 0; i < temp.Length; i++)
+            {
+               result += (int)Math.Pow(int.Parse(temp[i].ToString()), temp.Length);
+            }
+            return (result == value) ? true : false;
+        }
+
+
+        //A child is playing with a ball on the nth floor of a tall building.The height of this floor, h, is known.
+        //He drops the ball out of the window.The ball bounces (for example), to two-thirds of its height(a bounce of 0.66).
+        //His mother looks out of a window 1.5 meters from the ground.
+        //How many times will the mother see the ball pass in front of her window (including when it's falling and bouncing?
+        //Three conditions must be met for a valid experiment:
+        //Float parameter "h" in meters must be greater than 0
+        //Float parameter "bounce" must be greater than 0 and less than 1
+        //Float parameter "window" must be less than h.
+        //If all three conditions above are fulfilled, return a positive integer, otherwise return -1.
+        //Note:
+        //The ball can only be seen if the height of the rebounding ball is strictly greater than the window parameter.
+        //Example:
+        //- h = 3, bounce = 0.66, window = 1.5, result is 3
+        //- h = 3, bounce = 1, window = 1.5, result is -1 
+        //(Condition 2) not fulfilled).
+        public static int bouncingBall(double h, double bounce, double window)
+        {
+            if (h<=0) return -1;
+            if (bounce >= 1) return -1;
+            if (bounce <= 0) return -1;
+            if (window >= h) return -1;
+
+            double bounceHeight = h;
+            int howMany = 0;
+
+            while (bounceHeight>window)
+            {
+                bounceHeight = bounceHeight * bounce;
+                howMany++;
+                howMany++;
+            }
+            // your code
+            return howMany-1;
+        }
+
+
+        //Highest Scoring Word
+        //Given a string of words, you need to find the highest scoring word.
+        //Each letter of a word scores points according to its position in the alphabet: a = 1, b = 2, c = 3 etc.
+        //You need to return the highest scoring word as a string
+        //If two words score the same, return the word that appears earliest in the original string.
+        //All letters will be lowercase and all inputs will be valid.
+        //  CLEVER  ----------------------------------------------- 
+        //return s.Split(' ').OrderBy(a => a.Select(b => b - 96).Sum()).Last();
+        public static string High(string s)
+        {
+            var words = s.Split(' ');
+            Dictionary<string, int> results = new Dictionary<string, int>();
+            foreach (var item in words)
+            {
+                int points = 0;
+                for (int i = 0; i < item.Length; i++)
+                {
+                    points += LetterPoints(item[i]);
+                }
+                if (!results.ContainsKey(item))
+                {
+                    results.Add(item, points);
+                }            
+            }
+            var res = results.OrderByDescending(x => x.Value);
+            return res.First().Key;      
+        }
+        public static int LetterPoints(char letter)
+        {          
+            return (int)letter - 96;
+        }
+
+
+        //Roman Numerals Encoder
+        //Create a function taking a positive integer as its parameter and returning a string containing the Roman Numeral representation of that integer.
+        //Modern Roman numerals are written by expressing each digit separately starting with the left most digit and skipping any digit with a value of zero.
+        //In Roman numerals 1990 is rendered: 1000=M, 900=CM, 90=XC; resulting in MCMXC. 2008 is written as 2000=MM, 8=VIII; or MMVIII. 
+        //1666 uses each Roman symbol in descending order: MDCLXVI.
+        //Example:
+        //RomanConvert.Solution(1000) -- should return "M"
+        //Help:
+        //Symbol Value
+        //I          1
+        //V          5
+        //X          10
+        //L          50
+        //C          100
+        //D          500
+        //M          1,000
+        //Remember that there can't be more than 3 identical symbols in a row.
+        public static string Solution(int n)
+        {
+            string roman = "";
+            string[] thousand = { "", "M", "MM", "MMM" };
+            string[] hundred = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" };
+            string[] ten = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" };
+            string[] one = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
+
+            roman += thousand[(n / 1000) % 10];
+            roman += hundred[(n / 100) % 10];
+            roman += ten[(n / 10) % 10];
+            roman += one[n % 10];
+
+            return roman;
+        }
+
+        //Write function bmi that calculates body mass index(bmi = weight / height ^ 2).
+        //if bmi <= 18.5 return "Underweight"
+        //if bmi <= 25.0 return "Normal"
+        //if bmi <= 30.0 return "Overweight"
+        //if bmi > 30 return "Obese"
+        public static string Bmi(double weight, double height)
+        {
+            double result = weight / (Math.Pow(height, 2));
+            return result.ToString();
+        }
 
         //Simple Encryption #1 - Alternating Split
         //For building the encrypted string:

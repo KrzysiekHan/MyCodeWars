@@ -10,11 +10,20 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _4KYU.ToCamelCase("the-stealth-warrior");
+            //_4KYU.ToCamelCase("the-stealth-warrior");
             //_4KYU.CountSmileys(new string[] { ";-D", ":(", ":(", ":(" });
             //_4KYU.DeleteNth(new int[] { 1, 1, 3, 3, 7, 2, 2, 2, 2 }, 3);
             //_4KYU.Decrypt("s eT ashi tist!", 2);
             //_4KYU.Encrypt("This is a test!", 1); //"s eT ashi tist!"
+            //_4KYU.print(5);
+            //_4KYU.orderWeight("56 65 74 100 99 68 86 180 90");
+            //_4KYU.IsPangram("The quick brown fox jumps over the lazy dog.");
+            //_4KYU.SumDigPow(1, 100);
+            //_4KYU.Narcissistic(371);
+            //_4KYU.bouncingBall(30.0, 0.66, 1.5);//15
+            //_4KYU.High("man i need a taxi up to ubud");
+            //_4KYU.Decrypt("hsi  etTi sats!", 1);
+            //_4KYU.Encrypt("This is a test!", 2); //"s eT ashi tist!"
             //_4KYU.TowerBuilder(5);
             //_4KYU.validBraces("()[]{}");
             //_4KYU.validBraces("()[)]{[[}");
