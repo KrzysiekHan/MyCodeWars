@@ -40,8 +40,16 @@ namespace MyCodeWars
                 {
                     response += item.Reverse();
                 }
+                else
+                {
+                    //response += RotateLeft(string.item,1).ToString();
+                }
             }
             return "";
+        }
+        public static uint RotateLeft(this uint value, int count)
+        {
+            return (value << count) | (value >> (32 - count));
         }
 
         //Convert string to camel case
