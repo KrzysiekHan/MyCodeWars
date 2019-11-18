@@ -2,12 +2,147 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //Convert string to camel case
+        //Complete the method/function so that it converts dash/underscore delimited words into camel casing.
+        //The first word within the output should be capitalized only if the original word was 
+        //capitalized (known as Upper Camel Case, also often referred to as Pascal case).
+        //Examples
+        //Kata.ToCamelCase("the-stealth-warrior") // returns "theStealthWarrior"
+        //Kata.ToCamelCase("The_Stealth_Warrior") // returns "TheStealthWarrior"
+        public static string ToCamelCase(string str)
+        {
+            List<char> lista = new List<char>();
+            lista = str.ToList();
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str[i] == '-' || str[i] == '_') {
+                    //lista.RemoveAt(i);
+                    lista[i+1] = char.ToUpper(lista[i+1]);
+                }     
+            }
+            var resp = new string(lista.ToArray());
+            resp = resp.Replace("-", "").Replace("_", "");
+            return resp;
+        }
+
+        //Count the smiley faces!
+        //Given an array(arr) as an argument complete the function countSmileys that should return the total number of smiling faces.
+        //Rules for a smiling face:
+        //-Each smiley face must contain a valid pair of eyes. Eyes can be marked as : or ;
+        //-A smiley face can have a nose but it does not have to.Valid characters for a nose are - or ~
+        //-Every smiling face must have a smiling mouth that should be marked with either ) or D.
+        //No additional characters are allowed except for those mentioned.
+        //Valid smiley face examples:
+        //:) :D ;-D :~)
+        //Invalid smiley faces:
+        //;( :> :} :]
+        //Example cases:
+        //countSmileys([':)', ';(', ';}', ':-D']);       // should return 2;
+        //countSmileys([';D', ':-(', ':-)', ';~)']);     // should return 3;
+        //countSmileys([';]', ':[', ';*', ':$', ';-D']); // should return 1;
+        //Note: In case of an empty array return 0. You will not be tested with invalid input(input will always be an array).
+        //  CLEVER  -----------------------------------------------
+        //return smileys.Count(s => Regex.IsMatch(s, @"^[:;]{1}[~-]{0,1}[\)D]{1}$"));
+        public static int CountSmileys(string[] smileys)
+        {
+            int smileyCount = 0;
+            foreach (var item in smileys)
+            {
+                Console.WriteLine(item);
+                if (IsSmiley(item)) smileyCount++;
+            }
+            Console.WriteLine("---------");
+            return smileyCount;
+        }
+        private static bool IsSmiley(string item)
+        {
+            string pattern = "[:;][~-]{0,1}[)D]";
+            if (Regex.Match(item, pattern).Success) return true;
+            return false;
+        }
+
+        //Delete occurrences of an element if it occurs more than n times
+        //Task
+        //Given a list lst and a number N, create a new list that contains each number of lst at most N times without
+        //reordering.For example if N = 2, and the input is [1,2,3,1,2,1,2,3], you take[1, 2, 3, 1, 2], drop the next[1, 2] since this would 
+        //lead to 1 and 2 being in the result 3 times, and then take 3, which leads to[1, 2, 3, 1, 2, 3].
+        //Example
+        //Kata.DeleteNth (new int[] {20,37,20,21}, 1) // return [20,37,21]
+        //Kata.DeleteNth(new int[] {1,1,3,3,7,2,2,2,2}, 3) // return [1, 1, 3, 3, 7, 2, 2, 2]
+        public static int[] DeleteNth(int[] arr, int x)
+        {
+            Dictionary<int, int> usageCounter = new Dictionary<int, int>();
+            List<int> responseList = new List<int>(); 
+            foreach (var item in arr)
+            {
+                if (!usageCounter.ContainsKey(item))
+                {
+                    usageCounter.Add(item, 1);
+                }
+                else
+                {
+                    usageCounter[item] += 1;             
+                }
+                if (usageCounter[item] <= x)
+                {
+                    responseList.Add(item);
+                }
+            }
+            return responseList.ToArray();
+        }
+
+
+        //Write a function called that takes a string of parentheses, and determines if the order of the parentheses is valid.
+        //The function should return true if the string is valid, and false if it's invalid.
+        //Examples
+        //"()"              =>  true
+        //")(()))"          =>  false
+        //"("               =>  false
+        //"(())((()())())"  =>  true
+        //Constraints
+        //0 <= input.length <= 100
+        //Along with opening(() and closing ()) parenthesis, input may contain any valid ASCII characters.Furthermore, the input 
+        //string may be empty and/or not contain any parentheses at all.Do not treat other forms of brackets as parentheses(e.g. [], { }, <>).
+        //  CLEVER  -----------------------------------------------
+        //int c = 0;
+        //return !input.Select(i => c += i == '(' ? 1 : i == ')' ? -1 : 0).Any(i => i< 0) && c == 0;
+        public static bool ValidParentheses(string input)
+        {
+          string cleaned = string.Join("",
+                            from ch in input
+                            where ch =='(' || ch == ')'
+                            select ch);
+            string bracesNew = cleaned;
+            string bracesOld = "";
+            while (bracesNew != bracesOld)
+            {
+                bracesOld = bracesNew;
+                for (int i = 0; i < bracesNew.Length - 1; i++)
+                {
+                    if (IsPaired(bracesNew[i], bracesNew[i + 1]))
+                    {
+                        bracesNew = bracesNew.Remove(i, 1);
+                        bracesNew = bracesNew.Remove(i, 1);
+                    }
+                }
+            }
+            if (bracesNew.Length == 0) return true;
+            return false;
+        }
+
+        public static bool IsPaired(char a, char b)
+        {
+            if (a == '(' && b == ')') return true;
+            return false;
+        }
+
         //Simple Encryption #1 - Alternating Split
         //For building the encrypted string:
         //Take every 2nd char from the string, then the other chars, that are not every 2nd char, and concat them as new String.
@@ -23,6 +158,7 @@ namespace MyCodeWars
         //If n is <= 0 then return the input text.
         public static string Encrypt(string text, int n)
         {
+            if (text == null) return text;
             if (text.Length == 0 || n <= 0) return text;
             string result = "";
             string result2 = "";
@@ -43,24 +179,30 @@ namespace MyCodeWars
                 result = "";
                 result2 = "";
             }
-            return string.Concat(result, result2);
+            return res;
         }
 
         public static string Decrypt(string encryptedText, int n)
         {
-            char[] result = new char[encryptedText.Length];
+            if (encryptedText == null) return encryptedText;
             if (encryptedText.Length == 0 || n <= 0) return encryptedText;
-            for (int i = 0; i < encryptedText.Length; i++)
+            char[] result = new char[encryptedText.Length];
+            for (int h = 0; h < n; h++)
             {
-                if (i > encryptedText.Length / 2)
-                {
-                    result[i*2+1] = encryptedText[i];
-                }
-                if (i < encryptedText.Length / 2)
-                {
 
-                    result[i*2-(encryptedText.Length / 2)] = encryptedText[i];
+                for (int i = 0; i <= encryptedText.Length; i++)
+                {
+                    if (i < encryptedText.Length / 2)
+                    {
+                        result[i * 2 + 1] = encryptedText[i];
+                    }
+                    if (i > encryptedText.Length / 2)
+                    {
+                        var test = encryptedText[i - 1];
+                        result[(i - ((encryptedText.Length / 2) + 1)) * 2] = encryptedText[i - 1];
+                    }
                 }
+                encryptedText = new string(result);
             }
             return new string(result);
         }
