@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -9,6 +10,53 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //A string is considered to be in title case if each word in the string is either(a) capitalised(that is, only the first letter of 
+        //the word is in upper case) or(b) considered to be an exception and put entirely into lower case unless it is the first word, which is always capitalised.
+        //Write a function that will convert a string into title case, given an optional list of exceptions (minor words). The list of minor words 
+        //will be given as a string with each word separated by a space. Your function should ignore the case of the minor words string -- it should behave in the same 
+        //way even if the case of the minor word string is changed.
+        //###Arguments (Other languages)
+        //First argument (required): the original string to be converted.
+        //Second argument (optional): space-delimited list of minor words that must always be lowercase except for the first word in the string. 
+        //###Example
+        //Kata.TitleCase("a an the of", "a clash of KINGS") => "A Clash of Kings"
+        //Kata.TitleCase("The In", "THE WIND IN THE WILLOWS") => "The Wind in the Willows"
+        //Kata.TitleCase("the quick brown fox")               => "The Quick Brown Fox"
+        public static string TitleCase(string title, string minorWords = "")
+        {
+            var wordsToChange = title.Split(' ').Select(x => x).ToList();
+            var wordsToAvoid = minorWords.Split(' ').ToList();
+            List<string> filteredList = new List<string>();
+            // Creates a TextInfo based on the "en-US" culture.
+            TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+            foreach (var item in wordsToChange)
+            {
+                if (!wordsToAvoid.Contains(item))
+                {
+                    filteredList.Add(textInfo.ToTitleCase(item.ToLower()));
+                }
+            }
+            
+            return "";
+        }
+
+        //Two tortoises named A and B must run a race.A starts with an average speed of 720 feet per hour.Young B knows she runs faster than A, and furthermore has not finished her cabbage.
+        //When she starts, at last, she can see that A has a 70 feet lead but B's speed is 850 feet per hour. How long will it take B to catch A?
+        //More generally: given two speeds v1 (A's speed, integer > 0) and v2 (B's speed, integer > 0) and a lead g(integer > 0) how long will it take B to catch A?
+        //The result will be an array[hour, min, sec] which is the time needed in hours, minutes and seconds(round down to the nearest second) or a string in some languages.
+        //If v1 >= v2 then return nil, nothing, null, None or { -1, -1, -1} for C++, C, Go, Nim, [] for Kotlin or "-1 -1 -1".
+        //Examples:
+        //(form of the result depends on the language)
+        //race(720, 850, 70) => [0, 32, 18] or "0 32 18"
+        //race(80, 91, 37) => [3, 21, 49] or "3 21 49"   
+        public static int[] Race(int v1, int v2, int g)
+        {
+                if (v1 >= v2)
+                    return null;
+                var ts = System.TimeSpan.FromSeconds((g * 3600) / (v2 - v1));
+                return new[] { ts.Hours, ts.Minutes, ts.Seconds };
+        }
+
         //The input is a string str of digits.Cut the string into chunks (a chunk here is a substring of the initial string) of 
         //size sz(ignore the last chunk if its size is less than sz).
         //If a chunk represents an integer such as the sum of the cubes of its digits is divisible by 2, reverse that chunk; otherwise 
