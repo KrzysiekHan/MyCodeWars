@@ -27,6 +27,7 @@ namespace MyCodeWars
         //revrot("563000655734469485", 4) --> "0365065073456944"
         public static string RevRot(string strng, int sz)
         {
+            if (sz <= 0 || strng.Length == 0) return "";
             var chunksCount = strng.Length / sz;
             string response = "";
             List<string> list = new List<string>();
@@ -34,22 +35,30 @@ namespace MyCodeWars
             {
                 list.Add(strng.Substring(i * sz, sz));
             }
-            foreach (var item in list)
+            foreach (string item in list)
             {
-                if (item.Sum(x=>Math.Pow(x,3)) % 2 == 0)
+                var sumOfCubes = item.Sum(x => Math.Pow(char.GetNumericValue(x), 3));
+                if (sumOfCubes % 2 == 0)
                 {
-                    response += item.Reverse();
+                    response += Reverse(item);
                 }
                 else
                 {
-                    //response += RotateLeft(string.item,1).ToString();
+                    response += leftrotate(item,1).ToString();
                 }
             }
-            return "";
+            return response;
         }
-        public static uint RotateLeft(this uint value, int count)
+        public static string Reverse(string s)
         {
-            return (value << count) | (value >> (32 - count));
+            char[] charArray = s.ToCharArray();
+            Array.Reverse(charArray);
+            return new string(charArray);
+        }
+        static String leftrotate(String str, int d)
+        {
+            String ans = str.Substring(d, str.Length - d) + str.Substring(0, d);
+            return ans;
         }
 
         //Convert string to camel case

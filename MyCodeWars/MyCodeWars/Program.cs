@@ -10,6 +10,7 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
+            _4KYU.RevRot("79549049095957714555360838515781031424094833454369363281", 9);
             //_4KYU.ToCamelCase("the-stealth-warrior");
             //_4KYU.CountSmileys(new string[] { ";-D", ":(", ":(", ":(" });
             //_4KYU.DeleteNth(new int[] { 1, 1, 3, 3, 7, 2, 2, 2, 2 }, 3);
