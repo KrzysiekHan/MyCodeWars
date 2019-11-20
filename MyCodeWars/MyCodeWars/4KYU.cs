@@ -1,15 +1,93 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //Write an algorithm that will identify valid IPv4 addresses in dot-decimal format.IPs should be considered
+        //valid if they consist of four octets, with values between 0 and 255, inclusive.
+        //Input to the function is guaranteed to be a single string.
+        //Examples
+        //Valid inputs:
+        //1.2.3.4
+        //123.45.67.89
+        //Invalid inputs:
+        //1.2.3
+        //1.2.3.4.5
+        //123.456.78.90
+        //123.045.067.089
+        //Note that leading zeros (e.g. 01.02.03.04) are considered invalid.
+        //IPAddress ip;
+        //bool validIp = IPAddress.TryParse(IpAddres, out ip);
+        //return validIp && ip.ToString()==IpAddres;
+
+        public static bool is_valid_IP(string ipAddres)
+        {
+            if (ipAddres == null) return false;
+            if (ipAddres.Contains(" ")) return false;
+            Console.WriteLine(ipAddres);
+            bool result = true;
+            var list = ipAddres.Split('.').ToList();
+            foreach (var item in list)
+            {
+                int n;
+                if (!int.TryParse(item, out n)) return false;
+                if (item.Length == 0) return false;
+                if (item.Length > 1 && item.StartsWith("0")) return false;
+                if (int.Parse(item) > 255 || int.Parse(item) < 0) return false;
+                if (list.Count != 4) return false;
+            }
+            //if(ipAddres.Split('.').Select(x => (int.Parse(x) >= 0 && int.Parse(x) <= 255)).Where(x=>(!x.ToString().StartsWith("0") && x.ToString().Length>1)).Count() == 4)
+            //{
+            //    return true;
+            //}         
+            return result;
+        }
+        private static bool ContainsLetters(String str)
+        {
+            bool contains = false;
+            Regex reg = new Regex((@"a-zA-Z+"));
+            if (reg.Match(str).Success)
+                contains = true;
+            else
+                contains = false;
+            return contains;
+        }
+        //SplitString
+        //Complete the solution so that it splits the string into pairs of two characters.If the string 
+        //contains an odd number of characters then it should replace the missing second character of the final pair with an underscore ('_').
+        //Examples:
+        //SplitString.Solution("abc"); // should return ["ab", "c_"]
+        //SplitString.Solution("abcdef"); // should return ["ab", "cd", "ef"]
+        //  CLEVER  -----------------------------------------------
+        //if (str.Length%2 != 0)
+        //  str += "_";
+        //return Enumerable.Range(0, str.Length)
+        //.Where(x => x%2 == 0)
+        //.Select(x => str.Substring(x, 2))
+        //.ToArray();
+        public static string[] SplitString(string str)
+        {
+            return str.SplitInParts(2).ToList().Select(x=> (x.Length>1)?x:x+'_').ToList().ToArray();    
+        }
+
+        public static IEnumerable<String> SplitInParts(this String s, Int32 partLength)
+        {
+            if (s == null)
+                throw new ArgumentNullException("s");
+            if (partLength <= 0)
+                throw new ArgumentException("Part length has to be positive.", "partLength");
+
+            for (var i = 0; i < s.Length; i += partLength)
+                yield return s.Substring(i, Math.Min(partLength, s.Length - i));
+        }
+
         //A string is considered to be in title case if each word in the string is either(a) capitalised(that is, only the first letter of 
         //the word is in upper case) or(b) considered to be an exception and put entirely into lower case unless it is the first word, which is always capitalised.
         //Write a function that will convert a string into title case, given an optional list of exceptions (minor words). The list of minor words 
@@ -25,21 +103,26 @@ namespace MyCodeWars
         public static string TitleCase(string title, string minorWords = "")
         {
             var wordsToChange = title.Split(' ').Select(x => x).ToList();
-            var wordsToAvoid = minorWords.Split(' ').ToList();
-            List<string> filteredList = new List<string>();
-            // Creates a TextInfo based on the "en-US" culture.
-            TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
-            foreach (var item in wordsToChange)
+            List<string> wordsToAvoid = new List<string>();
+            if (minorWords != null)
             {
-                if (!wordsToAvoid.Contains(item))
+                wordsToAvoid = minorWords.Split(' ').Select(x => x.ToLower()).ToList();
+            }
+            List<string> filteredList = new List<string>();
+            TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+            for (int i = 0; i < wordsToChange.Count; i++)
+            {
+                if (!wordsToAvoid.Contains(wordsToChange[i].ToLower()) || i==0)
                 {
-                    filteredList.Add(textInfo.ToTitleCase(item.ToLower()));
+                    filteredList.Add(textInfo.ToTitleCase(wordsToChange[i].ToLower()));
+                }
+                else
+                {
+                    filteredList.Add(wordsToChange[i].ToLower());
                 }
             }
-            
-            return "";
+            return String.Join(" ", filteredList);
         }
-
         //Two tortoises named A and B must run a race.A starts with an average speed of 720 feet per hour.Young B knows she runs faster than A, and furthermore has not finished her cabbage.
         //When she starts, at last, she can see that A has a 70 feet lead but B's speed is 850 feet per hour. How long will it take B to catch A?
         //More generally: given two speeds v1 (A's speed, integer > 0) and v2 (B's speed, integer > 0) and a lead g(integer > 0) how long will it take B to catch A?
