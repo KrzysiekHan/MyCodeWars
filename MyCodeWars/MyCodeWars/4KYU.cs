@@ -10,6 +10,110 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //Write a function toWeirdCase that accepts a string, and returns the same string with all even indexed 
+        //characters in each word upper cased, and all odd indexed characters in each word lower cased.The indexing just explained is 
+        //zero based, so the zero-ith index is even, therefore that character should be upper cased.
+        //The passed in string will only consist of alphabetical characters and spaces(' '). Spaces will only be present if there are 
+        //multiple words.Words will be separated by a single space(' ').
+        //Examples:
+        //toWeirdCase( "String" );//=> returns "StRiNg"
+        //toWeirdCase( "Weird string case" );//=> returns "WeIrD StRiNg CaSe"
+        public static string ToWeirdCase(string s)
+        {
+            var temp = s.Split(' ').Select(x => x.ToCharArray().Select((w, i) => (i % 2 == 0) ? w.ToString().ToUpper() : w.ToString().ToLower())).ToList();
+            var result = string.Join("", temp);
+            return result;
+        }
+
+        //Your job is to create a calculator which evaluates expressions in Reverse Polish notation.
+        //For example expression 5 1 2 + 4 * + 3 - (which is equivalent to 5 + ((1 + 2) * 4) - 3 in normal notation) should evaluate to 14.
+        //For your convenience, the input is formatted such that a space is provided between every token.
+        //Empty expression should evaluate to 0.
+        //Valid operations are +, -, *, /.
+        //You may assume that there won't be exceptional situations (like stack underflow or division by zero).
+        public static double evaluate(String expr)
+        {
+            if (expr == null || expr.Length == 0) return 0;
+            return (double)CalculateRPN(expr);
+        }
+        static decimal CalculateRPN(string rpn)
+        {
+            string[] rpnTokens = rpn.Split(' ');
+            Stack<decimal> stack = new Stack<decimal>();
+            decimal number = decimal.Zero;
+
+            foreach (string token in rpnTokens)
+            {
+                if (decimal.TryParse(token, out number))
+                {
+                    stack.Push(number);
+                }
+                else
+                {
+                    switch (token)
+                    {
+                        case "^":
+                        case "pow":
+                            {
+                                number = stack.Pop();
+                                stack.Push((decimal)Math.Pow((double)stack.Pop(), (double)number));
+                                break;
+                            }
+                        case "ln":
+                            {
+                                stack.Push((decimal)Math.Log((double)stack.Pop(), Math.E));
+                                break;
+                            }
+                        case "sqrt":
+                            {
+                                stack.Push((decimal)Math.Sqrt((double)stack.Pop()));
+                                break;
+                            }
+                        case "*":
+                            {
+                                stack.Push(stack.Pop() * stack.Pop());
+                                break;
+                            }
+                        case "/":
+                            {
+                                number = stack.Pop();
+                                stack.Push(stack.Pop() / number);
+                                break;
+                            }
+                        case "+":
+                            {
+                                stack.Push(stack.Pop() + stack.Pop());
+                                break;
+                            }
+                        case "-":
+                            {
+                                number = stack.Pop();
+                                stack.Push(stack.Pop() - number);
+                                break;
+                            }
+                        default:
+                            Console.WriteLine("Error in CalculateRPN(string) Method!");
+                            break;
+                    }
+                }
+                PrintState(stack);
+            }
+
+            return stack.Pop();
+        }
+
+        static void PrintState(Stack<decimal> stack)
+        {
+            decimal[] arr = stack.ToArray();
+
+            for (int i = arr.Length - 1; i >= 0; i--)
+            {
+                Console.Write("{0,-8:F3}", arr[i]);
+            }
+
+            Console.WriteLine();
+        }
+
         //Write an algorithm that will identify valid IPv4 addresses in dot-decimal format.IPs should be considered
         //valid if they consist of four octets, with values between 0 and 255, inclusive.
         //Input to the function is guaranteed to be a single string.

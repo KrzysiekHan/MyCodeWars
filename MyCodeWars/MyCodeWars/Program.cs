@@ -10,7 +10,8 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _4KYU.is_valid_IP("abc.def.ghi.jkl");
+            _4KYU.ToWeirdCase("This is a test");
+            //_4KYU.is_valid_IP("abc.def.ghi.jkl");
             //_4KYU.SplitString("1234364523425");
             //_4KYU.TitleCase("THE WIND IN THE WILLOWS", "The In");
             //_4KYU.RevRot("79549049095957714555360838515781031424094833454369363281", 9);
