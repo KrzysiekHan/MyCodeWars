@@ -10,6 +10,24 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //An Arithmetic Progression is defined as one in which there is a constant difference between 
+        //the consecutive terms of a given series of numbers.You are provided with consecutive elements of an Arithmetic Progression.
+        //There is however one hitch: exactly one term from the original series is missing from the set of numbers which have been given 
+        //to you. The rest of the given series is the same as the original AP.Find the missing term.
+        //You have to write a function that receives a list, list size will always be at least 3 numbers.The missing term will never be the first or last one.
+        //Example
+        //Kata.FindMissing(new List<int> {1, 3, 5, 9, 11}) => 7
+        //I found it quite fun to solve on paper using math, derive the algo that way.Have fun!
+        public static int FindMissing(List<int> list)
+        {
+            List<int> Diffs = new List<int>();
+            for (int i = 0; i < list.Count; i++)
+            {
+                Diffs.Add(list[i + 1] - list[i]);
+            }
+            //Diffs.GroupBy(x=>x).Select(x=>x)
+            return list[0];
+        }
 
         //Middle Earth is about to go to war.The forces of good will have many battles with the forces of evil.Different races 
         //will certainly be involved.Each race has a certain worth when battling against others.On the side of good we have the 
@@ -44,18 +62,16 @@ namespace MyCodeWars
         //"Battle Result: No victor on this battle field" if it ends in a tie.
         public static string GoodVsEvil(string good, string evil)
         {
-
             int [] goodPoints = new int[] { 1,2,3,3,4,10 };
             int [] evilPoints = new int[] { 1,2,2,2,3,5,10 };
             int goodSum = 0;
-            int badSum = 0;
-            goodSum = 
-       good.Split(' ').Select((x,i) => ).Sum();
-            badPoints = evil.Split(' ').Select(x => EvilRace.Where(t => t.Key == x).First().Value).Sum();
-            if (goodPoints>badPoints)
+            int evilSum = 0;
+            goodSum = good.Split(' ').Select((x,i) => goodPoints[i] * int.Parse(x)).Sum();
+            evilSum = evil.Split(' ').Select((x,i) => evilPoints[i] * int.Parse(x)).Sum();
+            if (goodSum > evilSum)
             {
                 return "Battle Result: Good triumphs over Evil";
-            } else if (goodPoints < badPoints)
+            } else if (goodSum < evilSum)
             {
                 return "Battle Result: Evil eradicates all trace of Good";
             } else

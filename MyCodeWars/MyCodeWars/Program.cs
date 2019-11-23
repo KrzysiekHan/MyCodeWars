@@ -10,7 +10,8 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _4KYU.ToWeirdCase("This is a test");
+            _4KYU.FindMissing(new List<int> { 1, 3, 5, 9, 11 });
+            //_4KYU.ToWeirdCase("This is a test");
             //_4KYU.is_valid_IP("abc.def.ghi.jkl");
             //_4KYU.SplitString("1234364523425");
             //_4KYU.TitleCase("THE WIND IN THE WILLOWS", "The In");
