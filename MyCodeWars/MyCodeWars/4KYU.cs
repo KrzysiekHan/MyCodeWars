@@ -18,15 +18,29 @@ namespace MyCodeWars
         //Example
         //Kata.FindMissing(new List<int> {1, 3, 5, 9, 11}) => 7
         //I found it quite fun to solve on paper using math, derive the algo that way.Have fun!
+        //  CLEVER  -----------------------------------------------
+        //var increment =  (list.Last() - list.First()) / list.Count;
+        //return list.Select(x => x + increment).ToList().Except(list).First();
         public static int FindMissing(List<int> list)
         {
-            List<int> Diffs = new List<int>();
-            for (int i = 0; i < list.Count; i++)
+            foreach (var item in list)
             {
-                Diffs.Add(list[i + 1] - list[i]);
+                Console.WriteLine(item.ToString());
             }
-            //Diffs.GroupBy(x=>x).Select(x=>x)
-            return list[0];
+            Dictionary<int,int> Diffs = new Dictionary<int,int>();
+            for (int i = 0; i < list.Count-1; i++)
+            {
+                Diffs.Add(i,list[i + 1] - list[i]);
+            }
+            var difference = Diffs.Select(f=>f.Value).Min();
+            int indexx = 0;
+            for (int i = 1; i < list.Count; i++)
+            {
+                if (list[i] - list[i - 1] != difference) indexx = i-1;
+            }
+
+            var response = list.ElementAt(indexx) + difference;
+            return response;
         }
 
         //Middle Earth is about to go to war.The forces of good will have many battles with the forces of evil.Different races 
