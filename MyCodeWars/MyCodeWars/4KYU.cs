@@ -10,39 +10,79 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
-        //In this kata you have to implement a base converter, which converts positive integers between arbitrary bases / alphabets.Here are some pre-defined alphabets:
-        //public class Alphabet
-        //{
-        //    public const string BINARY = "01";
-        //    public const string OCTAL = "01234567";
-        //    public const string DECIMAL = "0123456789";
-        //    public const string HEXA_DECIMAL = "0123456789abcdef";
-        //    public const string ALPHA_LOWER = "abcdefghijklmnopqrstuvwxyz";
-        //    public const string ALPHA_UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        //    public const string ALPHA = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        //    public const string ALPHA_NUMERIC = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        //}
-        //The function convert() should take an input(string), the source alphabet(string) and the target alphabet(string). 
-        //You can assume that the input value always consists of characters from the source alphabet.You don't need to validate it.
-        //Examples
-        //// convert between numeral systems
-        //Convert("15", Alphabet.DECIMAL, Alphabet.BINARY); // should return "1111"
-        //        Convert("15", Alphabet.DECIMAL, Alphabet.OCTAL); // should return "17"
-        //        Convert("1010", Alphabet.BINARY, Alphabet.DECIMAL); // should return "10"
-        //        Convert("1010", Alphabet.BINARY, Alphabet.HEXA_DECIMAL); // should return "a"
-
-        //        // other bases
-        //        Convert("0", Alphabet.DECIMAL, Alphabet.ALPHA); // should return "a"
-        //        Convert("27", Alphabet.DECIMAL, Alphabet.ALPHA_LOWER); // should return "bb"
-        //        Convert("hello", Alphabet.ALPHA_LOWER, Alphabet.HEXA_DECIMAL); // should return "320048"
-        //        Convert("SAME", Alphabet.ALPHA_UPPER, Alphabet.ALPHA_UPPER); // should return "SAME"
-        //        Additional Notes:
-        //The maximum input value can always be encoded in a number without loss of precision in JavaScript.In Haskell, intermediate 
-        //results will probably be too large for Int. The function must work for any arbitrary alphabets, not only the pre-defined ones
-        //You don't have to consider negative numbers
-        public static string Convert(string input, string source, string target)
+        //In this Kata, you will implement the Luhn Algorithm, which is used to help validate credit card numbers.
+        //Given a positive integer of up to 16 digits, return true if it is a valid credit card number, and false if it is not.
+        //Here is the algorithm:
+        //Double every other digit, scanning from right to left, starting from the second digit (from the right).
+        //Another way to think about it is: if there are an even number of digits, double every other digit starting 
+        //with the first; if there are an odd number of digits, double every other digit starting with the second:
+        //1714 ==> [1*, 7, 1*, 4] ==> [2, 7, 2, 4]
+        //12345 ==> [1, 2*, 3, 4*, 5] ==> [1, 4, 3, 8, 5]
+        //891 ==> [8, 9*, 1] ==> [8, 18, 1]
+        //If a resulting number is greater than 9, replace it with the sum of its own digits(which is the same as subtracting 9 from it):
+        //[8, 18*, 1] ==> [8, (1 + 8), 1] ==> [8, 9, 1]
+        //or:
+        //[8, 18*, 1] ==> [8, (18 - 9), 1] ==> [8, 9, 1]
+        //Sum all of the final digits:
+        //[8, 9, 1] ==> 8 + 9 + 1 = 18
+        //Finally, take that sum and divide it by 10. If the remainder equals zero, the original credit card number is valid.
+        //18 (modulus) 10 ==> 8 , which is not equal to 0, so this is not a valid credit card number
+        //For F# and C# users:
+        //The input will be a string of spaces and digits 0..9
+        public static bool validate(string n)
         {
-            return "";
+            int[] array = n.Split(' ').Select(x=>int.Parse(x)).ToArray();
+            List<int> temp = new List<int>();
+            for (int i = array.Length; i >= 0 ; i--)
+            {
+                if (array.Length % 2 == 0) //for even number of digits
+                {
+                    if (i % 2 == 0) { temp.Add(int.Parse(array[i].ToString())); } else { temp.Add(int.Parse(array[i].ToString()) * 2); };
+                }
+                if (array.Length % 2 != 0) //for odd number of digits
+                {
+                    if (i % 2 != 0) { temp.Add(int.Parse(array[i].ToString())); } else { temp.Add(int.Parse(array[i].ToString()) * 2); };
+                }              
+            }
+            return (temp.Select(x => (x > 9) ? x - 9 : x).Sum() % 10 == 0) ? true : false; 
+        }    
+
+    //In this kata you have to implement a base converter, which converts positive integers between arbitrary bases / alphabets.Here are some pre-defined alphabets:
+    //public class Alphabet
+    //{
+    //    public const string BINARY = "01";
+    //    public const string OCTAL = "01234567";
+    //    public const string DECIMAL = "0123456789";
+    //    public const string HEXA_DECIMAL = "0123456789abcdef";
+    //    public const string ALPHA_LOWER = "abcdefghijklmnopqrstuvwxyz";
+    //    public const string ALPHA_UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    //    public const string ALPHA = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    //    public const string ALPHA_NUMERIC = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    //}
+    //The function convert() should take an input(string), the source alphabet(string) and the target alphabet(string). 
+    //You can assume that the input value always consists of characters from the source alphabet.You don't need to validate it.
+    //Examples
+    //// convert between numeral systems
+    //Convert("15", Alphabet.DECIMAL, Alphabet.BINARY); // should return "1111"
+    //        Convert("15", Alphabet.DECIMAL, Alphabet.OCTAL); // should return "17"
+    //        Convert("1010", Alphabet.BINARY, Alphabet.DECIMAL); // should return "10"
+    //        Convert("1010", Alphabet.BINARY, Alphabet.HEXA_DECIMAL); // should return "a"
+
+    //        // other bases
+    //        Convert("0", Alphabet.DECIMAL, Alphabet.ALPHA); // should return "a"
+    //        Convert("27", Alphabet.DECIMAL, Alphabet.ALPHA_LOWER); // should return "bb"
+    //        Convert("hello", Alphabet.ALPHA_LOWER, Alphabet.HEXA_DECIMAL); // should return "320048"
+    //        Convert("SAME", Alphabet.ALPHA_UPPER, Alphabet.ALPHA_UPPER); // should return "SAME"
+    //        Additional Notes:
+    //The maximum input value can always be encoded in a number without loss of precision in JavaScript.In Haskell, intermediate 
+    //results will probably be too large for Int. The function must work for any arbitrary alphabets, not only the pre-defined ones
+    //You don't have to consider negative numbers
+    public static string Converterr(string i, string s, string t)
+        {
+            var a = i.Select((x, n) => s.IndexOf(x) * (long)Math.Pow(s.Length, i.Length - 1 - n)).Sum();
+            string rs;
+            for (rs = ""; a > 0; a /= t.Length) rs = t[(int)(a % t.Length)] + rs;
+            return i == "0" ? t[0] + "" : rs;
         }
 
         //An Arithmetic Progression is defined as one in which there is a constant difference between 
