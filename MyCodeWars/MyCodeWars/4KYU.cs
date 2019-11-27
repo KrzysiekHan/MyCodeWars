@@ -10,6 +10,57 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //Longest Palindrome
+        //Find the length of the longest substring in the given string s that is the same in reverse.
+        //As an example, if the input was “I like racecars that go fast”, the substring(racecar) length would be 7.
+        //If the length of the input string is 0, the return value must be 0.
+        //Example:
+        //"a" -> 1 
+        //"aab" -> 2  
+        //"abcde" -> 1
+        //"zzbaabcd" -> 4
+        //"" -> 0
+        public static int GetLongestPalindrome(string str)
+        {
+            if (str == null) return 0;
+            if (str.Length == 0) return 0;
+            if (str.Length == 1) return 1;
+            var temp = str.ToCharArray();
+            int longest = 1;
+            for (int i = 0; i < temp.Length-1; i++)
+            {
+
+                if (temp[i] == temp[i + 1])
+                {
+                    if (longest <= 2) longest = 2;
+                    int howfar = 1;
+                    int palindromLength = 2;
+                    if (i + howfar + 1 >= temp.Length || i - howfar < 0) break;
+                    while (temp[i - howfar] == temp[i + howfar + 1])
+                    {
+                        howfar++;
+                        palindromLength += 2;
+                        if (palindromLength > longest) longest = palindromLength;
+                        if (i + howfar + 1 >= temp.Length || i - howfar < 0) break;
+                    }
+                }
+                //palindrome is symetrical
+                if (i>0 && i < temp.Length - 1)
+                {
+                    int howfar = 1;
+                    int palindromLength = 1;
+                    while (temp[i - howfar] == temp[i + howfar])
+                    {
+                        howfar++;
+                        palindromLength += 2;
+                        if (palindromLength > longest) longest = palindromLength;
+                        if (i + howfar >= temp.Length || i - howfar < 0) break;
+                    }
+                }
+            }
+            return longest;
+            //your code :)
+        }
         //In this Kata, you will implement the Luhn Algorithm, which is used to help validate credit card numbers.
         //Given a positive integer of up to 16 digits, return true if it is a valid credit card number, and false if it is not.
         //Here is the algorithm:
@@ -29,11 +80,19 @@ namespace MyCodeWars
         //18 (modulus) 10 ==> 8 , which is not equal to 0, so this is not a valid credit card number
         //For F# and C# users:
         //The input will be a string of spaces and digits 0..9
+        //  CLEVER  -----------------------------------------------
+        //return n.Select(c => (int) char.GetNumericValue(c) )
+        //  .Where(x => x != -1)
+        //  .Reverse()
+        //  .Select((x, i) => (i % 2 == 1 ) ? 2 * x : x )
+        //  .Select(x => (x > 9 ) ? x - 9 : x )
+        //  .Sum() % 10 == 0;
         public static bool validate(string n)
         {
-            int[] array = n.Split(' ').Select(x=>int.Parse(x)).ToArray();
+            n = Regex.Replace(n, @"\s+", "");
+            int[] array = n.Select(x=>int.Parse(x.ToString())).ToArray();
             List<int> temp = new List<int>();
-            for (int i = array.Length; i >= 0 ; i--)
+            for (int i = array.Length-1; i >= 0 ; i--)
             {
                 if (array.Length % 2 == 0) //for even number of digits
                 {
