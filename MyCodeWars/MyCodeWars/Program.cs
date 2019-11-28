@@ -10,7 +10,8 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _4KYU.GetLongestPalindrome("   ");
+            _4KYU.Abbreviate("my. dog, isn't feeling very well.");
+            //_4KYU.GetLongestPalindrome("   ");
             //_4KYU.validate("477 073 360");//true
             //_4KYU.FindMissing(new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11 });
             //_4KYU.ToWeirdCase("This is a test");
