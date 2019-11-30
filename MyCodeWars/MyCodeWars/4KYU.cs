@@ -29,7 +29,13 @@ namespace MyCodeWars
         public static long Thirt(long n)
         {
             int[] fixedArr = new int[] { 1, 10, 9, 12, 3, 4 };
-            return 0;
+            long old = 0;
+            while (n!=old)
+            {
+                old = n;
+                n = (long)n.ToString().ToCharArray().Reverse().Select((f, i) => char.GetNumericValue(f) * fixedArr[i%fixedArr.Length]).Sum();
+            }           
+            return n; 
         }
 
         //Write a function

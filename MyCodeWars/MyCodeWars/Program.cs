@@ -10,7 +10,7 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _4KYU.Thirt(1111111111);//71
+            _4KYU.Thirt(1234567);//87
             //_4KYU.TripleDouble(10560002, 100);
             //_4KYU.Abbreviate("my. dog, isn't feeling very well.");
             //_4KYU.GetLongestPalindrome("   ");
