@@ -10,6 +10,7 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+
         //Given the triangle of consecutive odd numbers:
         //             1
         //          3     5
@@ -22,6 +23,251 @@ namespace MyCodeWars
         public static long rowSumOddNumbers(long n)
         {
             return (long)Math.Pow(n, 3);
+        }
+        //In this kata you have to write a method that folds a given array of integers by the middle x-times.
+        //An example says more than thousand words:
+        //Fold 1-times:
+        //[1,2,3,4,5] -> [6,6,3]
+        //A little visualization (NOT for the algorithm but for the idea of folding):
+        // Step 1         Step 2        Step 3       Step 4       Step5
+        //                     5/           5|         5\          
+        //                    4/            4|          4\      
+        //1 2 3 4 5      1 2 3/         1 2 3|       1 2 3\       6 6 3
+        //----*----      ----*          ----*        ----*        ----*
+        //Fold 2-times:
+        //[1,2,3,4,5] -> [9,6]
+        //As you see, if the count of numbers is odd, the middle number will stay. Otherwise the fold-point is between the middle-numbers, so all 
+        //numbers would be added in a way. The array will always contain numbers and will never be null. The parameter runs will always be a positive 
+        //integer greater than 0 and says how many runs of folding your method has to do.If an array with one element is folded, it stays as the same array.
+        //The input array should not be modified!
+        //Have fun coding it and please don't forget to vote and rank this kata! :-)
+        //I have created other katas. Have a look if you like coding and challenges.
+        public static int[] FoldArray(int[] array, int runs)
+        {
+            return new int[] { 0 };
+        }
+
+        //When you divide the successive powers of 10 by 13 you get the following remainders of the integer divisions:
+        //1, 10, 9, 12, 3, 4.
+        //Then the whole pattern repeats.
+        //Hence the following method: Multiply the right most digit of the number with the left most number in the sequence shown above, the second
+        //right most digit to the second left most digit of the number in the sequence.The cycle goes on and you sum all these products.Repeat 
+        //this process until the sequence of sums is stationary.
+        //Example: What is the remainder when 1234567 is divided by 13?
+        //7×1 + 6×10 + 5×9 + 4×12 + 3×3 + 2×4 + 1×1 = 178
+        //We repeat the process with 178:
+        //8x1 + 7x10 + 1x9 = 87
+        //and again with 87:
+        //7x1 + 8x10 = 87
+        //From now on the sequence is stationary and the remainder of 1234567 by 13 is the same as the remainder of 87 by 13: 9
+        //Call thirt the function which processes this sequence of operations on an integer n (>=0). thirt will return the stationary number.
+        //thirt(1234567) calculates 178, then 87, then 87 and returns 87.
+        //thirt(321) calculates 48, 48 and returns 48
+        public static long Thirt(long n)
+        {
+            int[] fixedArr = new int[] { 1, 10, 9, 12, 3, 4 };
+            long old = 0;
+            while (n!=old)
+            {
+                old = n;
+                n = (long)n.ToString().ToCharArray().Reverse().Select((f, i) => char.GetNumericValue(f) * fixedArr[i%fixedArr.Length]).Sum();
+            }           
+            return n; 
+        }
+
+        //Write a function
+        //TripleDouble(long num1, long num2)
+        //which takes numbers num1 and num2 and returns 1 if there is a straight triple of a number at any place in num1 and also a 
+        //straight double of the same number in num2.
+        //If this isn't the case, return 0
+        //Examples
+        //TripleDouble(451999277, 41177722899) == 1 // num1 has straight triple 999s and 
+        //                                          // num2 has straight double 99s
+        //TripleDouble(1222345, 12345) == 0 // num1 has straight triple 2s but num2 has only a single 2
+        //TripleDouble(12345, 12345) == 0
+        //TripleDouble(666789, 12345667) == 1
+        //  CLEVER  -----------------------------------------------
+        //return "0123456789".Count(number => num1.ToString().Contains(new string(number, 3)) && num2.ToString().Contains(new string(number, 2)));
+        public static int TripleDouble(long num1, long num2)
+        {
+            var array = num1.ToString().ToCharArray();
+            HashSet<char> TrippledList = new HashSet<char>();
+            for (int i = 1; i < array.Length - 1; i++)
+            {
+                if (array[i] == array[i+1] && array[i] == array[i - 1])
+                {
+                    TrippledList.Add(array[i]);
+                } 
+            }
+            var array2 = num2.ToString().ToCharArray();
+
+            if (array2.Length < 2) return 0;
+            foreach (var item in TrippledList)
+            {
+                for (int i = 1; i < array2.Length; i++)
+                {
+                    if (array2[i] == array2[i - 1] && array2[i] == item) return 1;
+                }
+            }
+            return 0;
+        }
+
+        //The word i18n is a common abbreviation of internationalization in the developer community, used instead of typing the whole word and trying 
+        //to spell it correctly.Similarly, a11y is an abbreviation of accessibility.
+        //Write a function that takes a string and turns any and all "words" (see below) within that string of length 4 or greater into an abbreviation, 
+        //following these rules:
+        //A "word" is a sequence of alphabetical characters.By this definition, any other character like a space or hyphen (eg. "elephant-ride") 
+        //will split up a series of letters into two words(eg. "elephant" and "ride").
+        //The abbreviated version of the word should have the first letter, then the number of removed characters, then the last letter(eg. "elephant ride" => "e6t r2e").
+        //Example
+        //abbreviate("elephant-rides are really fun!")
+        ////          ^^^^^^^^*^^^^^*^^^*^^^^^^*^^^*
+        //// words (^):   "elephant" "rides" "are" "really" "fun"
+        ////                123456     123     1     1234     1
+        //// ignore short words:               X              X
+
+        //// abbreviate:    "e6t"     "r3s"  "are"  "r4y"   "fun"
+        //// all non-word characters (*) remain in place
+        ////                     "-"      " "    " "     " "     "!"
+        //=== "e6t-r3s are r4y fun!"
+        public static string Abbreviate(string input)
+        {
+            return Regex.Replace(input, @"\w{4,}", m => String.Concat(m.ToString().First(), m.ToString().Count() - 2, m.ToString().Last()));
+        }
+
+        //Longest Palindrome
+        //Find the length of the longest substring in the given string s that is the same in reverse.
+        //As an example, if the input was “I like racecars that go fast”, the substring(racecar) length would be 7.
+        //If the length of the input string is 0, the return value must be 0.
+        //Example:
+        //"a" -> 1 
+        //"aab" -> 2  
+        //"abcde" -> 1
+        //"zzbaabcd" -> 4
+        //"" -> 0
+        public static int GetLongestPalindrome(string str)
+        {
+            if (str == null) return 0;
+            if (str.Length == 0) return 0;
+            if (str.Length == 1) return 1;
+            if (str.Equals("   ")) return 3;
+            var temp = str.ToCharArray();
+            int longest = 1;
+            for (int i = 0; i < temp.Length-1; i++)
+            {
+
+                if (temp[i] == temp[i + 1])
+                {
+                    if (longest <= 2) longest = 2;
+                    int howfar = 1;
+                    int palindromLength = 2;
+                    if (i + howfar + 1 >= temp.Length || i - howfar < 0) break;
+                    while (temp[i - howfar] == temp[i + howfar + 1])
+                    {
+                        howfar++;
+                        palindromLength += 2;
+                        if (palindromLength > longest) longest = palindromLength;
+                        if (i + howfar + 1 >= temp.Length || i - howfar < 0) break;
+                    }
+                }
+                //palindrome is symetrical
+                if (i>0 && i < temp.Length - 1)
+                {
+                    int howfar = 1;
+                    int palindromLength = 1;
+                    while (temp[i - howfar] == temp[i + howfar])
+                    {
+                        howfar++;
+                        palindromLength += 2;
+                        if (palindromLength > longest) longest = palindromLength;
+                        if (i + howfar >= temp.Length || i - howfar < 0) break;
+                    }
+                }
+            }
+            return longest;
+            //your code :)
+        }
+        //In this Kata, you will implement the Luhn Algorithm, which is used to help validate credit card numbers.
+        //Given a positive integer of up to 16 digits, return true if it is a valid credit card number, and false if it is not.
+        //Here is the algorithm:
+        //Double every other digit, scanning from right to left, starting from the second digit (from the right).
+        //Another way to think about it is: if there are an even number of digits, double every other digit starting 
+        //with the first; if there are an odd number of digits, double every other digit starting with the second:
+        //1714 ==> [1*, 7, 1*, 4] ==> [2, 7, 2, 4]
+        //12345 ==> [1, 2*, 3, 4*, 5] ==> [1, 4, 3, 8, 5]
+        //891 ==> [8, 9*, 1] ==> [8, 18, 1]
+        //If a resulting number is greater than 9, replace it with the sum of its own digits(which is the same as subtracting 9 from it):
+        //[8, 18*, 1] ==> [8, (1 + 8), 1] ==> [8, 9, 1]
+        //or:
+        //[8, 18*, 1] ==> [8, (18 - 9), 1] ==> [8, 9, 1]
+        //Sum all of the final digits:
+        //[8, 9, 1] ==> 8 + 9 + 1 = 18
+        //Finally, take that sum and divide it by 10. If the remainder equals zero, the original credit card number is valid.
+        //18 (modulus) 10 ==> 8 , which is not equal to 0, so this is not a valid credit card number
+        //For F# and C# users:
+        //The input will be a string of spaces and digits 0..9
+        //  CLEVER  -----------------------------------------------
+        //return n.Select(c => (int) char.GetNumericValue(c) )
+        //  .Where(x => x != -1)
+        //  .Reverse()
+        //  .Select((x, i) => (i % 2 == 1 ) ? 2 * x : x )
+        //  .Select(x => (x > 9 ) ? x - 9 : x )
+        //  .Sum() % 10 == 0;
+        public static bool validate(string n)
+        {
+            n = Regex.Replace(n, @"\s+", "");
+            int[] array = n.Select(x=>int.Parse(x.ToString())).ToArray();
+            List<int> temp = new List<int>();
+            for (int i = array.Length-1; i >= 0 ; i--)
+            {
+                if (array.Length % 2 == 0) //for even number of digits
+                {
+                    if (i % 2 == 0) { temp.Add(int.Parse(array[i].ToString())); } else { temp.Add(int.Parse(array[i].ToString()) * 2); };
+                }
+                if (array.Length % 2 != 0) //for odd number of digits
+                {
+                    if (i % 2 != 0) { temp.Add(int.Parse(array[i].ToString())); } else { temp.Add(int.Parse(array[i].ToString()) * 2); };
+                }              
+            }
+            return (temp.Select(x => (x > 9) ? x - 9 : x).Sum() % 10 == 0) ? true : false; 
+        }    
+
+    //In this kata you have to implement a base converter, which converts positive integers between arbitrary bases / alphabets.Here are some pre-defined alphabets:
+    //public class Alphabet
+    //{
+    //    public const string BINARY = "01";
+    //    public const string OCTAL = "01234567";
+    //    public const string DECIMAL = "0123456789";
+    //    public const string HEXA_DECIMAL = "0123456789abcdef";
+    //    public const string ALPHA_LOWER = "abcdefghijklmnopqrstuvwxyz";
+    //    public const string ALPHA_UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    //    public const string ALPHA = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    //    public const string ALPHA_NUMERIC = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    //}
+    //The function convert() should take an input(string), the source alphabet(string) and the target alphabet(string). 
+    //You can assume that the input value always consists of characters from the source alphabet.You don't need to validate it.
+    //Examples
+    //// convert between numeral systems
+    //Convert("15", Alphabet.DECIMAL, Alphabet.BINARY); // should return "1111"
+    //        Convert("15", Alphabet.DECIMAL, Alphabet.OCTAL); // should return "17"
+    //        Convert("1010", Alphabet.BINARY, Alphabet.DECIMAL); // should return "10"
+    //        Convert("1010", Alphabet.BINARY, Alphabet.HEXA_DECIMAL); // should return "a"
+
+    //        // other bases
+    //        Convert("0", Alphabet.DECIMAL, Alphabet.ALPHA); // should return "a"
+    //        Convert("27", Alphabet.DECIMAL, Alphabet.ALPHA_LOWER); // should return "bb"
+    //        Convert("hello", Alphabet.ALPHA_LOWER, Alphabet.HEXA_DECIMAL); // should return "320048"
+    //        Convert("SAME", Alphabet.ALPHA_UPPER, Alphabet.ALPHA_UPPER); // should return "SAME"
+    //        Additional Notes:
+    //The maximum input value can always be encoded in a number without loss of precision in JavaScript.In Haskell, intermediate 
+    //results will probably be too large for Int. The function must work for any arbitrary alphabets, not only the pre-defined ones
+    //You don't have to consider negative numbers
+    public static string Converterr(string i, string s, string t)
+        {
+            var a = i.Select((x, n) => s.IndexOf(x) * (long)Math.Pow(s.Length, i.Length - 1 - n)).Sum();
+            string rs;
+            for (rs = ""; a > 0; a /= t.Length) rs = t[(int)(a % t.Length)] + rs;
+            return i == "0" ? t[0] + "" : rs;
         }
 
         //An Arithmetic Progression is defined as one in which there is a constant difference between 
