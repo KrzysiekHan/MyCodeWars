@@ -10,6 +10,20 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //Given the triangle of consecutive odd numbers:
+        //             1
+        //          3     5
+        //       7     9    11
+        //   13    15    17    19
+        //21    23    25    27    29
+        //Calculate the row sums of this triangle from the row index (starting at index 1) e.g.:
+        //rowSumOddNumbers(1); // 1
+        //rowSumOddNumbers(2); // 3 + 5 = 8
+        public static long rowSumOddNumbers(long n)
+        {
+            return (long)Math.Pow(n, 3);
+        }
+
         //An Arithmetic Progression is defined as one in which there is a constant difference between 
         //the consecutive terms of a given series of numbers.You are provided with consecutive elements of an Arithmetic Progression.
         //There is however one hitch: exactly one term from the original series is missing from the set of numbers which have been given 
