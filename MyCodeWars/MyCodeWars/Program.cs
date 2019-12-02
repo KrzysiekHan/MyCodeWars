@@ -10,7 +10,7 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-
+            _4KYU.Accum("RqaEzty");
             //_4KYU.rowSumOddNumbers(42);//74088
             //_4KYU.FindMissing(new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11 });
             //_4KYU.Thirt(1234567);//87
