@@ -10,6 +10,16 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //This time no story, no theory.The examples below show you how to write function accum:
+        //Examples:
+        //accum("abcd") -> "A-Bb-Ccc-Dddd"
+        //accum("RqaEzty") -> "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+        //accum("cwAt") -> "C-Ww-Aaa-Tttt"
+        //The parameter of accum is a string which includes only letters from a..z and A..Z.
+        public static String Accum(string s)
+        {
+            return string.Join("-", s.ToCharArray().Select((x, i) => char.ToUpper(x)).ToString());
+        }
 
         //Given the triangle of consecutive odd numbers:
         //             1
@@ -24,6 +34,7 @@ namespace MyCodeWars
         {
             return (long)Math.Pow(n, 3);
         }
+
         //In this kata you have to write a method that folds a given array of integers by the middle x-times.
         //An example says more than thousand words:
         //Fold 1-times:
