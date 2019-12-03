@@ -44,7 +44,26 @@ namespace MyCodeWars
         //I have created other katas. Have a look if you like coding and challenges.
         public static int[] FoldArray(int[] array, int runs)
         {
-            return new int[] { 0 };
+            //for (int i = 0; i < array.Length; i++)
+            //{
+            //    Console.WriteLine(array[i]+","); 
+            //}
+            if (array.Length == 1) return array;
+            List<int> bentList = array.ToList();
+            for (int m = 0; m < runs; m++)
+            {
+                List<int> temp = new List<int>();
+                if (bentList.Count > 1)
+                {
+                    for (int i = 0; i < bentList.Count / 2; i++)
+                    {
+                        temp.Add(bentList[i] + bentList[bentList.Count - 1 - i]);
+                    }
+                    if (bentList.Count%2 != 0)temp.Add(bentList[bentList.Count / 2]);
+                    bentList = temp;
+                }                      
+            }         
+            return bentList.ToArray();
         }
 
         //When you divide the successive powers of 10 by 13 you get the following remainders of the integer divisions:
