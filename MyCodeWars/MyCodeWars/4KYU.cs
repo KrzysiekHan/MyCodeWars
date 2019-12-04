@@ -10,6 +10,84 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //A bookseller has lots of books classified in 26 categories labeled A, B, ... Z.Each book has a code c of 3, 4, 5 or more capitals letters.
+        //The 1st letter of a code is the capital letter of the book category.In the bookseller's stocklist each code c is followed by a space and by a 
+        //positive integer n (int n >= 0) which indicates the quantity of books of this code in stock.
+        //For example an extract of one of the stocklists could be:
+        //L = { "ABART 20", "CDXEF 50", "BKWRK 25", "BTSQZ 89", "DRTYM 60"}.
+        //or
+        //L = ["ABART 20", "CDXEF 50", "BKWRK 25", "BTSQZ 89", "DRTYM 60"] or ....
+        //You will be given a stocklist(e.g. : L) and a list of categories in capital letters e.g :
+        //  M = {"A", "B", "C", "W"} 
+        //or
+        //  M = ["A", "B", "C", "W"] or ...
+        //and your task is to find all the books of L with codes belonging to each category of M and to sum their quantity according to each category.
+        //For the lists L and M of example you have to return the string :
+        //  (A : 20) - (B : 114) - (C : 50) - (W : 0)
+        //where A, B, C, W are the categories, 20 is the sum of the unique book of category A, 114 the sum corresponding to "BKWRK" and "BTSQZ", 50 
+        //corresponding to "CDXEF" and 0 to category 'W' since there are no code beginning with W.
+        //If L or M are empty return string is "" 
+        //Note:
+        //In the result codes and their values are in the same order as in M.
+        public static string stockSummary(String[] lstOfArt, String[] lstOf1stLetter)
+        {
+            if (lstOfArt.Length == 0) return String.Empty;
+            List<string> resultlist = new List<string>();
+            foreach (var letter in lstOf1stLetter)
+            {
+                resultlist.Add("("+letter+" : "+lstOfArt.Select(x => x.First().ToString() == letter ? getValueForLetter(x) : 0).Sum().ToString() + ")");
+            }
+            return string.Join(" - ", resultlist);
+
+            int getValueForLetter (string lst)
+            {
+                int res = 0;
+                return lst.Split(' ').Select(x => int.TryParse(x, out res) ? res : 0).Sum();
+            }
+        }
+
+        //Everyone knows passphrases.One can choose passphrases from poems, songs, movies names and so on 
+        //but frequently they can be guessed due to common cultural references.You can get your passphrases stronger by different means.One is the following:
+        //choose a text in capital letters including or not digits and non alphabetic characters,
+        //shift each letter by a given number but the transformed letter must be a letter(circular shift),
+        //replace each digit by its complement to 9,
+        //keep such as non alphabetic and non digit characters,
+        //downcase each letter in odd position, upcase each letter in even position(the first character is in position 0),
+        //reverse the whole result.
+        //#Example:
+        //your text: "BORN IN 2015!", shift 1
+        //1 + 2 + 3 -> "CPSO JO 7984!"
+        //4 "CpSo jO 7984!"
+        //5 "!4897 Oj oSpC"
+        //  CLEVER  -----------------------------------------------
+        //Func<char, int> offset = (c) => char.IsUpper(c) ? 65 : 96;
+        //Func<char, int, char> letter = (c, i) => char.IsLetter(c) ? (char)(offset(c) + (c - offset(c) + i) % 26) : c;
+        //Func<char, char> digit = (c) => char.IsDigit(c) ? (9 - Int32.Parse(c.ToString())).ToString().First() : c;
+        //Func<char, int, char> rot = (c, i) => i % 2 == 0 ? char.ToUpper(c) : char.ToLower(c);
+        //return string.Join(String.Empty, s.ToCharArray().Select((c, i) => rot(digit(letter(c, n)),i)).Reverse().ToArray());
+        public static string playPass(string s, int n)
+        {
+            var result = string.Join("",
+                s.ToUpper()
+                .Select(x => passPhrChar(x, n))
+                .Select((x,i)=> i%2 != 0?char.ToLower(x):x)
+                .Reverse()
+                );
+            return result;
+            char passPhrChar(char input,int shift)
+            {
+                if (input>=65 && input<=90)
+                {
+                    return (char)((input + shift) > 90 ? (input + shift) - 26 : (input + shift));
+                }
+                if (Char.IsDigit(input))
+                {
+                    return Convert.ToChar((9 - char.GetNumericValue(input)).ToString());
+                }
+                return input;
+            }           
+        }
+
         //This time no story, no theory.The examples below show you how to write function accum:
         //Examples:
         //accum("abcd") -> "A-Bb-Ccc-Dddd"

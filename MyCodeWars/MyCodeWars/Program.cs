@@ -10,9 +10,13 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
+            String[] art = new string[] { "ABAR 200", "CDXE 500", "BKWR 250", "BTSQ 890", "DRTY 600" };
+            String[] cd = new String[] { "A", "B" };
+            _4KYU.stockSummary(art, cd);//"(A : 200) - (B : 1140)"
+            //_4KYU.playPass("BORN IN 2015!",1);
             //_4KYU.FoldArray(new int[] { 1, 2, 3, 4, 5 }, 3);
             //_4KYU.FoldArray(new int[] { 1,2,3,4,5,1,2,3,4,5,1,2,3,4,5 }, 3);//15   
-            _4KYU.Accum("RqaEzty");
+            //_4KYU.Accum("RqaEzty");
             //_4KYU.rowSumOddNumbers(42);//74088
             //_4KYU.FindMissing(new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11 });
             //_4KYU.Thirt(1234567);//87
