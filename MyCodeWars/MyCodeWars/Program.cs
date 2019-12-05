@@ -10,9 +10,16 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            String[] art = new string[] { "ABAR 200", "CDXE 500", "BKWR 250", "BTSQ 890", "DRTY 600" };
-            String[] cd = new String[] { "A", "B" };
-            _4KYU.stockSummary(art, cd);//"(A : 200) - (B : 1140)"
+            var fighters = new string[][]
+            {
+              new string[] { "Ryu", "E.Honda", "Blanka", "Guile", "Balrog", "Vega" },
+              new string[] { "Ken", "Chun Li", "Zangief", "Dhalsim", "Sagat", "M.Bison" },
+            };
+            var moves = new string[] { "up", "left", "right", "left", "left" };         
+            _4KYU.StreetFighterSelection(fighters, new int[] { 0, 0 },moves);//var expected = new string[] { "Ryu", "Vega", "Ryu", "Vega", "Balrog" };
+            //String[] art = new string[] { "ABAR 200", "CDXE 500", "BKWR 250", "BTSQ 890", "DRTY 600" };
+            //String[] cd = new String[] { "A", "B" };
+            //_4KYU.stockSummary(art, cd);//"(A : 200) - (B : 1140)"
             //_4KYU.playPass("BORN IN 2015!",1);
             //_4KYU.FoldArray(new int[] { 1, 2, 3, 4, 5 }, 3);
             //_4KYU.FoldArray(new int[] { 1,2,3,4,5,1,2,3,4,5,1,2,3,4,5 }, 3);//15   
