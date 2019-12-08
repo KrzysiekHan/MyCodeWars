@@ -9,6 +9,5 @@ C:\Users\Lenovo\Desktop\MyCodeWars\MyCodeWars\MyCodeWars\bin\Debug\MyCodeWars.ex
 C:\Users\Lenovo\Desktop\MyCodeWars\MyCodeWars\MyCodeWars\bin\Debug\MyCodeWars.exe
 C:\Users\Lenovo\Desktop\MyCodeWars\MyCodeWars\MyCodeWars\bin\Debug\MyCodeWars.pdb
 C:\Users\Lenovo\Desktop\MyCodeWars\MyCodeWars\MyCodeWars\obj\Debug\MyCodeWars.csprojAssemblyReference.cache
-C:\Users\Lenovo\Desktop\MyCodeWars\MyCodeWars\MyCodeWars\obj\Debug\MyCodeWars.csproj.CoreCompileInputs.cache
 C:\Users\Lenovo\Desktop\MyCodeWars\MyCodeWars\MyCodeWars\obj\Debug\MyCodeWars.exe
 C:\Users\Lenovo\Desktop\MyCodeWars\MyCodeWars\MyCodeWars\obj\Debug\MyCodeWars.pdb

@@ -10,14 +10,15 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _4KYU.PascalsTriangle(4);
-            var fighters = new string[][]
-            {
-              new string[] { "Ryu", "E.Honda", "Blanka", "Guile", "Balrog", "Vega" },
-              new string[] { "Ken", "Chun Li", "Zangief", "Dhalsim", "Sagat", "M.Bison" },
-            };
-            var moves = new string[] { "up", "left", "right", "left", "left" };         
-            _4KYU.StreetFighterSelection(fighters, new int[] { 0, 0 },moves);//var expected = new string[] { "Ryu", "Vega", "Ryu", "Vega", "Balrog" };
+            _4KYU.nbMonths(2000, 8000, 1000, 1.5);
+            //_4KYU.PascalsTriangle(4);
+            //var fighters = new string[][]
+            //{
+            //  new string[] { "Ryu", "E.Honda", "Blanka", "Guile", "Balrog", "Vega" },
+            //  new string[] { "Ken", "Chun Li", "Zangief", "Dhalsim", "Sagat", "M.Bison" },
+            //};
+            //var moves = new string[] { "up", "left", "right", "left", "left" };         
+            //_4KYU.StreetFighterSelection(fighters, new int[] { 0, 0 },moves);//var expected = new string[] { "Ryu", "Vega", "Ryu", "Vega", "Balrog" };
             //String[] art = new string[] { "ABAR 200", "CDXE 500", "BKWR 250", "BTSQ 890", "DRTY 600" };
             //String[] cd = new String[] { "A", "B" };
             //_4KYU.stockSummary(art, cd);//"(A : 200) - (B : 1140)"
