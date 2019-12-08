@@ -10,6 +10,30 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //Pascal's Triangle
+        //Pascal's Triangle
+        //Wikipedia article on Pascal's Triangle: http://en.wikipedia.org/wiki/Pascal's_triangle
+        //Write a function that, given a depth(n), returns a single-dimensional array/list representing Pascal's Triangle from the first to the n-th level.
+        //For example:
+        //Kata.PascalsTriangle(4) == new List<int> {1, 1, 1, 1, 2, 1, 1, 3, 3, 1}
+        public static List<int> PascalsTriangle(int n)
+        {
+            List<int> result = new List<int>();
+            int val = 0;
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j <= i; j++)
+                {
+                    if (j == 0 || i == 0)
+                        val = 1;
+                    else
+                        val = val * (i - j + 1) / j;
+                    result.Add(val);
+                }
+            }
+            return result;
+        }
+
         //You'll have to simulate the video game's character selection screen behaviour, more specifically the selection grid.Such screen looks like this:
         //![alt text] [screen] [screen]: https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.fightersgeneration.com%2Fnp5%2Fgm%2Fsf2ce-s2.jpg&f=1 "Character Selection Screen for Street Fighter 2"
         //Selection Grid Layout in text:

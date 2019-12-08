@@ -10,6 +10,7 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
+            _4KYU.PascalsTriangle(4);
             var fighters = new string[][]
             {
               new string[] { "Ryu", "E.Honda", "Blanka", "Guile", "Balrog", "Vega" },
