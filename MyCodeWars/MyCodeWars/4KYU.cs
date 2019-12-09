@@ -48,19 +48,20 @@ namespace MyCodeWars
             int months = 0;
             double newPrice = startPriceNew, oldPrice = startPriceOld;
             double savings = 0;
+            double available = 0;
             percentLossByMonth = percentLossByMonth / 100;
             while (newPrice> oldPrice+savings)
             {
-                if (months % 2 == 0 && months != 0) percentLossByMonth = percentLossByMonth + 0.005;
+                if ((months+1) % 2 == 0 && months != 0) percentLossByMonth = percentLossByMonth + 0.005;
                 newPrice = newPrice - newPrice * percentLossByMonth;
                 oldPrice = oldPrice - oldPrice * percentLossByMonth;
                 savings = savings + savingPerMonth;
+                available = (oldPrice + savings) - newPrice;
                 months++;
             }
             int[] result = new int[2];
             result[0] = months;
-            result[1] = (int)((oldPrice + savings) - newPrice );
-            // your code
+            result[1] = (int)Math.Round((oldPrice + savings) - newPrice );
             return result;
         }
 
