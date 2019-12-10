@@ -10,6 +10,49 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //data and data1 are two strings with rainfall records of a few cities for months from January to December.
+        //The records of towns are separated by \n.The name of each town is followed by :.
+        //data and towns can be seen in "Your Test Cases:".
+        //Task:
+        //function: mean(town, strng) should return the average of rainfall for the city town and the strng data or data1(In R and Julia this function is called avg).
+        //function: variance(town, strng) should return the variance of rainfall for the city town and the strng data or data1.
+        //Examples:
+        //mean("London", data), 51.19(9999999999996) 
+        //variance("London", data), 57.42(833333333374)
+        //Notes:
+        //if functions mean or variance have as parameter town a city which has no records return -1 or -1.0 (depending on the language)
+        //Don't truncate or round: the tests will pass if abs(your_result - test_result) <= 1e-2 or 
+        //abs((your_result - test_result) / test_result) <= 1e-6 depending on the language.
+        //Shell tests only variance
+        //A ref: http://www.mathsisfun.com/data/standard-deviation.html
+        //data and data1(can be named d0 and d1 depending on the language; see "Sample Tests:") are adapted from: http://www.worldclimate.com
+        public static double Mean(string town, string strng)
+        {
+            var test = PrepareData("dupa",strng);
+            return 0;
+        }
+
+        public static double Variance(string town, string strng)
+        {
+            return 0;
+        }
+
+        public static Dictionary<string,double> PrepareData(string town, string str)
+        {
+            var datalist = str.Split('\n')
+                            .Select(x=>x.Split(':'))
+                            .ToDictionary(split => split[0],split => split[1]);
+            return new Dictionary<string, double>();
+        }
+
+        //The main idea is to count all the occuring characters(UTF-8) in string. If you have string like this aba then the result should be { 'a': 2, 'b': 1 }
+        //What if the string is empty? Then the result should be empty object literal { }
+        //For C#: Use a Dictionary<char, int> for this kata!
+        public static Dictionary<char, int> Count(string str)
+        {           
+             return str.GroupBy(x => x).ToDictionary(w => w.Key, w => w.Count());
+        }
+
         //Let us begin with an example:
         //A man has a rather old car being worth $2000. He saw a secondhand car being worth $8000. He wants to keep 
         //his old car until he can buy the secondhand one.
