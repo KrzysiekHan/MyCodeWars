@@ -37,12 +37,23 @@ namespace MyCodeWars
             return 0;
         }
 
-        public static Dictionary<string,double> PrepareData(string town, string str)
+        public static Dictionary<string, List<int>> PrepareData(string town, string str)
         {
+            string regexPattern = @"^?[0-9][0-9,\.]+$";
+            Dictionary<string, List<int>> result = new Dictionary<string, List<int>>();
             var datalist = str.Split('\n')
                             .Select(x=>x.Split(':'))
                             .ToDictionary(split => split[0],split => split[1]);
-            return new Dictionary<string, double>();
+            foreach (var item in datalist)
+            {
+                var test = item.Value.Split(',').Select(x=>int.Parse(Regex.Replace(x, regexPattern, ""))).ToList();
+                //result.Add(item.Key, datalist.Where(x => x.Key == item.Key)
+                //                                .Select(c => int.Parse(Regex.Replace(c.Value, @"[^\d]", "")))
+                //                                .ToList()
+                //          );
+            }
+            
+            return result;
         }
 
         //The main idea is to count all the occuring characters(UTF-8) in string. If you have string like this aba then the result should be { 'a': 2, 'b': 1 }
