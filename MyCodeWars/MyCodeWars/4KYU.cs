@@ -28,25 +28,32 @@ namespace MyCodeWars
         //data and data1(can be named d0 and d1 depending on the language; see "Sample Tests:") are adapted from: http://www.worldclimate.com
         public static double Mean(string town, string strng)
         {
-            var test = PrepareData("dupa",strng);
+            var data = PrepareData(town, strng);
+            var result = data.Where(x => x.Equals(town));
             return 0;
         }
 
         public static double Variance(string town, string strng)
         {
+            var data = PrepareData(town,strng);
+            
             return 0;
         }
 
         public static Dictionary<string, List<int>> PrepareData(string town, string str)
         {
-            string regexPattern = @"^?[0-9][0-9,\.]+$";
+            string regexPattern = @"^[0-9]{1,5}([,.][0-9]{1,5})?$";
+
             Dictionary<string, List<int>> result = new Dictionary<string, List<int>>();
+
             var datalist = str.Split('\n')
                             .Select(x=>x.Split(':'))
                             .ToDictionary(split => split[0],split => split[1]);
             foreach (var item in datalist)
             {
-                var test = item.Value.Split(',').Select(x=>int.Parse(Regex.Replace(x, regexPattern, ""))).ToList();
+                var test = item.Value.Split(',')
+                    .Select(x=>int.Parse(Regex.Replace(x, regexPattern, "")))
+                    .ToList();
                 //result.Add(item.Key, datalist.Where(x => x.Key == item.Key)
                 //                                .Select(c => int.Parse(Regex.Replace(c.Value, @"[^\d]", "")))
                 //                                .ToList()
