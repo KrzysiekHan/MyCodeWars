@@ -10,6 +10,56 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //https://www.codewars.com/kata/checking-groups/train/csharp
+        //Checking Groups
+        //In English and programming, groups can be made using symbols such as () and { }
+        //that change meaning.However, these groups must be closed in the correct order to maintain correct syntax.
+        //Your job in this kata will be to make a program that checks a string for correct grouping. 
+        //For instance, the following groups are done correctly:
+        //({})
+        //[[] ()]
+        //[{()}]
+        //The next are done incorrectly:
+        //{(})
+        //([]
+        //[])
+        //A correct string cannot close groups in the wrong order, open a group but fail to close it, or close a 
+        //group before it is opened.
+        //Your function will take an input string that may contain any of the symbols(), {} or[] to create groups.
+        //It should return True if the string is empty or otherwise grouped correctly, or False if it is grouped incorrectly.
+        public static bool Check(string input)
+        {
+            Dictionary<char, char> bracketPairs = new Dictionary<char, char>()
+            {
+                { '(',')'},
+                { '[',']'},
+                { '{','}'},
+                { '<','>'}
+            };
+            Stack<char> brackets = new Stack<char>();
+            foreach (char c in input)
+            {
+                if (bracketPairs.Keys.Contains(c))
+                {
+                    brackets.Push(c);
+                }
+                else
+                if (bracketPairs.Values.Contains(c))
+                {
+                    if (c == bracketPairs[brackets.First()])
+                    {
+                        brackets.Pop();
+                    }
+                    else
+                        return false;
+                }
+                else
+                    continue;
+            }
+            return brackets.Count() == 0 ? true : false;
+        }
+
+
         //data and data1 are two strings with rainfall records of a few cities for months from January to December.
         //The records of towns are separated by \n.The name of each town is followed by :.
         //data and towns can be seen in "Your Test Cases:".
