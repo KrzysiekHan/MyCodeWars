@@ -25,14 +25,14 @@ namespace MyCodeWars
             {
                 for (int j = i; j < numbers.Length; j++)
                 {
-                    if (numbers[i] + numbers[j] == target)
+                    if (numbers[i] + numbers[j] == target && i!=j)
                     {
                         response.Add(i);
                         response.Add(j);
                     }
                 }
             }
-            return new int[0];
+            return response.ToArray();
         }
 
 
