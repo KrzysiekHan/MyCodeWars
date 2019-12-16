@@ -55,6 +55,7 @@ namespace MyCodeWars
         //It should return True if the string is empty or otherwise grouped correctly, or False if it is grouped incorrectly.
         public static bool Check(string input)
         {
+            
             Dictionary<char, char> bracketPairs = new Dictionary<char, char>()
             {
                 { '(',')'},
@@ -72,9 +73,12 @@ namespace MyCodeWars
                 else
                 if (bracketPairs.Values.Contains(c))
                 {
-                    if (c == bracketPairs[brackets.First()])
+                    if (brackets.Count != 0)
                     {
-                        brackets.Pop();
+                        if (c == bracketPairs[brackets.First()])
+                        {
+                            brackets.Pop();
+                        }
                     }
                     else
                         return false;
