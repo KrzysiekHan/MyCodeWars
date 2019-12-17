@@ -31,10 +31,11 @@ namespace MyCodeWars
 
         static void Main(string[] args)
         {
+            _4KYU.stat("01|15|59, 1|47|6, 01|17|20, 1|32|34, 2|3|17");
             //_4KYU.TwoSum(new[] { 1, 2, 3 }, 4);
-            _4KYU.Check("([]))");
-            _4KYU.Mean("London",data);
-            _4KYU.nbMonths(2000, 8000, 1000, 1.5);
+            //_4KYU.Check("([]))");
+            //_4KYU.Mean("London",data);
+            //_4KYU.nbMonths(2000, 8000, 1000, 1.5);
             //_4KYU.PascalsTriangle(4);
             //var fighters = new string[][]
             //{
