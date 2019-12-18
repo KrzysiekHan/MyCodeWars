@@ -48,6 +48,17 @@ namespace MyCodeWars
             TimeSpan timeSpan1 = TimeSpan.FromSeconds(mean);
             TimeSpan timeSpan2 = TimeSpan.FromSeconds(median);
             TimeSpan timeSpan3 = TimeSpan.FromSeconds(range);
+            List<string> parameterss = new List<string>();
+            parameterss.Add(timeSpan3.Seconds.ToString("D2"));
+            parameterss.Add(timeSpan3.Minutes.ToString("D2"));
+            parameterss.Add(timeSpan3.Hours.ToString("D2"));
+            parameterss.Add(timeSpan2.Seconds.ToString("D2"));
+            parameterss.Add(timeSpan2.Minutes.ToString("D2"));
+            parameterss.Add(timeSpan2.Hours.ToString("D2"));
+            parameterss.Add(timeSpan1.Seconds.ToString("D2"));
+            parameterss.Add(timeSpan1.Minutes.ToString("D2"));
+            parameterss.Add(timeSpan1.Hours.ToString("D2"));
+            string response = string.Format("Range: {0}|{1}|{2} Average: {3}|{4}|{5} Median: {6}|{7}|{8}", parameterss.ToArray());
 
 
             return result;
