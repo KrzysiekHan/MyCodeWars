@@ -20,7 +20,11 @@ namespace MyCodeWars
         //Range : difference between the lowest and highest values.In {4, 6, 9, 3, 7}
         //the lowest value is 3, and the highest is 9, so the range is 9 − 3 = 6.
         //Mean or Average : To calculate mean, add together all of the numbers in a set and then divide the sum by the total count of numbers.
-        //Median : In statistics, the median is the number separating the higher half of a data sample from the lower half.The median of a finite list of numbers can be found by arranging all the observations from lowest value to highest value and picking the middle one (e.g., the median of { 3, 3, 5, 9, 11} is 5) when there is an odd number of observations.If there is an even number of observations, then there is no single middle value; the median is then defined to be the mean of the two middle values(the median of { 3, 5, 6, 9} is (5 + 6) / 2 = 5.5).
+        //Median : In statistics, the median is the number separating the higher half of a data sample from the lower half.The median of a 
+        //finite list of numbers can be found by arranging all the observations from lowest value to highest value and picking the middle 
+        //one (e.g., the median of { 3, 3, 5, 9, 11} is 5) when there is an odd number of observations.If there is an even number of 
+        //observations, then there is no single middle value; the median is then defined to be the mean of the two middle values(the 
+        //median of { 3, 5, 6, 9} is (5 + 6) / 2 = 5.5).
         //Your task is to return a string giving these 3 values.For the example given above, the string result will be
         //"Range: 00|47|18 Average: 01|35|15 Median: 01|32|34"
         //of the form:
@@ -35,7 +39,6 @@ namespace MyCodeWars
             {
                 return "";
             }
-            string result = "";
             var temp = strg.Split(',').Select(x => x.Split('|').ToList()).ToList();
             List<int> values = new List<int>();
             foreach (var item in temp)
@@ -43,25 +46,23 @@ namespace MyCodeWars
                 values.Add(int.Parse(item[0]) * 3600 + int.Parse(item[1]) * 60 + int.Parse(item[2])); 
             }
             int mean = values.Sum() / values.Count;
-            int median = values[values.Count / 2 + 1];
+            int median = values.Count%2 == 0 ? (values[values.Count / 2 ] + values[values.Count / 2 + 1])/2 : values[values.Count / 2 +1];
             int range = values.OrderBy(x => x).Last() - values.OrderBy(x => x).First();
             TimeSpan timeSpan1 = TimeSpan.FromSeconds(mean);
             TimeSpan timeSpan2 = TimeSpan.FromSeconds(median);
             TimeSpan timeSpan3 = TimeSpan.FromSeconds(range);
             List<string> parameterss = new List<string>();
-            parameterss.Add(timeSpan3.Seconds.ToString("D2"));
-            parameterss.Add(timeSpan3.Minutes.ToString("D2"));
             parameterss.Add(timeSpan3.Hours.ToString("D2"));
-            parameterss.Add(timeSpan2.Seconds.ToString("D2"));
-            parameterss.Add(timeSpan2.Minutes.ToString("D2"));
-            parameterss.Add(timeSpan2.Hours.ToString("D2"));
-            parameterss.Add(timeSpan1.Seconds.ToString("D2"));
-            parameterss.Add(timeSpan1.Minutes.ToString("D2"));
+            parameterss.Add(timeSpan3.Minutes.ToString("D2"));
+            parameterss.Add(timeSpan3.Seconds.ToString("D2"));
             parameterss.Add(timeSpan1.Hours.ToString("D2"));
+            parameterss.Add(timeSpan1.Minutes.ToString("D2"));
+            parameterss.Add(timeSpan1.Seconds.ToString("D2"));
+            parameterss.Add(timeSpan2.Hours.ToString("D2"));
+            parameterss.Add(timeSpan2.Minutes.ToString("D2"));
+            parameterss.Add(timeSpan2.Seconds.ToString("D2"));
             string response = string.Format("Range: {0}|{1}|{2} Average: {3}|{4}|{5} Median: {6}|{7}|{8}", parameterss.ToArray());
-
-
-            return result;
+            return response;
         }
 
         //Two sum
