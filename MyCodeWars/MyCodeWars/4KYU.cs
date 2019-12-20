@@ -10,6 +10,30 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //Length of missing array
+        //You get an array of arrays.
+        //If you sort the arrays by their length, you will see, that their length-values are consecutive.
+        //But one array is missing!
+        //You have to write a method, that return the length of the missing array.
+        //Example:
+        //[[1, 2], [4, 5, 1, 1], [1], [5, 6, 7, 8, 9]] --> 3
+        //If the array of arrays is null/nil or empty, the method should return 0.
+        //When an array in the array is null or empty, the method should return 0 too!
+        //There will always be a missing element and its length will be always between the given arrays.
+        //Have fun coding it and please don't forget to vote and rank this kata! :-)
+        //I have created other katas.Have a look if you like coding and challenges.
+        public static int GetLengthOfMissingArray(object[][] arrayOfArrays)
+        {
+            if (arrayOfArrays == null) return 0;
+            if (arrayOfArrays.Length == 0) return 0;
+            var list = arrayOfArrays.Select((x, i) => new { len = x.Length, index = i }).OrderBy(x => x.len).ToList();
+            var response = list    
+                .Select((c, i) => (i>0) ? new { diff = list[i].len - list[i - 1].len, index = i } : new { diff = 0, index = 0 })
+                //.Where(x => x.diff > 1)
+                .ToList();
+            return 0;
+        }
+
         //Statistics for an Athletic Association
         //You are the "computer expert" of a local Athletic Association(C.A.A.). Many teams of runners come to compete.Each time you get 
         //a string of all race results of every team who has run.For example here is a string showing the individual results of a team of 5 runners:
