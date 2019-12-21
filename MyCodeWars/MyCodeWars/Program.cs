@@ -31,6 +31,7 @@ namespace MyCodeWars
 
         static void Main(string[] args)
         {
+            _4KYU.GetLengthOfMissingArray(new object[][] { new object[] { 5, 2, 9 }, new object[] { 4, 5, 1, 1 }, new object[] { 1 }, new object[] { 5, 6, 7, 8, 9 } });
             _4KYU.stat("01|15|59, 1|47|6, 01|17|20, 1|32|34, 2|3|17");
             //_4KYU.TwoSum(new[] { 1, 2, 3 }, 4);
             //_4KYU.Check("([]))");
