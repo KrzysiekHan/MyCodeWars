@@ -62,9 +62,16 @@ namespace MyCodeWars
         //It can happen that in two distinct families with the same family name two people have the same first name too.
         public static string Meeting(string s)
         {
-            var format1 = s.Split(';').ToArray().Select(x => x.ToUpper()).ToList();
-            var format2 = format1.Select(x => x.Split(':').ToList());
-            return "response";
+            var sorted = s.Split(';')
+                .ToArray()
+                .Select(x => x.ToUpper())
+                .Select(x => x.Split(':'))
+                .Select(w => new { name = w[0], surname = w[1] })
+                .OrderBy(v=>v.surname)
+                .ThenBy(v=>v.name)
+                .Select(d=>$"({d.surname}, {d.name})")
+                .ToList();
+            return string.Join("",sorted);
         }
 
         //Length of missing array
@@ -269,10 +276,6 @@ namespace MyCodeWars
                 var test = item.Value.Split(',')
                     .Select(x=>int.Parse(Regex.Replace(x, regexPattern, "")))
                     .ToList();
-                //result.Add(item.Key, datalist.Where(x => x.Key == item.Key)
-                //                                .Select(c => int.Parse(Regex.Replace(c.Value, @"[^\d]", "")))
-                //                                .ToList()
-                //          );
             }
             
             return result;
