@@ -22,17 +22,22 @@ namespace MyCodeWars
         //xbonacci {0,0,0,0,1} 10 = {0,0,0,0,1,1,2,4,8,16}
         //xbonacci {1,0,0,0,0,0,1} 10 = {1,0,0,0,0,0,1,2,3,6}
         //xbonacci {1,1} produces the Fibonacci sequence
+        //  CLEVER  -----------------------------------------------
+        //var sequence = new List<double>(signature);
+        //int count = signature.Length;
+        //for(int i = count; i<n; i++)
+        //    sequence.Add(sequence.Skip(i - count).Take(count).Sum());
+        //return sequence.Take(n).ToArray();
         public static double[] xbonacci(double[] signature, int n)
         {
-                int j = 0;
+                double j = 0;
                 int x = signature.Length;
-                int[] xbon = new int[n];
-                double[] response = new double[n];
+                double[] xbon = new double[n];
                 for (int k = 0; k < n; k++)
                 {
                     if (k < x)
                     {
-                        xbon[k] = (int)signature[k];
+                    xbon[k] =  signature[k];
                         j += xbon[k];
                     }
                     else
@@ -41,11 +46,7 @@ namespace MyCodeWars
                         j += j - xbon[k - x];
                     }
                 }
-                for (int i = 0; i < xbon.Length; i++)
-                {
-                    response[i] = (double)xbon[i];
-                }
-                return response;
+                return xbon;
         }
 
         //Meeting
