@@ -34,33 +34,60 @@ namespace MyCodeWars
         //3. The directions array will always be in upper case and will be in the format of N = North, E = East, W = West and S = South.
         public static string mazeRunner(int[,] maze, string[] directions)
         {
-            int currX = 0, currY = 0;
+            Dictionary<string, Point> points = new Dictionary<string, Point>();
+            Point start = new Point();
+            Point finish = new Point();
+            Point current = new Point();
+            start = FindPoint(maze, 2);
+            current = start;
+            finish = FindPoint(maze, 3);
             FieldResult temporaryResult = FieldResult.Start;
+            string last = directions.Last();
             foreach (var item in directions)
             {
                 switch (item)
                 {
                     case "N":
-                        currY++;
-                        temporaryResult = checkMazePosiion(maze[currY, currX]);
+                        current.y--;
+                        temporaryResult = checkMazePosiion(maze,current);                       
                         break;
                     case "E":
-                        currX++;
-                        temporaryResult = checkMazePosiion(maze[currY, currX]);
+                        current.x++;
+                        temporaryResult = checkMazePosiion(maze, current);
                         break;
                     case "W":
-                        currX--;
-                        temporaryResult = checkMazePosiion(maze[currY, currX]);
+                        current.x--;
+                        temporaryResult = checkMazePosiion(maze, current);
                         break;
                     case "S":
-                        currY--;
-                        temporaryResult = checkMazePosiion(maze[currY, currX]);
+                        current.y++;
+                        temporaryResult = checkMazePosiion(maze, current);
                         break;
                     default:
                         break;
                 }
+                switch (temporaryResult)
+                {
+                    case FieldResult.Continue:
+                        break;
+                    case FieldResult.Start:
+                        break;
+                    case FieldResult.Finish:
+                        break;
+                    case FieldResult.Dead:
+                        return "Dead";
+                    case FieldResult.Lost:
+                        return "Lost";
+                    default:
+                        break;
+                }
+                if (temporaryResult == FieldResult.Dead || temporaryResult == FieldResult.Lost || temporaryResult == FieldResult.Finish)
+                {
+                    break;
+                }
+                if (item == last && temporaryResult == FieldResult.Continue) temporaryResult = FieldResult.Lost;
             }
-            return "Lost";
+            return temporaryResult.ToString();
         }
         private enum FieldResult
         {
@@ -70,8 +97,17 @@ namespace MyCodeWars
             Dead,
             Lost
         }
-        private static FieldResult checkMazePosiion (int value)
+        private static FieldResult checkMazePosiion (int [,] maze,Point point)
         {
+            int value = -1;
+            try
+            {
+                value = maze[point.y, point.x];
+            }
+            catch (Exception)
+            {
+                value = 1;
+            }
             switch (value)
             {
                 case 0:
@@ -85,7 +121,27 @@ namespace MyCodeWars
             }
             return FieldResult.Lost;
         }
-
+        private static Point FindPoint(int[,] maze, int number)
+        {
+            Point result = new Point();
+            for (int i = 0; i < maze.GetLength(0); i++)
+            {
+                for (int j = 0; j < maze.GetLength(1); j++)
+                {
+                    if (maze[i,j] == number)
+                    {
+                        result.x = j;
+                        result.y = i;
+                    }
+                }
+            }
+            return result;
+        }
+        private class Point
+        {
+            public int x { get; set; }
+            public int y { get; set; }
+        }
 
         //Fibonacci, Tribonacci and friends
         //If you have completed the Tribonacci sequence kata, you would know by now that mister Fibonacci has at least a bigger brother.
