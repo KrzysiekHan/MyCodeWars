@@ -28,16 +28,20 @@ namespace MyCodeWars
         //parts_sums(ls) -> [21, 20, 18, 15, 11, 6, 0]
         //ls = [744125, 935, 407, 454, 430, 90, 144, 6710213, 889, 810, 2579358]
         //parts_sums(ls) -> [10037855, 9293730, 9292795, 9292388, 9291934, 9291504, 9291414, 9291270, 2581057, 2580168, 2579358, 0]
+        //  CLEVER  -----------------------------------------------
+        //return l.Reverse().Aggregate(Enumerable.Repeat(0, 1), (a, i) => a.Prepend(a.First() + i)).ToArray();
         public static int[] PartsSums(int[] ls)
         {
             List<int> partsSum = new List<int>();
             var templist = ls.ToList();
+            var initialSum = templist.Sum();
             int iterations = ls.Length;
+            int value = initialSum;
             for (int i = 0; i < iterations; i++)
             {
-                var sum = templist.Sum();
-                partsSum.Add(sum);
-                templist.RemoveAt(0);
+                partsSum.Add(value);
+                value = value - templist[0];               
+                templist.RemoveAt(0); 
             }
             partsSum.Add(0);
             return partsSum.ToArray();
