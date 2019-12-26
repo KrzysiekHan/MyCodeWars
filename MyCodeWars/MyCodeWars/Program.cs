@@ -9,7 +9,8 @@ namespace MyCodeWars
     class Program
     {
         static void Main(string[] args)
-        {            
+        {
+            _4KYU.PartsSums(new int[] { 0, 1, 3, 6, 10 });
             //_4KYU.mazeRunner(maze, directions0);
             //_4KYU.Meeting("Fred:Corwill;Wilfred:Corwill;Barney:Tornbull;Betty:Tornbull;Bjon:Tornbull;Raphael:Corwill;Alfred:Corwill");
             _4KYU.GetLengthOfMissingArray(new object[][] { new object[] { 5, 2, 9 }, new object[] { 4, 5, 1, 1 }, new object[] { 1 }, new object[] { 5, 6, 7, 8, 9 } });
