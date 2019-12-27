@@ -10,7 +10,9 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _4KYU.PartsSums(new int[] { 0, 1, 3, 6, 10 });
+            //response {1,0,1,0,1,0,1,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}
+            _4KYU.DataReverse(new int[32] { 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0 });
+            //_4KYU.PartsSums(new int[] { 0, 1, 3, 6, 10 });
             //_4KYU.mazeRunner(maze, directions0);
             //_4KYU.Meeting("Fred:Corwill;Wilfred:Corwill;Barney:Tornbull;Betty:Tornbull;Bjon:Tornbull;Raphael:Corwill;Alfred:Corwill");
             _4KYU.GetLengthOfMissingArray(new object[][] { new object[] { 5, 2, 9 }, new object[] { 4, 5, 1, 1 }, new object[] { 1 }, new object[] { 5, 6, 7, 8, 9 } });
@@ -21,10 +23,8 @@ namespace MyCodeWars
             //_4KYU.nbMonths(2000, 8000, 1000, 1.5);
             //_4KYU.PascalsTriangle(4);
             //var fighters = new string[][]
-            //{
-            //  new string[] { "Ryu", "E.Honda", "Blanka", "Guile", "Balrog", "Vega" },
-            //  new string[] { "Ken", "Chun Li", "Zangief", "Dhalsim", "Sagat", "M.Bison" },
-            //};
+            //{  new string[] { "Ryu", "E.Honda", "Blanka", "Guile", "Balrog", "Vega" },
+            //  new string[] { "Ken", "Chun Li", "Zangief", "Dhalsim", "Sagat", "M.Bison" }};
             //var moves = new string[] { "up", "left", "right", "left", "left" };         
             //_4KYU.StreetFighterSelection(fighters, new int[] { 0, 0 },moves);//var expected = new string[] { "Ryu", "Vega", "Ryu", "Vega", "Balrog" };
             //String[] art = new string[] { "ABAR 200", "CDXE 500", "BKWR 250", "BTSQ 890", "DRTY 600" };

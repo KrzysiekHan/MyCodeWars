@@ -9,7 +9,29 @@ using System.Globalization;
 namespace MyCodeWars
 {
     public static class _4KYU
-    {
+{
+        //Data reverse
+        //A stream of data is received and needs to be reversed.
+        //Each segment is 8 bits long, meaning the order of these segments needs to be reversed, for example:
+        //11111111  00000000  00001111  10101010
+        //(byte1)   (byte2)   (byte3)   (byte4)
+        //should become:
+        //10101010  00001111  00000000  11111111
+        //(byte4)   (byte3)   (byte2)   (byte1)
+        //The total number of bits will always be a multiple of 8.
+        //The data is given in an array as such:
+        //[1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,1,0,1,0,1,0]
+        public static int[] DataReverse(int[] data)
+        {
+            return string.Join("", SplitInPart(string.Join("", data), 8).Reverse()).Select(x => int.Parse(x.ToString())).ToArray();
+        }
+
+        public static IEnumerable<string> SplitInPart(string s, Int32 partLength)
+        {
+            for (var i = 0; i < s.Length; i += partLength)
+                yield return s.Substring(i, Math.Min(partLength, s.Length - i));
+        }
+
         //Sums of Parts
         //Let us consider this example (array written in general format):
         //ls = [0, 1, 3, 6, 10]
