@@ -10,8 +10,11 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
+            _4KYU.ValidPhoneNumber("(123) 456-7890");
+            _4KYU.ValidPhoneNumber("(1111)555 2345");
+            _4KYU.ValidPhoneNumber("(098) 123 4567");
             //response {1,0,1,0,1,0,1,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}
-            _4KYU.DataReverse(new int[32] { 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0 });
+            //_4KYU.DataReverse(new int[32] { 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0 });
             //_4KYU.PartsSums(new int[] { 0, 1, 3, 6, 10 });
             //_4KYU.mazeRunner(maze, directions0);
             //_4KYU.Meeting("Fred:Corwill;Wilfred:Corwill;Barney:Tornbull;Betty:Tornbull;Bjon:Tornbull;Raphael:Corwill;Alfred:Corwill");
