@@ -28,15 +28,21 @@ namespace MyCodeWars
         //travel(r, "NY 5643") --> "NY 5643:/"
         public static string Travel(string r, string zipcode)
         {
+            Regex regex = new Regex(@"\s"+zipcode+"$");
+            var tessst = r.Split(',')
+             .Where(x => regex.IsMatch(x));
+
             Console.WriteLine(r);
             Console.WriteLine(zipcode);
             Console.WriteLine("------");
+            
+            if (string.IsNullOrEmpty(zipcode)) return "empty";
             if (!r.Contains(zipcode))
             {
                 return "zipcode:/";
             }
             var zips = r.Split(',')
-             .Where(x => x.Contains(zipcode))
+             .Where(x => regex.IsMatch(x))
              .Select( x => x.Replace(zipcode, ""))
              .ToDictionary( x => x.Substring(0, x.IndexOf(" ")).Trim()
                           , y => y.Substring(y.IndexOf(" "), (y.Length - y.IndexOf(" "))).Trim()
