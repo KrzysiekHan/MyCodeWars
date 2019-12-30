@@ -10,9 +10,8 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _4KYU.ValidPhoneNumber("(123) 456-7890");
-            _4KYU.ValidPhoneNumber("(1111)555 2345");
-            _4KYU.ValidPhoneNumber("(098) 123 4567");
+            _4KYU.Travel("123 Main Street St. Louisville OH 43071,432 Main Long Road St. Louisville OH 43071,786 High Street Pollocksville NY 56432", "OH 43071");
+            //_4KYU.ValidPhoneNumber("(123) 456-7890");
             //response {1,0,1,0,1,0,1,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}
             //_4KYU.DataReverse(new int[32] { 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0 });
             //_4KYU.PartsSums(new int[] { 0, 1, 3, 6, 10 });

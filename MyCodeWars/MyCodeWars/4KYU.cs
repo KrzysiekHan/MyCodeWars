@@ -28,13 +28,22 @@ namespace MyCodeWars
         //travel(r, "NY 5643") --> "NY 5643:/"
         public static string Travel(string r, string zipcode)
         {
-            //Regex match = new Regex(@"\s[A-Z]{2}\s\d{5}");
-            //var AdressList = r.Split(',').Select(x=>match.Match(x).Value).ToList();
-            r.Split(',')
+            Console.WriteLine(r);
+            Console.WriteLine(zipcode);
+            Console.WriteLine("------");
+            if (!r.Contains(zipcode))
+            {
+                return "zipcode:/";
+            }
+            var zips = r.Split(',')
              .Where(x => x.Contains(zipcode))
-             .Select(x => x.Replace(zipcode, "").Substring(x.IndexOf(" "), x.Length))
-             .ToList();
-            return "";
+             .Select( x => x.Replace(zipcode, ""))
+             .ToDictionary( x => x.Substring(0, x.IndexOf(" ")).Trim()
+                          , y => y.Substring(y.IndexOf(" "), (y.Length - y.IndexOf(" "))).Trim()
+                          );
+            var streets = string.Join(",", zips.Select(x => x.Value));
+            var numbers = string.Join(",", zips.Select(x => x.Key));
+            return $"{zipcode}:{streets}/{numbers}";
         }
 
         //Valid phone number
