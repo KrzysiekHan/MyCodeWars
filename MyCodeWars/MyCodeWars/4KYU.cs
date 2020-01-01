@@ -10,6 +10,68 @@ namespace MyCodeWars
 {
     public static class _4KYU
 {
+        //Sum consecutives
+        //You are given a list/array which contains only integers(positive and negative). Your job is to sum only
+        //the numbers that are the same and consecutive.The result should be one list.
+        //Extra credit if you solve it in one line. You can asume there is never an empty list/array and there will always be an integer.
+        //Same meaning: 1 == 1
+        //1 != -1
+        //# Examples:
+        //[1,4,4,4,0,4,3,3,1] # should return [1,12,0,4,6,1]
+        //"""So as you can see sum of consecutives 1 is 1 
+        //sum of 3 consecutives 4 is 12 
+        //sum of 0... and sum of 2 
+        //consecutives 3 is 6 ..."""
+        //[1,1,7,7,3] # should return [2,14,3]
+        //[-5,-5,7,7,12,0] # should return [-10,14,12,0]
+        //  CLEVER  -----------------------------------------------
+        //return s.Select((v, i) => (i > 0 && s[i - 1] == v) ? (int?)null : s.Skip(i).TakeWhile(vi => vi == v).Sum()).Where(r => r.HasValue).Select(r => r.Value).ToList();
+        public static List<int> SumConsecutives(List<int> s)
+        {
+            List<int> results = new List<int>();
+            int temp = 0;
+            for (int i = 0; i < s.Count(); i++)
+            {
+                if (i > 0)
+                {
+                    if (s[i - 1] == s[i])
+                    {
+                        temp += s[i];
+                    }
+                }
+                if (i < s.Count()-1)
+                {
+                    if (temp != 0 && s[i + 1] != s[i])
+                    {
+                        results.Add(temp);
+                        temp = 0;
+                        continue;
+                    }
+                    if (temp == 0 && s[i + 1] != s[i])
+                    {
+                        results.Add(s[i]);
+                    }
+                    if (temp == 0 && s[i + 1] == s[i])
+                    {
+                        temp = s[i];
+                    }
+                }
+                if (i == s.Count()-1)
+                {
+                    if (temp == 0)
+                    {
+                        results.Add(s[i]);
+                    }
+                    if (temp != 0)
+                    {
+                        results.Add(temp);
+                    }
+                }
+
+            }
+            return results;
+        }
+
         //Steps in primes
         //The prime numbers are not regularly spaced.For example from 2 to 3 the step is 1. From 3 to 5 the step is 2. 
         //From 7 to 11 it is 4. Between 2 and 50 we have the following pairs of 2-steps primes:
