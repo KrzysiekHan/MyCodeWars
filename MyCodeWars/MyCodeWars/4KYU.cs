@@ -10,6 +10,39 @@ namespace MyCodeWars
 {
     public static class _4KYU
 {
+        //Prize Draw
+        //To participate in a prize draw each one gives his/her firstname.
+        //Each letter of a firstname has a value which is its rank in the English alphabet.A and a have rank 1, B and b rank 2 and so on.
+        //The length of the firstname is added to the sum of these ranks hence a number som.
+        //An array of random weights is linked to the firstnames and each som is multiplied by its corresponding weight to get what they call a winning number.
+        //Example:
+        //names: "COLIN,AMANDBA,AMANDAB,CAROL,PauL,JOSEPH"
+        //weights: [1, 4, 4, 5, 2, 1]
+        //PauL -> som = length of firstname + 16 + 1 + 21 + 12 = 4 + 50 -> 54
+        //The* weight* associated with PauL is 2 so PauL's *winning number* is 54 * 2 = 108.
+        //Now one can sort the firstnames in decreasing order of the winning numbers. When two people have the same winning number sort them alphabetically by their firstnames.
+        //Task:
+        //parameters: st a string of firstnames, we an array of weights, n a rank
+        //return: the firstname of the participant whose rank is n (ranks are numbered from 1)
+        //Example:
+        //names: "COLIN,AMANDBA,AMANDAB,CAROL,PauL,JOSEPH"
+        //weights: [1, 4, 4, 5, 2, 1]
+        //n: 4
+        //The function should return: "PauL"
+        //Note:
+        //If st is empty return "No participants".
+        //If n is greater than the number of participants then return "Not enough participants".
+        //See Examples Test Cases for more examples.
+        public static string NthRank(string st, int[] we, int n)
+        {
+            var names = st.Split();
+            return "";
+        }
+        private static int letterValue(string c)
+        {
+            return (int)c.ToUpper().ToCharArray().FirstOrDefault() - 96;
+        }
+
         //Backwards Read Primes
         //Backwards Read Primes are primes that when read backwards in base 10 (from right to left) are a different prime. 
         //(This rules out primes which are palindromes.)
@@ -30,29 +63,35 @@ namespace MyCodeWars
             List<long> primes = new List<long>();
             long stno = start;
             long enno = end;
-            long num, ctr, i = 0;
-            num = ctr = i = 0;
+            long num = 0;
+            num = 0;
             for (num = stno; num <= enno; num++)
             {
-                ctr = 0;
-
-                for (i = 2; i <= num / 2; i++)
-                {
-                    if (num % i == 0)
-                    {
-                        ctr++;
-                        break;
-                    }
-                }
-                if (ctr == 0 && num != 1) primes.Add(num);
+                if (IsPrimeNumber((int)num)) primes.Add(num);
             }
 
+            List<string> result = new List<string>();
             foreach (var item in primes)
             {
-                var itemval = item.ToString().ToCharArray().Select(x => char.GetNumericValue(x)).Sum();
-                primes.Where(x => x.ToString().ToCharArray().Select(z => char.GetNumericValue(z)).Sum() == itemval).ToList();
+                var reversed = int.Parse(string.Join("", item.ToString().ToCharArray().Reverse()));
+                if (IsPrimeNumber(reversed) && item>9 && item != reversed) result.Add(item.ToString()); 
             }
-            return "";
+            return string.Join(" ",result);
+        }
+
+        public static bool IsPrimeNumber(int number)
+        {
+            if (number <= 1) return false;
+            if (number == 2) return true;
+            if (number % 2 == 0) return false;
+
+            var boundary = (int)Math.Floor(Math.Sqrt(number));
+
+            for (int i = 3; i <= boundary; i += 2)
+                if (number % i == 0)
+                    return false;
+
+            return true;
         }
 
 
