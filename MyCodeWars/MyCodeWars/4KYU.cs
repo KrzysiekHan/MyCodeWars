@@ -35,13 +35,23 @@ namespace MyCodeWars
         //See Examples Test Cases for more examples.
         public static string NthRank(string st, int[] we, int n)
         {
-            var names = st.Split();
-            return "";
+            if (st == null) return "No participants";
+            if (string.IsNullOrEmpty(st)) return "No participants";
+            var names = st.Split(',').ToDictionary(x => x,y => y.ToCharArray().Select(c=>letterValue(c.ToString())).Sum());
+            Dictionary<string, int> results = new Dictionary<string, int>();
+            for (int i = 0; i < names.Count; i++)
+            {
+                results.Add(names.ElementAt(i).Key, names.ElementAt(i).Value * we[i]);
+            }
+            var temp = results.OrderByDescending(x => x.Value).ThenBy(x => x.Key).Select(x=>x.Key).ToArray();
+            if (temp.Length < n) return "Not enough participants";
+            return temp[n].ToString();
         }
         private static int letterValue(string c)
         {
             return (int)c.ToUpper().ToCharArray().FirstOrDefault() - 96;
         }
+
 
         //Backwards Read Primes
         //Backwards Read Primes are primes that when read backwards in base 10 (from right to left) are a different prime. 
