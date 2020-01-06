@@ -10,6 +10,15 @@ namespace MyCodeWars
 {
     public static class _4KYU
 {
+        //Break camelCase
+        //Complete the solution so that the function will break up camel casing, using a space between words.
+        //Example
+        //Kata.BreakCamelCase("camelCasing") => "camel Casing"
+        public static string BreakCamelCase(string str)
+        {
+           return string.Join("",str.ToCharArray().Select(x => ((int)x > 64 && (int)x < 91) ? " " + x.ToString() : x.ToString()));
+        }
+
         //Linked Lists - Length & Count
         //Implement Length() to count the number of nodes in a linked list.
         //Node.Length(nullptr) => 0
