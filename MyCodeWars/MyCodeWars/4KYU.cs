@@ -8,8 +8,43 @@ using System.Globalization;
 
 namespace MyCodeWars
 {
+    public class Node
+    {
+        public Node Left;
+        public Node Right;
+        public int Value;
+
+        public Node(Node l, Node r, int v)
+        {
+            Left = l;
+            Right = r;
+            Value = v;
+        }
+    }
     public static class _4KYU
-{
+    {
+        public static List<int> TreeByLevels(Node node)
+        {
+            LevelOrder(node);
+            return null;
+        }
+        static List<int> LevelOrder(Node node)
+        {
+            List<int> response = new List<int>();
+            if (node == null) return response;
+            Queue<Node> nodes = new Queue<Node>();
+            nodes.Enqueue(node);
+            while (! (nodes.Count>0))
+            {
+                Node current = nodes.First();
+                response.Add(current.Value);
+                if (current.Left != null) nodes.Enqueue(current.Left);
+                if (current.Right != null) nodes.Enqueue(current.Right);
+                nodes.Dequeue();
+            }
+            return response;
+        }
+
         //Take a ten minute walk
         //You live in the city of Cartesia where all roads are laid out in a perfect grid.You arrived ten minutes 
         //too early to an appointment, so you decided to take the opportunity to go for a short walk.The city 
@@ -127,21 +162,21 @@ namespace MyCodeWars
         //Node.Count(null, value => value == 1) => 0
         //Node.Count(1 -> 3 -> 5 -> 6, value => value % 2 != 0) => 3
         //I've decided to bundle these two functions within the same Kata since they are both very similar.
-        public partial class Node
+        public partial class Nodex
         {
             public int Data;
-            public Node Next;
+            public Nodex Next;
 
-            public Node(int data)
+            public Nodex(int data)
             {
                 this.Data = data;
                 this.Next = null;
             }
 
-            public static int Length(Node head)
+            public static int Length(Nodex head)
             {
                 if (head == null) return 0;
-                Node temp = head;
+                Nodex temp = head;
                 int count = 0;
                 while (temp != null)
                 {
@@ -151,10 +186,10 @@ namespace MyCodeWars
                 return count;
             }
 
-            public static int Count(Node head, Predicate<int> func)
+            public static int Count(Nodex head, Predicate<int> func)
             {
                 if (head == null) return 0;
-                Node temp = head;
+                Nodex temp = head;
                 int count = 0;
                 while (temp != null)
                 {
