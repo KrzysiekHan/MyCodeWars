@@ -725,11 +725,13 @@ namespace MyCodeWars
         {
             if (arrayOfArrays == null) return 0;
             if (arrayOfArrays.Length == 0) return 0;
+            if (arrayOfArrays.Contains(null)) return 0;
+            if (arrayOfArrays.Where(x => x.Length == 0).ToList().Count > 0) return 0;
             var list = arrayOfArrays.Select((x, i) => new { len = x.Length, index = i }).OrderBy(x => x.len).ToList();
-            var response = list    
-                .Select((c, i) => (i>0) ? new { diff = list[i].len - list[i - 1].len, index = i } : new { diff = 0, index = 0 })
-                //.Where(x => x.diff > 1)
-                .ToList();
+            for (int i = 1; i < list.Count; i++)
+            {
+                if (list[i].len - list[i - 1].len > 1) return list[i].len - 1;
+            }
             return 0;
         }
 
