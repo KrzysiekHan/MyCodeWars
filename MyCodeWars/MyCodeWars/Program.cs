@@ -10,7 +10,7 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _4KYU.IsValidWalk(new string[] { "n", "s", "n", "s", "n", "s", "n", "s", "n", "s" });//true
+            //_4KYU.IsValidWalk(new string[] { "n", "s", "n", "s", "n", "s", "n", "s", "n", "s" });//true
             _4KYU.game(8);
             //_4KYU.GetMiddle("middle");// should return "dd"
             //_4KYU.backwardsPrime(9900, 10000);//9923 9931 9941 9967

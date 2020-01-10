@@ -24,6 +24,7 @@ namespace MyCodeWars
         {
             int x, y;
             x = y = 0;
+            if (walk.Length != 10) return false;
             for (int i = 0; i < walk.Length; i++)
             {
                 walkOneBlock(walk[i], ref x, ref y);
