@@ -10,6 +10,8 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
+            _4KYU.PosAverage("6900690040, 4690606946, 9990494604");//
+            _4KYU.PosAverage("444996, 699990, 666690, 096904, 600644, 640646, 606469, 409694, 666094, 606490");//29.2592592593
             //_4KYU.IsValidWalk(new string[] { "n", "s", "n", "s", "n", "s", "n", "s", "n", "s" });//true
             _4KYU.game(8);
             //_4KYU.GetMiddle("middle");// should return "dd"

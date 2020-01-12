@@ -40,15 +40,27 @@ namespace MyCodeWars
         //Given string s = "444996, 699990, 666690, 096904, 600644, 640646, 606469, 409694, 666094, 606490" composing a set of n = 10 substrings(hence 45 
         //combinations), pos_average returns 29.2592592593.
         //In a set the n substrings will have the same length( > 0 ).
+        //  CLEVER  -----------------------------------------------
+        //var strings = s.Split(", ");
+        //var matches = strings.SelectMany((x, i) => strings.Skip(i + 1).SelectMany(y => x.Zip(y, (a, b) => a == b)));
+        //return 100.0 * matches.Count(x => x) / matches.Count();
+
         public static double PosAverage(string s)
         {
-            var list = s.Split(',').ToList();
-
-            foreach (var item in list)
+            var list = s.Split(',').Select(x => x.Trim()).ToList();
+            double lng = 0;
+            double commonCount = 0;
+            for (int i = 0; i < list.Count; i++)
             {
-                list.Select(x => Compare2Strings(item, x)).Sum();
+                for (int j = i+1; j < list.Count; j++)
+                {
+                    commonCount += Compare2Strings(list[i], list[j]);
+                    lng++;
+                }
             }
-            return 0;
+            lng = lng * list[0].Length;
+            double result = (commonCount / lng) * 100;
+            return result;
         }
         private static int Compare2Strings(string s1, string s2)
         {
