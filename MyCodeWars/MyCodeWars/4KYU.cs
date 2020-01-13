@@ -23,6 +23,56 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+
+        //Two Joggers
+        //Description
+        //Bob and Charles are meeting for their weekly jogging tour.They both start at the same spot called 
+        //"Start" and they each run a different lap, which may (or may not) vary in length.Since they know 
+        //each other for a long time already, they both run at the exact same speed.
+        //Illustration
+        //Example where Charles (dashed line) runs a shorter lap than Bob:
+        //Example laps
+        //Task
+        //Your job is to complete the function nbrOfLaps(x, y) that, given the length of the laps for Bob and Charles, 
+        //finds the number of laps that each jogger has to complete before they meet each other again, at the same time, at the start.
+        //The function takes two arguments:
+        //The length of Bob's lap (larger than 0)
+        //The length of Charles' lap (larger than 0)
+        //The function should return an array (Tuple<int, int> in C#) containing exactly two numbers:
+        //The first number is the number of laps that Bob has to run
+        //The second number is the number of laps that Charles has to run
+        //Examples:
+        //Kata.NbrOfLaps(5, 3) => new Tuple<int, int>(3, 5);
+        //Kata.NbrOfLaps(4, 6) => new Tuple<int, int>(3, 2);
+        public static Tuple<int, int> NbrOfLaps(int x, int y)
+        {
+            var lcm = determineLCM(x, y);
+            var bobLaps = lcm / x;
+            var charlesLaps = lcm / y;
+            return new Tuple<int, int>(bobLaps, charlesLaps);
+        }
+
+        public static int determineLCM(int a, int b)
+        {
+            int num1, num2;
+            if (a > b)
+            {
+                num1 = a; num2 = b;
+            }
+            else
+            {
+                num1 = b; num2 = a;
+            }
+
+            for (int i = 1; i < num2; i++)
+            {
+                if ((num1 * i) % num2 == 0)
+                {
+                    return i * num1;
+                }
+            }
+            return num1 * num2;
+        }
         //Positions average
         //Suppose you have 4 numbers: '0', '9', '6', '4' and 3 strings composed with them:
         //s1 = "6900690040"
