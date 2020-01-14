@@ -10,7 +10,8 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _4KYU.NbrOfLaps(5, 3);
+            //_4KYU.SortTheInnerContent("sort the inner content in descending order");//srot the inner ctonnet in dsnnieedcg oredr
+            //_4KYU.NbrOfLaps(5, 3);
             //_4KYU.PosAverage("6900690040, 4690606946, 9990494604");//
             //_4KYU.IsValidWalk(new string[] { "n", "s", "n", "s", "n", "s", "n", "s", "n", "s" });//true
             _4KYU.game(8);

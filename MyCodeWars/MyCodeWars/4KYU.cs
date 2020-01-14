@@ -23,6 +23,31 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+        //# Srot the inner ctnnoet in dsnnieedcg oredr
+        //You have to sort the inner content of every word of a string in descending order.
+        //The inner content is the content of a word without first and the last char.
+        //Some examples:
+        //"sort the inner content in descending order" -> "srot the inner ctonnet in dsnnieedcg oredr"
+        //"wait for me" -> "wiat for me"
+        //"this kata is easy" -> "tihs ktaa is esay"
+        //The string will never be null and will never be empty.
+        //It will contain only lowercase-letters and whitespaces.
+        //  CLEVER  -----------------------------------------------
+        //return string.Join(" ", words.Split(' ').Select(x => x.Length< 4 ? x : x.First() + string.Concat(x.Skip(1).Take(x.Length - 2).OrderByDescending(c => c)) + x.Last()));
+        public static string SortTheInnerContent(string words)
+        {
+            Console.WriteLine(words);
+            return string.Join(" ", words.Split(' ').Select(x => sortReverse(x)));
+        }
+        
+        public static string sortReverse (string word)
+        {
+            if (word.Length < 3) return word;
+            var firstletter = word.First();
+            var lastletter = word.Last();
+            var part = string.Join("",word.Remove(0, 1).Remove(word.Length-2, 1).OrderByDescending(x=>x));
+            return $"{firstletter}{part}{lastletter}";
+        }
 
         //Two Joggers
         //Description
