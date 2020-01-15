@@ -23,6 +23,27 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+        //Consonant value
+        //Given a lowercase string that has alphabetic characters only and no spaces, return the highest value of consonant substrings.
+        //Consonants are any letters of the alpahabet except "aeiou".
+        //We shall assign the following values: a = 1, b = 2, c = 3, .... z = 26.
+        //For example, for the word "zodiacs", let's cross out the vowels. We get: "z o d ia cs"
+        //-- The consonant substrings are: "z", "d" and "cs" and the values are z = 26, d = 4 and cs = 3 + 19 = 22.The highest is 26.
+        //solve("zodiacs") = 26
+        //For the word "strength", solve("strength") = 57
+        //-- The consonant substrings are: "str" and "ngth" with values "str" = 19 + 20 + 18 = 57 and "ngth" = 14 + 7 + 20 + 8 = 49. The highest is 57.
+        //  CLEVER  -----------------------------------------------        
+        //return Regex.Replace(s.ToLower(), @"[aeiou]", " ").Split(' ').Select(x => x.ToCharArray().Sum(c => c - 96)).Max();
+        public static int Solve(string s)
+        {
+            char[] separators = new char[] { 'a', 'e', 'i', 'o', 'u' };
+            return s.Split(separators).Select(x=>ValueOfString(x)).Max();
+        }
+        public static int ValueOfString (string s)
+        {
+           return s.Select(x => (int)x - 96).Sum();
+        }
+
         //# Srot the inner ctnnoet in dsnnieedcg oredr
         //You have to sort the inner content of every word of a string in descending order.
         //The inner content is the content of a word without first and the last char.
