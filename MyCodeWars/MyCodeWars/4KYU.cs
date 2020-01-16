@@ -23,6 +23,26 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+        //Tank Truck
+        //To introduce the problem think to my neighbor who drives a tanker truck.The level indicator is down and he is worried because 
+        //he does not know if he will be able to make deliveries.We put the truck on a horizontal ground and measured the height of 
+        //the liquid in the tank.
+        //Fortunately the tank is a perfect cylinder and the vertical walls on each end are flat. The height of the remaining liquid is h, the 
+        //diameter of the cylinder is d, the total volume is vt (h, d, vt are positive or null integers). You can assume that h <= d.
+        //Could you calculate the remaining volume of the liquid? Your function tankvol(h, d, vt) returns an integer which is the truncated 
+        //result(e.g floor) of your float calculation.
+        //Examples:
+        //tankvol(40,120,3500) should return 1021 (calculation gives about: 1021.26992027)
+        //tankvol(60,120,3500) should return 1750
+        //tankvol(80,120,3500) should return 2478 (calculation gives about: 2478.73007973)
+        public static int TankVol(int h, int d, int vt)
+        {
+            
+            var theta = 2 * Math.Acos(1 - 2d * h / d);
+            return (int)(vt / 2d * (theta - Math.Sin(theta)) / Math.PI);
+        }
+
+
         //Consonant value
         //Given a lowercase string that has alphabetic characters only and no spaces, return the highest value of consonant substrings.
         //Consonants are any letters of the alpahabet except "aeiou".

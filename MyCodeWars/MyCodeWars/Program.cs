@@ -10,7 +10,8 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _4KYU.Solve("zodiacs");
+            _4KYU.TankVol(5, 7, 3848);
+            //_4KYU.Solve("zodiacs");
             //_4KYU.SortTheInnerContent("sort the inner content in descending order");//srot the inner ctonnet in dsnnieedcg oredr
             //_4KYU.NbrOfLaps(5, 3);
             //_4KYU.PosAverage("6900690040, 4690606946, 9990494604");//
