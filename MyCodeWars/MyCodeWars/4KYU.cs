@@ -23,6 +23,62 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+        //The Enigma Machine - Part 1: The Plugboard
+        //Step 1: The plugboard
+        //In this Kata, you must implement the plugboard.
+        //Physical Description
+        //The plugboard crosswired the 26 letters of the latin alphabet togther, so that an input into one letter could generate output as another 
+        //letter. If a wire was not present, then the input letter was unchanged. Each plugboard came with a maximum of 10 wires, so at least 
+        //six letters were not cross-wired.
+        //For example:
+        //If a wire connects A to B, then an A input will generate a B output and a B input will generate an A output.
+        //If no wire connects to C, then only a C input will generate a C output.
+        //Note
+        //In the actual usage of the original Enigma Machine, punctuation was encoded as words transmitted in the stream, in our code, 
+        //anything that is not in the range A-Z will be returned unchanged.
+        //Kata
+        //The Plugboard class you will implement, will:
+        //Take a list of wire pairs at construction in the form of a string, with a default behaviour of no wires configured.E.g. "ABCD" 
+        //would wire A<-> B and C<-> D.
+        //Validate that the wire pairings are legitimate.Raise an exception if not.
+        //Implement the process method to translate a single character input into an output.
+        //Examples
+        //var plugboard = new Plugboard("ABCDEFGHIJKLMNOPQRST");
+        //plugboard.process('A') ==> "B"
+        //plugboard.process('B') ==> "A"
+        //plugboard.process('X') ==> "X"
+        //plugboard.process('.') ==> "."
+        public static void Plugboard(String wires = "")
+        {
+            List<string> wirePairs = new List<string>();
+
+            if (wires.Length >= 2)
+            {
+                wirePairs = SplitInPart(wires, 2).ToList();
+            }
+            var temp = process('A',wirePairs);
+            temp = process('B', wirePairs);
+            temp = process('X', wirePairs);
+            temp = process('.', wirePairs);
+
+        }
+        public static char process(char c, List<string> wirePairs)
+        {
+            if (!char.IsLetter(c)) return c;
+            if (wirePairs.Where(x => x.Contains(c)).Count() == 0) return c;
+            return wirePairs.Where(x => x.Contains(c))
+                            .First()
+                            .ToList()
+                            .Where(x=> x!=c)
+                            .First();
+                            }
+        //public static IEnumerable<string> SplitInPart(string s, Int32 partLength)
+        //{
+        //    for (var i = 0; i < s.Length; i += partLength)
+        //        yield return s.Substring(i, Math.Min(partLength, s.Length - i));
+        //}
+
+
         //Tank Truck
         //To introduce the problem think to my neighbor who drives a tanker truck.The level indicator is down and he is worried because 
         //he does not know if he will be able to make deliveries.We put the truck on a horizontal ground and measured the height of 
