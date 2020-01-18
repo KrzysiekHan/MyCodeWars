@@ -23,6 +23,32 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+        //extract file name
+        //You have to extract a portion of the file name as follows:
+        //Assume it will start with date represented as long number
+        //Followed by an underscore
+        //Youll have then a filename with an extension
+        //it will always have an extra extension at the end
+        //Inputs:
+        //1231231223123131_FILE_NAME.EXTENSION.OTHEREXTENSION
+        //1_This_is_an_otherExample.mpg.OTHEREXTENSIONadasdassdassds34
+        //1231231223123131_myFile.tar.gz2
+        //Outputs
+        //FILE_NAME.EXTENSION
+        //This_is_an_otherExample.mpg
+        //myFile.tar
+        //Acceptable characters for random tests:
+        //abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-0123456789
+        //The recommend way to solve it is using RegEx and specifically groups.
+        public static string ExtractFileName(string dirtFileName)
+        {
+            var patStart = @"^(\d{1,}_)";
+            var patEnd = @"(.[a-zA-Z]{1,})$";
+            var result = Regex.Replace(dirtFileName, patStart, "");
+            result = Regex.Replace(result, patEnd, "");
+            return result;
+        }
+
         //The Enigma Machine - Part 1: The Plugboard
         //Step 1: The plugboard
         //In this Kata, you must implement the plugboard.

@@ -10,6 +10,7 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
+            _4KYU.ExtractFileName("1231231223123131_FILE_NAME.EXTENSION.OTHEREXTENSION");
             _4KYU.Plugboard("ABCDEFGHIJKLMNOPQRST");
             //_4KYU.TankVol(5, 7, 3848);
             //_4KYU.Solve("zodiacs");
