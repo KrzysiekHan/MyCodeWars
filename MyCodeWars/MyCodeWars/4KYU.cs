@@ -23,6 +23,28 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+        //The Deaf Rats of Hamelin
+        //Story
+        //The Pied Piper has been enlisted to play his magical tune and coax all the rats out of town.
+        //But some of the rats are deaf and are going the wrong way!
+        //Kata Task
+        //How many deaf rats are there?
+        //Legend
+        //P = The Pied Piper
+        //O~ = Rat going left
+        //~O = Rat going right
+        //Example
+        //ex1 ~O~O~O~O P has 0 deaf rats
+        //ex2 P O ~O~ ~O O ~has 1 deaf rat
+        //ex3 ~O~O~O~OP~O~OO~has 2 deaf rats
+        public static int CountDeafRats(string town)
+        {
+            for (int i = 0; i < town.Length; i++)
+            {
+
+            }
+            return 0;
+        }
 
         //Ball Upwards
         //You throw a ball vertically upwards with an initial speed v(in km per hour). The height h of the ball at each time t is 
@@ -41,21 +63,10 @@ namespace MyCodeWars
         //The maximum height recorded by the device is not necessarily the maximum height reached by the ball.
         public static int MaxBall(int v0)
         {
-            List<double> results = new List<double>();
-            int i = 0;
-            while (HeightInNthSecond(i,v0) >= 0 )
-            {
-                results.Add(HeightInNthSecond(i, v0));
-                i++;
-            }
-            return 0;
+            double v = v0 / 3.6;
+            double g = 9.81 / 10.0;
+            return (int)Math.Round(v / g);
         }
-
-        public static double HeightInNthSecond (int second, int v)
-        {
-            return v * second - 0.5 * 9.81 * Math.Pow(second, 2);
-        }
-
 
         //extract file name
         //You have to extract a portion of the file name as follows:
