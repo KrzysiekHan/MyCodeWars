@@ -39,8 +39,23 @@ namespace MyCodeWars
         //ex3 ~O~O~O~OP~O~OO~has 2 deaf rats
         public static int CountDeafRats(string town)
         {
+            var piper = town.IndexOf("P");
             for (int i = 0; i < town.Length; i++)
             {
+                switch (town[i])
+                {
+                    case 'P':
+                        i++;
+                        break;
+                    case '~':
+                        i=i+2;
+                        break;
+                    case 'O':
+                        i = i + 2;
+                        break;
+                    default:
+                        break;
+                }
 
             }
             return 0;
