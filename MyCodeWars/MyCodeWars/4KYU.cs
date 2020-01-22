@@ -23,6 +23,23 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+        //+1 Array
+        //Given an array of integers of any length, return an array that has 1 added to the value represented by the array.
+        //the array can't be empty
+        //only non-negative, single digit integers are allowed
+        //Return nil (or your language's equivalent) for invalid inputs.
+        //Examples
+        //For example the array[2, 3, 9] equals 239, adding one would return the array [2, 4, 0].
+        //[4, 3, 2, 5] would return [4, 3, 2, 6]
+        public static int[] UpArray(int[] num)
+        {
+            Console.WriteLine(num.ToString());
+
+            return (int.Parse(string.Join("", num.Select(x => x.ToString()))) + 1).ToString().Select(x => (int)char.GetNumericValue(x)).ToArray();
+        }
+
+
+
         //The Deaf Rats of Hamelin
         //Story
         //The Pied Piper has been enlisted to play his magical tune and coax all the rats out of town.
