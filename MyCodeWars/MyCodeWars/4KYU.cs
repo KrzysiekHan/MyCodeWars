@@ -47,14 +47,13 @@ namespace MyCodeWars
                 switch (town[i])
                 {
                     case 'P':
-                        i++;
                         break;
                     case '~'://rat is going right
-                        i=i+2;
+                        i++;
                         if (piper > i) deafRats++; 
                         break;
                     case 'O'://rat is going left
-                        i = i + 2;
+                        i++;
                         if (piper < i) deafRats++;
                         break;
                     default:
