@@ -10,8 +10,9 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _4KYU.CountDeafRats("P O~ O~ ~O O~");
-            _4KYU.MaxBall(37);//10
+            _4KYU.Tribonacci(new double[] { 1, 1, 1 }, 1);//int[]{1,1,1,3,5,9,17,31,57,105}
+            //_4KYU.CountDeafRats("P O~ O~ ~O O~");
+            //_4KYU.MaxBall(37);//10
             _4KYU.ExtractFileName("1231231223123131_FILE_NAME.EXTENSION.OTHEREXTENSION");
             _4KYU.Plugboard("ABCDEFGHIJKLMNOPQRST");
             //_4KYU.TankVol(5, 7, 3848);
