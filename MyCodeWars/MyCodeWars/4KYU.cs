@@ -23,6 +23,60 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+        //Roman Numerals Decoder
+        //Create a function that takes a Roman numeral as its argument and returns its value as a numeric decimal integer.You don't need 
+        //to validate the form of the Roman numeral. Modern Roman numerals are written by expressing each decimal digit of the number 
+        //to be encoded separately, starting with the leftmost digit and skipping any 0s.So 1990 is rendered 
+        //"MCMXC" (1000 = M, 900 = CM, 90 = XC) and 2008 is rendered "MMVIII" (2000 = MM, 8 = VIII). The Roman numeral 
+        //for 1666, "MDCLXVI", uses each letter in descending order.
+        //algorytm jest następujący: zaczynamy od ostatniej cyfry i zapamiętujemy ją, w kolejnej iteracji sprawdzamy czy aktualna
+        //cyfra jest większa od zapamiętanej. Jeżeli tak dodajemy ją a jeżeli nie to odejmujemy
+        public static int Solution(string roman)
+        {
+            return RomanToArabic(roman);
+        }
+        // Maps letters to numbers.
+        private static Dictionary<char, int> CharValues = null;
+
+        // Convert Roman numerals to an integer.
+        private static int RomanToArabic(string roman)
+        {
+            // Initialize the letter map.
+            if (CharValues == null)
+            {
+                CharValues = new Dictionary<char, int>();
+                CharValues.Add('I', 1);
+                CharValues.Add('V', 5);
+                CharValues.Add('X', 10);
+                CharValues.Add('L', 50);
+                CharValues.Add('C', 100);
+                CharValues.Add('D', 500);
+                CharValues.Add('M', 1000);
+            }
+
+            if (roman.Length == 0) return 0;
+            roman = roman.ToUpper();
+            int total = 0;
+            int last_value = 0;
+            for (int i = roman.Length - 1; i >= 0; i--)
+            {
+                int new_value = CharValues[roman[i]];
+
+                // See if we should add or subtract.
+                if (new_value < last_value)
+                    total -= new_value;
+                else
+                {
+                    total += new_value;
+                    last_value = new_value;
+                }
+            }
+
+            // Return the result.
+            return total;
+        }
+
+
         //Build a pile of Cubes
         //Your task is to construct a building which will be a pile of n cubes.The cube at the bottom will have a volume of n^3, 
         //the cube above will have volume of (n-1)^3 and so on until the top which will have a volume of 1^3.
@@ -38,14 +92,14 @@ namespace MyCodeWars
         //call find_nb            ; rax<-- -1
         public static long findNb(long m)
         {
-            int iterations = 0;
+            int iterations = 2;
             double tempVol = 0;
             while (tempVol<m)
             {
                 tempVol += tempVol + Math.Pow((iterations - 1), 3);
                 iterations++;
             }
-            return 0;
+            return iterations;
         }
 
 

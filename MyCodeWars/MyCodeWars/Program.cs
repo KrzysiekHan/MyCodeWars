@@ -10,7 +10,7 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _4KYU.findNb(4183059834009);// 2022
+            _4KYU.findNb(1071225);// 45
             //_4KYU.Tribonacci(new double[] { 1, 1, 1 }, 1);//int[]{1,1,1,3,5,9,17,31,57,105}
             //_4KYU.CountDeafRats("P O~ O~ ~O O~");
             //_4KYU.MaxBall(37);//10
