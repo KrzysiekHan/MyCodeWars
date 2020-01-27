@@ -1532,7 +1532,31 @@ namespace MyCodeWars
         //['E.Honda', 'Chun Li', 'Ken', 'M.Bison', 'Sagat', 'Dhalsim', 'Sagat']
         public static string[] StreetFighterSelection(string[][] fighters, int[] position, string[] moves)
         {
+            int pos_x, pos_y;
+            pos_x = position[0];
+            pos_y = position[1];
+            List<string> result = new List<string>();
+            result.Add(fighters[pos_x][pos_y]);
+            for (int i = 0; i < moves.Length; i++)
+            {
+                switch (moves[i])
+                {
+                    case "right":
+                        result.Add("");
+                        break;
+                    case "left":
+                        break;
+                    case "up":
+                        break;
+                    case "down":
+                        break;
+                    default:
+                        break;
+                }
+            }
             return null;
+
+
         }
 
 
