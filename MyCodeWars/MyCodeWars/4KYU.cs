@@ -23,6 +23,18 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+        //Vowel Count
+        //Return the number(count) of vowels in the given string.
+        //We will consider a, e, i, o, and u as vowels for this Kata.
+        //The input string will only consist of lower case letters and/or spaces.
+        public static int GetVowelCount(string str)
+        {
+            int vowelCount = 0;
+            char[] vowels = new char[] { 'a', 'e', 'i', 'o', 'u' };
+            vowelCount = str.Where(x => vowels.Contains(x)).Count();
+            return vowelCount;
+        }
+
         //Esolang interpreter
         //MiniStringFuck is a derivative of the famous Brainfuck which contains a memory cell as its only form of data storage as opposed to a 
         //memory tape of 30,000 cells in Brainfuck.The memory cell in MiniStringFuck initially starts at 0. MiniStringFuck contains only 2 commands 
