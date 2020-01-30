@@ -23,6 +23,15 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+        //Shortest Word
+        //Simple, given a string of words, return the length of the shortest word(s).
+        //String will never be empty and you do not need to account for different data types.
+        public static int FindShort(string s)
+        {
+
+            return s.Split(' ').Select(x => x.Length).OrderBy(x => x).Min();
+        }
+
         //Vowel Count
         //Return the number(count) of vowels in the given string.
         //We will consider a, e, i, o, and u as vowels for this Kata.
