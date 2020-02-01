@@ -23,6 +23,15 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+        //Square Every Digit
+        //Welcome.In this kata, you are asked to square every digit of a number.
+        //For example, if we run 9119 through the function, 811181 will come out, because 92 is 81 and 12 is 1.
+        //Note: The function accepts an integer and returns an integer
+        public static int SquareDigits(int n)
+        {
+            return int.Parse(string.Join("", n.ToString().Select(x => Math.Pow(double.Parse(x.ToString()), 2))));
+        }
+
         //Shortest Word
         //Simple, given a string of words, return the length of the shortest word(s).
         //String will never be empty and you do not need to account for different data types.
