@@ -23,6 +23,19 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+        //Exes and Ohs
+        //Check to see if a string has the same amount of 'x's and 'o's.The method must return a boolean and be case insensitive.The string can contain any char.
+        //Examples input/output:
+        //XO("ooxx") => true
+        //XO("xooxx") => false
+        //XO("ooxXm") => true
+        //XO("zpzpzpp") => true // when no 'x' and 'o' is present should return true
+        //XO("zzoo") => false
+        public static bool XO(string input)
+        {
+            return input.ToUpper().Count(x => x.Equals('O')) == input.ToUpper().Count(x => x.Equals('X'));
+        }
+
         //You're a square!
         //A square of squares
         //You like building blocks.You especially like building blocks that are squares.And what you even like more, is to arrange them into a square of square building blocks!
