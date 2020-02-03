@@ -23,6 +23,34 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+    //Remove duplicate words
+    //Your task is to remove all duplicate words from a string, leaving only single(first) words entries.
+    //Example:
+    //Input:
+    //'alpha beta beta gamma gamma gamma delta alpha beta beta gamma gamma gamma delta'
+    //Output:
+    //'alpha beta gamma delta'
+    public static string RemoveDuplicateWords(string s)
+    {
+            return string.Join(" ",s.Split(' ').Distinct());
+    }
+
+
+    //Disemvowel Trolls
+    //Trolls are attacking your comment section!
+    //A common way to deal with this situation is to remove all of the vowels from the trolls' comments, neutralizing the threat.
+    //Your task is to write a function that takes a string and return a new string with all vowels removed.
+    //For example, the string "This website is for losers LOL!" would become "Ths wbst s fr lsrs LL!".
+    //Note: for this kata y isn't considered a vowel.
+    //    CLEVER--------------------------------------------
+    // return Regex.Replace(str,"[aeiou]", "", RegexOptions.IgnoreCase);
+    public static string Disemvowel(string str)
+        {
+            char[] vowels = new char[] { 'a', 'e', 'i', 'o', 'u' };
+            return string.Concat(str.Where(x => !vowels.Contains(x)));
+        }
+
+
         //Exes and Ohs
         //Check to see if a string has the same amount of 'x's and 'o's.The method must return a boolean and be case insensitive.The string can contain any char.
         //Examples input/output:
