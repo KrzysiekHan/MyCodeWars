@@ -23,6 +23,30 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+        //Mumbling
+        //This time no story, no theory.The examples below show you how to write function accum:
+        //Examples:
+        //accum("abcd") -> "A-Bb-Ccc-Dddd"
+        //accum("RqaEzty") -> "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+        //accum("cwAt") -> "C-Ww-Aaa-Tttt"
+        //The parameter of accum is a string which includes only letters from a..z and A..Z.
+        //------CLEVER-----------------------------
+        //return string.Join("-",s.Select((x,i)=>char.ToUpper(x)+new string(char.ToLower(x),i)));S
+        public static String Accum(string s)
+        {
+            return string.Join("-", s.Select((x, i) => accumHelper(i, x)));
+        }
+        public static string accumHelper(int iter, char letter)
+        {
+            string response = "";
+            for (int i = 0; i <= iter; i++)
+            {
+                if (i == 0) response += letter.ToString().ToUpper();
+                else response += letter.ToString().ToLower();
+            }
+            return response;
+        }
+
         //Deoxyribonucleic acid(DNA) is a chemical found in the nucleus of cells and carries the "instructions" for the development and 
         //functioning of living organisms.
         //If you want to know more http://en.wikipedia.org/wiki/DNA
