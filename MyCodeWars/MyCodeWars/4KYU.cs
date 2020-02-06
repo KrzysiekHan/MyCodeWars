@@ -23,6 +23,18 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+        //Descending Order
+        //Your task is to make a function that can take any non-negative integer as a argument and return it with its digits 
+        //in descending order.Essentially, rearrange the digits to create the highest possible number.
+        //Examples:
+        //Input: 21445 Output: 54421
+        //Input: 145263 Output: 654321
+        //Input: 123456789 Output: 987654321
+        public static int DescendingOrder(int num)
+        {
+            return int.Parse(string.Join("",num.ToString().OrderByDescending(x => char.GetNumericValue(x))));
+        }
+
         //Mumbling
         //This time no story, no theory.The examples below show you how to write function accum:
         //Examples:
