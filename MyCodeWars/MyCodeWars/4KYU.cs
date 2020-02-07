@@ -23,6 +23,21 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+        //Isograms
+        // An isogram is a word that has no repeating letters, consecutive or non-consecutive.Implement a 
+        //function that determines whether a string that contains only letters is an isogram.Assume the empty string is an isogram. 
+        //Ignore letter case.
+        //isIsogram "Dermatoglyphics" == true
+        //isIsogram "aba" == false
+        //isIsogram "moOse" == false -- ignore letter case
+        public static bool IsIsogram(string str)
+        {
+            if (string.IsNullOrEmpty(str)) return true;
+            var list = str.Select(x => str.Where(w => w.ToString().ToLower() == x.ToString().ToLower()).Count() > 1 ? true : false).ToList();
+            return list.Contains(true) ? false : true;
+        }
+
+
         //Descending Order
         //Your task is to make a function that can take any non-negative integer as a argument and return it with its digits 
         //in descending order.Essentially, rearrange the digits to create the highest possible number.
@@ -1441,6 +1456,7 @@ namespace MyCodeWars
         //if the given string is "" you will return ""
         public static string stat(string strg)
         {
+            Console.WriteLine(strg);
             if (strg.Equals(""))
             {
                 return "";
@@ -1452,7 +1468,8 @@ namespace MyCodeWars
                 values.Add(int.Parse(item[0]) * 3600 + int.Parse(item[1]) * 60 + int.Parse(item[2])); 
             }
             int mean = values.Sum() / values.Count;
-            int median = values.Count%2 == 0 ? (values[values.Count / 2 ] + values[values.Count / 2 + 1])/2 : values[values.Count / 2 +1];
+            var sort = values.OrderBy(x => x).ToList();
+            int median = values.Count%2 == 0 ? (sort[values.Count/2] + sort[values.Count/2+1])/2 : sort[values.Count/2];
             int range = values.OrderBy(x => x).Last() - values.OrderBy(x => x).First();
             TimeSpan timeSpan1 = TimeSpan.FromSeconds(mean);
             TimeSpan timeSpan2 = TimeSpan.FromSeconds(median);
@@ -1846,7 +1863,7 @@ namespace MyCodeWars
         //accum("RqaEzty") -> "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
         //accum("cwAt") -> "C-Ww-Aaa-Tttt"
         //The parameter of accum is a string which includes only letters from a..z and A..Z.
-        public static String Accum(string s)
+        public static String Accumsa(string s)
         {
             return string.Join("-", s.ToCharArray().Select((x, i) => char.ToUpper(x)).ToString());
         }
