@@ -1484,7 +1484,7 @@ namespace MyCodeWars
             }
             int mean = values.Sum() / values.Count;
             var sort = values.OrderBy(x => x).ToList();
-            int median = values.Count%2 == 0 ? (sort[values.Count/2] + sort[values.Count/2+1])/2 : sort[values.Count/2];
+            int median = values.Count%2 == 0 ? (sort[values.Count/2-1] + sort[values.Count/2])/2 : sort[values.Count/2];
             int range = values.OrderBy(x => x).Last() - values.OrderBy(x => x).First();
             TimeSpan timeSpan1 = TimeSpan.FromSeconds(mean);
             TimeSpan timeSpan2 = TimeSpan.FromSeconds(median);
