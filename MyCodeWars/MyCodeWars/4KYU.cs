@@ -24,6 +24,20 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+        //Two to One
+        //Take 2 strings s1 and s2 including only letters from a to z.Return a new sorted string, the longest possible, containing distinct letters,
+        //each taken only once - coming from s1 or s2.
+        //Examples:
+        //a = "xyaabbbccccdefww"
+        //b = "xxxxyyyyabklmopq"
+        //longest(a, b) -> "abcdefklmopqwxy"
+        //a = "abcdefghijklmnopqrstuvwxyz"
+        //longest(a, a) -> "abcdefghijklmnopqrstuvwxyz"
+        public static string Longest(string s1, string s2)
+        {
+            return string.Concat(string.Concat(s1, s2).Distinct().OrderBy(x => x));
+        }
+
         //Growth of a Population
         //In a small town the population is p0 = 1000 at the beginning of a year.The population regularly increases by 2 percent 
         //per year and moreover 50 new inhabitants per year come to live in the town.How many years does the town need to see 
