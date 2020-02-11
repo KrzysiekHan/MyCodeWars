@@ -10,6 +10,7 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
+            _4KYU.GetIntegersFromList(new List<object>() { 1, 2, "a", "b" });
             _4KYU.MyFirstInterpreter("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.+.+.+.+.+.+.+.+.+.+.+.+.+.+.+.+.+.+.+.+.+.+.+.+.+.");
             _4KYU.findNb(1071225);// 45
             //_4KYU.Tribonacci(new double[] { 1, 1, 1 }, 1);//int[]{1,1,1,3,5,9,17,31,57,105}

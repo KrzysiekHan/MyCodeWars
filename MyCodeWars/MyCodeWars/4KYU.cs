@@ -24,13 +24,27 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+        //List Filtering
+        //In this kata you will create a function that takes a list of non-negative integers and strings and returns a new 
+        //list with the strings filtered out.
+        //Example
+        //ListFilterer.GetIntegersFromList(new List<object>(){1, 2, "a", "b"}) => {1, 2}
+        //ListFilterer.GetIntegersFromList(new List<object>(){1, 2, "a", "b", 0, 15}) => {1, 2, 0, 15}
+        //ListFilterer.GetIntegersFromList(new List<object>(){1, 2, "a", "b", "aasf", "1", "123", 231}) => {1, 2, 231}
+        //------------------ CLEVER --------------------------
+        //return listOfItems.OfType<int>(); 
+        public static IEnumerable<int> GetIntegersFromList(List<object> listOfItems)
+        {
+            IEnumerable<int> result = listOfItems.Where(x => x.GetType().ToString() == "System.Int32").Select(x=>(int)x).ToList();
+            return result;
+        }    
 
-        //Sum of two lowest positive integers
-        //Create a function that returns the sum of the two lowest positive numbers given an array of minimum 4 positive integers.No 
-        //floats or non-positive integers will be passed.
-        //For example, when an array is passed like [19, 5, 42, 2, 77], the output should be 7.
-        //[10, 343445353, 3453445, 3453545353453] should return 3453455.
-        public static int sumTwoSmallestNumbers(int[] numbers)
+    //Sum of two lowest positive integers
+    //Create a function that returns the sum of the two lowest positive numbers given an array of minimum 4 positive integers.No 
+    //floats or non-positive integers will be passed.
+    //For example, when an array is passed like [19, 5, 42, 2, 77], the output should be 7.
+    //[10, 343445353, 3453445, 3453545353453] should return 3453455.
+    public static int sumTwoSmallestNumbers(int[] numbers)
         {
             return numbers.ToList().OrderBy(x=>x).Take(2).Sum();
         }
