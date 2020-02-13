@@ -24,6 +24,23 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+        //Ones and zeros
+        //Given an array of ones and zeroes, convert the equivalent binary value to an integer.
+        //Eg: [0, 0, 0, 1] is treated as 0001 which is the binary representation of 1.
+        //Examples:
+        //Testing: [0, 0, 0, 1] ==> 1
+        //Testing: [0, 0, 1, 0] ==> 2
+        //Testing: [0, 1, 0, 1] ==> 5
+        //Testing: [1, 0, 0, 1] ==> 9
+        //Testing: [0, 0, 1, 0] ==> 2
+        //Testing: [0, 1, 1, 0] ==> 6
+        //Testing: [1, 1, 1, 1] ==> 15
+        //Testing: [1, 0, 1, 1] ==> 11
+        //However, the arrays can have varying lengths, not just limited to 4.
+        public static int binaryArrayToNumber(int[] BinaryArray)
+        {
+            return Convert.ToInt32(string.Concat(BinaryArray.Select(x => x.ToString())), 2); 
+        }
 
         //Printer Errors
         //In a factory a printer prints labels for boxes.For one kind of boxes the printer has to use colors which, for the sake of simplicity, are named with letters from a to m.
