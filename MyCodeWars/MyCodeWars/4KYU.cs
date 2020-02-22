@@ -24,6 +24,15 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+        //Sum of positive
+        //You get an array of numbers, return the sum of all of the positives ones.
+        //Example [1,-4,7,12] => 1 + 7 + 12 = 20
+        //Note: if there is nothing to sum, the sum is default to 0.
+        public static int PositiveSum(int[] arr)
+        {
+            return arr.Where(x=>x>0).Sum();
+        }
+
         //Categorize New Member
         //The Western Suburbs Croquet Club has two categories of membership, Senior and Open.They would like your help with an application form that will tell prospective members which category they will be placed.
         //To be a senior, a member must be at least 55 years old and have a handicap greater than 7. In this croquet club, handicaps range from -2 to +26; the better the player the lower the handicap.
