@@ -24,6 +24,15 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+        //Binary Addition
+        //Implement a function that adds two numbers together and returns their sum in binary.The 
+        //conversion can be done before, or after the addition.
+        //The binary number returned should be a string.
+        public static string AddBinary(int a, int b)
+        {
+            return Convert.ToString(a + b, 2);
+        }
+
         //Sum of positive
         //You get an array of numbers, return the sum of all of the positives ones.
         //Example [1,-4,7,12] => 1 + 7 + 12 = 20
