@@ -24,6 +24,21 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+
+        //Regex validate PIN code
+        //ATM machines allow 4 or 6 digit PIN codes and PIN codes cannot contain anything but exactly 4 digits or exactly 6 digits.
+        //If the function is passed a valid PIN string, return true, else return false.
+        //eg:
+        //ValidatePin("1234") => true
+        //ValidatePin("12345") => false
+        //ValidatePin("a234") => false
+        public static bool ValidatePin(string pin)
+        {
+            if (pin.Contains('\n')) return false;
+            Regex regex = new Regex(@"/^\d{4}$/");
+            Regex regex2 = new Regex(@"^\d{6}$/");
+            return regex.IsMatch(pin) || regex2.IsMatch(pin);
+        }
         //Binary Addition
         //Implement a function that adds two numbers together and returns their sum in binary.The 
         //conversion can be done before, or after the addition.
