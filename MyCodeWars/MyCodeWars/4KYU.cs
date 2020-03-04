@@ -24,6 +24,17 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+
+        //Reverse words
+        //Complete the function that accepts a string parameter, and reverses each word in the string. All spaces in the string should be retained.
+        //Examples
+        //"This is an example!" ==> "sihT si na !elpmaxe"
+        //"double  spaces"      ==> "elbuod  secaps"
+        public static string ReverseWords(string str)
+        {
+            return string.Join(" ", str.Split(' ').Select(x => string.Join("",x.Reverse())));
+        }
+
         //Friend or Foe?
         //Make a program that filters a list of strings and returns a list with only your friends name in it.
         //If a name has exactly 4 letters in it, you can be sure that it has to be a friend of yours! Otherwise, you can be sure he's not...
