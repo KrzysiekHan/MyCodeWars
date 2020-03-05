@@ -24,6 +24,29 @@ namespace MyCodeWars
     }
     public static class _4KYU
     {
+        //The museum of incredible dull things
+        //Task
+        //Given an array of integers, remove the smallest value.Do not mutate the original array/list.If there are multiple elements with the same 
+        //value, remove the one with a lower index.If you get an empty array/list, return an empty array/list.
+        //Don't change the order of the elements that are left.
+        //Examples
+        //Remover.RemoveSmallest(new List<int>{1,2,3,4,5}) = new List<int>{2,3,4,5}
+        //Remover.RemoveSmallest(new List<int>{5,3,2,1,4}) = new List<int>{5,3,2,4}
+        //Remover.RemoveSmallest(new List<int>{2,2,1,2,1}) = new List<int>{2,2,2,1}
+        public static List<int> RemoveSmallest(List<int> numbers)
+        {
+            foreach (var item in numbers)
+            {
+                Console.WriteLine(item);
+            }
+            if (numbers.Count() == 0)
+            {
+                return new List<int>();
+            }
+            var resp = numbers;
+            resp.Remove(numbers.Min());
+            return resp;
+        }
 
         //Reverse words
         //Complete the function that accepts a string parameter, and reverses each word in the string. All spaces in the string should be retained.
