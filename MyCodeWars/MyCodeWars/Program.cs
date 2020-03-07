@@ -10,7 +10,8 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _4KYU.Numericals("Hello, World!");//1112111121311
+            _4KYU.howmuch(1, 100);
+            //_4KYU.Numericals("Hello, World!");//1112111121311
             //_4KYU.RemoveSmallest(new List<int> { 1, 2, 3, 4, 5 });
             _4KYU.OpenOrSenior(new[] { new[] { 45, 12 }, new[] { 55, 21 }, new[] { 19, 2 }, new[] { 104, 20 } });//"Open", "Senior", "Open", "Senior"
             //_4KYU.GetIntegersFromList(new List<object>() { 1, 2, "a", "b" });
