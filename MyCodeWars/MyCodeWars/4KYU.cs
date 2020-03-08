@@ -95,7 +95,7 @@ namespace MyCodeWars
         public static string Numericals(string s)
         {
             Console.WriteLine(s+Environment.NewLine);
-            int[] counts = new int[255];
+            int[] counts = new int[5000];
             StringBuilder result = new StringBuilder();
 
             for (int i = 0; i < s.Length; i++)
