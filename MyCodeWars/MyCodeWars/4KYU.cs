@@ -9,21 +9,27 @@ using System.Threading;
 
 namespace MyCodeWars
 {
-    public class Node
-    {
-        public Node Left;
-        public Node Right;
-        public int Value;
 
-        public Node(Node l, Node r, int v)
+    public static class StringExtensions
+    {
+        public static bool isPlainWord(this string str)
         {
-            Left = l;
-            Right = r;
-            Value = v;
+            return str.All(x => char.IsLetter(x));
         }
     }
+
     public static class _4KYU
     {
+        //Simple Pig Latin
+        //Move the first letter of each word to the end of it, then add "ay" to the end of the word.Leave punctuation marks untouched.
+        //Examples
+        //Kata.PigIt("Pig latin is cool"); // igPay atinlay siay oolcay
+        //Kata.PigIt("Hello world !");     // elloHay orldway !
+        public static string PigIt(string str)
+        {
+            return string.Join(" ", str.Split(' ').Select(x => x.isPlainWord() ? x.Remove(0, 1).ToString() + x.First() + "ay" : x.ToString()));
+        }
+
         //How Much?
         //I always thought that my old friend John was rather richer than he looked, but I never knew exactly how much money he actually
         //had.One day (as I was plying him with questions) he said:
