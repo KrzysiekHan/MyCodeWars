@@ -10,7 +10,8 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _4KYU.PigIt("Hello world !");
+            _4KYU.Beggars(new int[] { 1, 2, 3, 4, 5 },3);//
+            //_4KYU.PigIt("Hello world !");
             //_4KYU.howmuch(1, 100);
             //_4KYU.Numericals("Hello, World!");//1112111121311
             //_4KYU.RemoveSmallest(new List<int> { 1, 2, 3, 4, 5 });
