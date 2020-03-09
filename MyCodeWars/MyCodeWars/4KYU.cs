@@ -20,6 +20,26 @@ namespace MyCodeWars
 
     public static class _4KYU
     {
+        //Two oldest age
+        //The two oldest ages function/method needs to be completed.It should take an array of numbers as its argument and 
+        //return the two highest numbers within the array.The returned value should be an array in the format[second oldest age, oldest age].
+        //The order of the numbers passed in could be any order.The array will always include at least 2 items.
+        //For example:
+        //LargestTwo.TwoOldestAges(new int[] {1, 2, 10, 8}) => new int[] {8, 10}
+        public static int[] TwoOldestAges(int[] ages)
+        {
+            return ages.OrderByDescending(x=>x).Take(2).OrderBy(x=>x).ToArray();
+        }
+
+        //No oddities here
+        //Write a small function that returns the values of an array that are not odd.
+        //All values in the array will be integers.Return the good values in the order they are given.
+        //NoOdds(int[] values)
+        public static int[] NoOdds(int[] values)
+        {
+            return values.Where(x=>x%2==0).ToArray();
+        }
+
         //Simple Pig Latin
         //Move the first letter of each word to the end of it, then add "ay" to the end of the word.Leave punctuation marks untouched.
         //Examples
