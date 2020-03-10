@@ -17,13 +17,6 @@ namespace MyCodeWars
             return str.All(x => char.IsLetter(x));
         }
 
-        public static IEnumerable<IEnumerable<T>> Split<T>(this T[] array, int size)
-        {
-            for (var i = 0; i < (float)array.Length / size; i++)
-            {
-                yield return array.Skip(i * size).Take(size);
-            }
-        }
     }
 
     public static class _4KYU
@@ -37,9 +30,22 @@ namespace MyCodeWars
         //length can be even shorter, in which case the last beggars will of course take nothing(0).
         //Note: in case you don't get why this kata is about English beggars, then you are not familiar on how religiously queues are taken in the kingdom ;)
         public static int[] Beggars(int[] values, int n)
-        {
-            var t = values.Split(n).Select(x => x.ToArray()).ToList();
-            return new int[] { };
+        { 
+
+            List<int> result = new List<int>();
+            var partsize = (values.Length / n) + 1;
+            for (var i = 0; i <= partsize; i++)
+            {
+                if (i * partsize < values.Length)
+                {
+                    result.Add(values.Skip(i * partsize).Take(partsize).ToArray().Sum());
+                }
+                else
+                {
+                    result.Add(values.Skip(i * partsize).Take(values.GetUpperBound(0) - i * partsize).Sum());
+                }
+            }
+            return result.ToArray();
 
         }
 
