@@ -21,6 +21,34 @@ namespace MyCodeWars
 
     public static class _4KYU
     {
+
+
+
+        //Backspaces in string
+        //Assume "#" is like a backspace in string. This means that string "a#bc#d" actually is "bd"
+        //Your task is to process a string with "#" symbols.
+        //Examples
+        //"abc#d##c"      ==>  "ac"
+        //"abc##d######"  ==>  ""
+        //"#######"       ==>  ""
+        //""              ==>  ""
+        public static string CleanString(string s)
+        {
+            Stack<char> st = new Stack<char>();
+            foreach (var item in s)
+            {
+                if (item.Equals('#') && st.Count>0)
+                {
+                    st.Pop();
+                }
+                else if(!item.Equals('#'))
+                {
+                    st.Push(item);
+                }
+            }
+            return string.Join("", st.Reverse());
+        }
+
         //Number of people in the bus
         //There is a bus moving in the city, and it takes and drop some people in each bus stop.
         //You are provided with a list(or array) of integer arrays(or tuples). Each integer array has two items which represent number of people get into 
