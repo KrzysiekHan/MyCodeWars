@@ -10,7 +10,8 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _4KYU.CleanString("abc#d##c");//ac
+            _4KYU.SumOfMinimums(new int[3, 5] { { 1, 2, 3, 4, 5 }, { 5, 6, 7, 8, 9 }, { 20, 21, 34, 56, 100 } });
+            //_4KYU.CleanString("abc#d##c");//ac
             _4KYU.Beggars(new int[] { 1, 2, 3, 4, 5 },3);//
             //_4KYU.PigIt("Hello world !");
             //_4KYU.howmuch(1, 100);

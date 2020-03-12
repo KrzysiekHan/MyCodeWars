@@ -12,17 +12,39 @@ namespace MyCodeWars
 
     public static class CustomStringExtensions
     {
-        public static bool isPlainWord(this string str)
-        {
-            return str.All(x => char.IsLetter(x));
-        }
 
     }
 
     public static class _4KYU
     {
+        //Sum of Minimums!
+        //Given a 2D array of size m * n.Your task is to find the sum of minimum value in each row.
+        //For Example:
+        //{
+        //  { 1,2,3,4,5},       // minimum value of row is 1
+        //  { 5,6,7,8,9},       // minimum value of row is 5
+        //  { 20,21,34,56,100}  // minimum value of row is 20
+        //}
+        //So, the function should return 26 because sum of minimums is as 1 + 5 + 20 = 26
+        //------------- CLEVER
+        //return Enumerable.Range(0, n.GetLength(0))
+        //             .Select(x => Enumerable.Range(0, n.GetLength(1)).Select(y => n[x, y]))
+        //             .Sum(x => x.Min());
 
-
+        public static int SumOfMinimums(int[,] numbers)
+        {
+            List<int> results = new List<int>();
+            for (int i = 0; i < numbers.GetLength(0); i++)
+            {
+                List<int> temp = new List<int>();
+                for (int j = 0; j < numbers.GetLength(1); j++)
+                {
+                    temp.Add(numbers[i, j]);
+                }
+                results.Add(temp.Min());
+            }
+            return results.Sum();
+        }
 
         //Backspaces in string
         //Assume "#" is like a backspace in string. This means that string "a#bc#d" actually is "bd"

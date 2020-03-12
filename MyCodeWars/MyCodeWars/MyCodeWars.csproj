@@ -49,6 +49,7 @@
     <Compile Include="7KYU.cs" />
     <Compile Include="8KYU.cs" />
     <Compile Include="AuxiliaryClasses.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
