@@ -10,7 +10,7 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-
+            _4KYU.DontGiveMeFive(1, 9);
             //_4KYU.GetOrder("milkshakepizzachickenfriescokeburgerpizzasandwichmilkshakepizza");
             //_4KYU.SumOfMinimums(new int[3, 5] { { 1, 2, 3, 4, 5 }, { 5, 6, 7, 8, 9 }, { 20, 21, 34, 56, 100 } });
             //_4KYU.CleanString("abc#d##c");//ac
