@@ -19,9 +19,11 @@ namespace MyCodeWars
         //Examples
         //[1, 1, 2] ==> 2
         //[17, 17, 3, 17, 17, 17, 17] ==> 3
+        //-------------- CLEVER --------------------
+        //return numbers.GroupBy(g => g).Single(o => o.Count() == 1).Key;
         public static int Stray(int[] numbers)
         {
-            return 0;
+            return numbers.GroupBy(x => x).Select(x => new { KEY = x.Key, VAL = x.Count() }).Where(x => x.VAL == 1).Single().KEY;
         }
 
         //Sum of the first nth term of Series
