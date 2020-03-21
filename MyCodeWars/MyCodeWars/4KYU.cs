@@ -11,6 +11,23 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //Peter takes an exam in school
+        //##Publish students' name, who passed the exam Peter is a teacher in a school. He wants to publish the names of the students who passed a recent exam in alphabetical order.
+        //The Student class is preloaded
+        //public class Student
+        //{
+        //    public string Name { get; set; }
+        //    public double Grade { get; set; }
+        //}
+        //Complete the method that gets a list of students(names and grades) and an acceptanceGrade(integer), and return a list of string for the name of students who passed the exam.
+        //The string list should be in alphabetical order.
+        //If the grade of a student is equal or more than the acceptance grade, s/he will pass the exam.
+        public static List<string> PassedStudentList(List<Student> gradeList, int acceptanceGrade)
+        {
+            return gradeList.Where(x => x.Grade > acceptanceGrade).Select(x => x.Name).OrderBy(x => x).ToList();
+        }
+
+
         //Breaking chocolate problem
         //Your task is to split the chocolate bar of given dimension n x m into small squares.Each square is of size 1x1 and unbreakable.Implement a function
         //that will return minimum number of breaks needed.
