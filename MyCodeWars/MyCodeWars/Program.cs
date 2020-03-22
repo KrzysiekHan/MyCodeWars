@@ -10,7 +10,8 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _4KYU.BreakChocolate(5,5);
+            _4KYU.IsTriangle(1, 2, 4);
+            //_4KYU.BreakChocolate(5,5);
             //_4KYU.Stray(new int[] { 1, 1, 2 });
             //_4KYU.DontGiveMeFive(1, 9);
             //_4KYU.GetOrder("milkshakepizzachickenfriescokeburgerpizzasandwichmilkshakepizza");
