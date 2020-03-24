@@ -11,6 +11,52 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //Get row from alphabetical sequence
+        //Given the sequence below, complete the GetRow function, so that the output matches n row given as argument.If the argument
+        //is bigger than the number of rows in the sequence, then start from the beginning again, eg.row 27 is the same as row 1.
+        //Example:
+        //row 1 => ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        //row 15 => OOOOOOOOOOOOOOOPQRSTUVWXYZ
+        //row 26 => ZZZZZZZZZZZZZZZZZZZZZZZZZZ
+        //row 27 => ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        public static string GetRow(int numOfRow)
+        {
+            int rowNr = 0;
+            if (numOfRow > 26 )
+            {
+                rowNr = (numOfRow % 26);
+            }
+            if (rowNr == 0) rowNr = 1;
+            var sequence = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ
+                            BBCDEFGHIJKLMNOPQRSTUVWXYZ
+                            CCCDEFGHIJKLMNOPQRSTUVWXYZ
+                            DDDDEFGHIJKLMNOPQRSTUVWXYZ
+                            EEEEEFGHIJKLMNOPQRSTUVWXYZ
+                            FFFFFFGHIJKLMNOPQRSTUVWXYZ
+                            GGGGGGGHIJKLMNOPQRSTUVWXYZ
+                            HHHHHHHHIJKLMNOPQRSTUVWXYZ
+                            IIIIIIIIIJKLMNOPQRSTUVWXYZ
+                            JJJJJJJJJJKLMNOPQRSTUVWXYZ
+                            KKKKKKKKKKKLMNOPQRSTUVWXYZ
+                            LLLLLLLLLLLLMNOPQRSTUVWXYZ
+                            MMMMMMMMMMMMMNOPQRSTUVWXYZ
+                            NNNNNNNNNNNNNNOPQRSTUVWXYZ
+                            OOOOOOOOOOOOOOOPQRSTUVWXYZ
+                            PPPPPPPPPPPPPPPPQRSTUVWXYZ
+                            QQQQQQQQQQQQQQQQQRSTUVWXYZ
+                            RRRRRRRRRRRRRRRRRRSTUVWXYZ
+                            SSSSSSSSSSSSSSSSSSSTUVWXYZ
+                            TTTTTTTTTTTTTTTTTTTTUVWXYZ
+                            UUUUUUUUUUUUUUUUUUUUUVWXYZ
+                            VVVVVVVVVVVVVVVVVVVVVVWXYZ
+                            WWWWWWWWWWWWWWWWWWWWWWWXYZ
+                            XXXXXXXXXXXXXXXXXXXXXXXXYZ
+                            YYYYYYYYYYYYYYYYYYYYYYYYYZ
+                            ZZZZZZZZZZZZZZZZZZZZZZZZZZ";
+            var response = sequence.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).Select(x=>x.Trim()).ToArray();
+            return response[rowNr];
+        }
+
         //The highest profit wins!
         //Story
         //Ben has a very simple idea to make some profit: he buys something and sells it again.Of course, this wouldn't give him any profit at 
