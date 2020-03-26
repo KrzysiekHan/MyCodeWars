@@ -11,6 +11,21 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+
+        //Enumerable Magic #5- True for Just One?
+        //Create a function called one that accepts two params:
+        //a sequence
+        //a function
+        //and returns true only if the function in the params returns true for exactly one item in the sequence.
+        //Example
+        //one([1, 3, 5, 6, 99, 1, 3], bigger_than_ten) -> true
+        //one([1, 3, 5, 6, 99, 88, 3], bigger_than_ten) -> false
+        //one([1, 3, 5, 6, 5, 1, 3], bigger_than_ten) -> false
+        public static bool One(int[] arr, Func<int, bool> fun)
+        {
+            return arr.Select(x => fun(x)).Count(x=>x==true) == 1 ? true : false;
+        }
+
         //Get row from alphabetical sequence
         //Given the sequence below, complete the GetRow function, so that the output matches n row given as argument.If the argument
         //is bigger than the number of rows in the sequence, then start from the beginning again, eg.row 27 is the same as row 1.
