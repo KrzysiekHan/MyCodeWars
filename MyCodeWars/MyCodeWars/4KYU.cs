@@ -11,6 +11,70 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //Positive to negative binary numbers
+        //Given an array of one's and zero's that represents a positive binary number convert the number to two's complement value.
+        //Two's complement is the way most computers represent positive or negative integers. The most significant bit is negative.
+        //Examples:
+        //-8 4 2 1
+        //[1,1,1,1] = -1
+        //[1,0,0,0] = -8
+        //[1,1,0,1] = -3
+        //To get the two's complement negative notation of an integer, you take the number in binary.
+        //You then invert the digits, and add one to the result.
+        //For example:
+        //[0,0,1,0] = 2 in base 10
+        //[1,1,0,1] <- Flip the bits
+        //Add 1
+        //[1,1,1,0] = -2
+        //However, the arrays can have varying lengths, not just limited to 4.
+        public static int[] positive2Negative(int[] binaryArray)
+        {
+            StringBuilder sb = new StringBuilder(string.Join("", binaryArray));
+            return findTwoscomplement(sb).Select(x => (int)char.GetNumericValue(x)).ToArray();
+        }
+        // Method to find two's complement  
+        public static string findTwoscomplement(StringBuilder str)
+        {
+            int n = str.Length;
+
+            // Traverse the string to get  
+            // first '1' from the last of string  
+            int i;
+            for (i = n - 1; i >= 0; i--)
+            {
+                if (str[i] == '1')
+                {
+                    break;
+                }
+            }
+
+            // If there exists no '1' concat 1  
+            // at the starting of string  
+            if (i == -1)
+            {
+                return "1" + str;
+            }
+
+            // Continue traversal after the 
+            // position of first '1'  
+            for (int k = i - 1; k >= 0; k--)
+            {
+                // Just flip the values  
+                if (str[k] == '1')
+                {
+                    str.Remove(k, k + 1 - k).Insert(k, "0");
+                }
+                else
+                {
+                    str.Remove(k, k + 1 - k).Insert(k, "1");
+                }
+            }
+
+            // return the modified string  
+            return str.ToString();
+        }
+
+
         //Responsible Drinking
         //Welcome to the Codewars Bar
         //Codewars Bar recommends you drink 1 glass of water per standard drink so you're not hungover tomorrow morning.
