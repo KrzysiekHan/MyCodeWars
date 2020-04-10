@@ -11,6 +11,14 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //Most digits
+        //Find the number with the most digits.
+        //If two numbers in the argument array have the same number of digits, return the first one in the array.
+        public static int FindLongest(int[] number)
+        {
+            return number.Select(x => new { count = x.ToString().Length, value = x}).OrderByDescending(x=>x.count).First().value;
+        }
+
         //Positive to negative binary numbers
         //Given an array of one's and zero's that represents a positive binary number convert the number to two's complement value.
         //Two's complement is the way most computers represent positive or negative integers. The most significant bit is negative.
