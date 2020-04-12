@@ -11,6 +11,35 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //Integer Difference
+        //Write a function that accepts two arguments: an array/list of integers and another integer(n).
+        //Determine the number of times where two integers in the array have a difference of n.
+        //For example
+        //[1, 1, 5, 6, 9, 16, 27], n=4  -->  3  # (1,5), (1,5), (5,9)
+        //[1, 1, 3, 3], n=2             -->  4  # (1,3), (1,3), (1,3), (1,3)
+        public static int IntDiff(int[] arr, int n)
+        {
+            //foreach (var item in arr)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            //Console.WriteLine("--");
+            //Console.WriteLine(n);
+            //Console.WriteLine("-------------------------");
+            int result = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                for (int j = 0; j < arr.Length; j++)
+                {
+                    if (Math.Abs(arr[i] - arr[j]) == n || Math.Abs(arr[j] - arr[i]) == n)
+                    {
+                      if (i != j )  result++;
+                    }
+                }
+            }
+            return result;
+        }
+
         //String ends with?
         //Complete the solution so that it returns true if the first argument(string) passed in ends with the 2nd argument(also a string).
         //Examples:
