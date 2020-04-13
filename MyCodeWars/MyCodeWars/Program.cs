@@ -10,7 +10,8 @@ namespace MyCodeWars
     {
         static void Main(string[] args)
         {
-            _4KYU.IntDiff(new int[] { 4,5,9 }, 0);//3
+            _4KYU.StringLetterCount("The time you enjoy wasting is not wasted time.");//2a1d5e1g1h4i1j2m3n3o3s6t1u2w2y
+            //_4KYU.IntDiff(new int[] { 4,5,9 }, 0);//3
             //_4KYU.IsTriangle(1, 2, 4);
             //_4KYU.BreakChocolate(5,5);
             //_4KYU.Stray(new int[] { 1, 1, 2 });

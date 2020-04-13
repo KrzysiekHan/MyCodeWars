@@ -11,6 +11,30 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+
+
+        //String Letter Counting
+        //Take a string str and return a string that is made up of the number of occurances of each english letter in str, followed by that letter.
+        //The string shouldn't contain zeros; leave them out.
+        //An empty string, or one with no letters, should return an empty string.
+        //Notes
+        //Ignore all case
+        //str will never be null
+        //Examples
+        //"This is a test sentence."  =>  "1a1c4e1h2i2n4s4t"
+        //""  =>  ""
+        //"555"  =>  ""
+        public static string StringLetterCount(string str)
+        {
+            var list = str.Where(x=>char.IsLetter(x))
+                            .Select(x=>char.ToLower(x))
+                            .Distinct()
+                            .Select(x => new { ile = str.Count(y => char.ToLower(y) == char.ToLower(x)), litera = char.ToLower(x) })
+                            .ToDictionary(x => x.litera, y => y.ile)
+                            .OrderBy(x=>x.Key);
+            return string.Join("", list.OrderBy(x => x.Key).Select(x => x.Value.ToString() + x.Key.ToString()));
+        }
+
         //Integer Difference
         //Write a function that accepts two arguments: an array/list of integers and another integer(n).
         //Determine the number of times where two integers in the array have a difference of n.
