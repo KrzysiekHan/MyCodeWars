@@ -11,8 +11,17 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
-
-
+        //Sort array by string length
+        //Write a function that takes an array of strings as an argument and returns a sorted array containing the same strings, ordered from shortest to longest.
+        //For example, if this array were passed as an argument:
+        //["Telescopes", "Glasses", "Eyes", "Monocles"]
+        //Your function would return the following array:
+        //["Eyes", "Glasses", "Monocles", "Telescopes"]
+        //All of the strings in the array passed to your function will be different lengths, so you will not have to decide how to order multiple strings of the same length.
+        public static string[] SortByLength(string[] array)
+        {
+            return array.ToDictionary(x => x.Length, y => y).OrderBy(x => x.Key).Select(x => x.Value).ToArray();
+        }
         //String Letter Counting
         //Take a string str and return a string that is made up of the number of occurances of each english letter in str, followed by that letter.
         //The string shouldn't contain zeros; leave them out.
