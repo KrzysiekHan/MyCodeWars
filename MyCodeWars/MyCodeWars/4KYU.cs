@@ -11,6 +11,15 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //Counting Array Elements
+        //Write a function that takes an array and counts the number of each unique element present.
+        //Kata.Count(new List<string> {"James", "James", "John"}) =>
+        //new Dictionary<string, int> {{"James", 2}, {"John", 1}};
+        public static Dictionary<string, int> Count(List<string> lst)
+        {
+            return lst.GroupBy(x => x).ToDictionary(x => x.Key, y => y.Count());
+        }
+
         //Find the middle element
         //As a part of this Kata, you need to create a function that when provided with a triplet, 
         //returns the index of the numerical element that lies between the other two elements.
