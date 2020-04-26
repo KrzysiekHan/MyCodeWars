@@ -11,6 +11,29 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //Compare Strings by Sum of Chars
+        //Compare two strings by comparing the sum of their values(ASCII character code).
+        //For comparing treat all letters as UpperCase
+        //null/NULL/Nil/None should be treated as empty strings
+        //If the string contains other characters than letters, treat the whole string as it would be empty
+        //Your method should return true, if the strings are equal and false if they are not equal.
+        //Examples:
+        //"AD", "BC"  -> equal
+        //"AD", "DD"  -> not equal
+        //"gf", "FG"  -> equal
+        //"zz1", ""   -> equal (both are considered empty)
+        //"ZzZz", "ffPFF" -> equal
+        //"kl", "lz"  -> not equal
+        //null, ""    -> equal
+        public static bool Compare(string s1, string s2)
+        {
+            var str1 = s1 ?? "";
+            var str2 = s2 ?? "";
+            str1 = str1.Any(x=>!char.IsLetter(x)) && str1 != null ? str1 : "";
+            str2 = str1.Any(x => !char.IsLetter(x)) ? str2 : "";
+            return str1.Select(x => (int)char.ToUpper(x)).Sum() == str2.Select(x => (int)char.ToUpper(x)).Sum();
+        }
+
         //Form The Largest
         //Task
         //Given a number , Return _The Maximum number _ could be formed from the digits of the number given.
