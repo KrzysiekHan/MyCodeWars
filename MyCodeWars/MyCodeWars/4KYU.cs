@@ -11,6 +11,26 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //Largest 5 digit number in a series
+        //In the following 6 digit number:
+        //283910
+        //91 is the greatest sequence of 2 consecutive digits.
+        //In the following 10 digit number:
+        //1234567890
+        //67890 is the greatest sequence of 5 consecutive digits.
+        //Complete the solution so that it returns the greatest sequence of five consecutive digits found 
+        //within the number given.The number will be passed in as a string of only digits. It should 
+        //return a five digit integer. The number passed may be as large as 1000 digits.
+        public static int GetNumber(string str)
+        {
+            List<int> resultList = new List<int>();
+            for (int i = 0; i < str.Length-5; i++)
+            {
+                resultList.Add(int.Parse(str.Substring(i, 5)));
+            }
+            return resultList.Max(x=>x);
+        }
+
         //Compare Strings by Sum of Chars
         //Compare two strings by comparing the sum of their values(ASCII character code).
         //For comparing treat all letters as UpperCase
