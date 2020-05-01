@@ -11,6 +11,12 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //Remove String Spaces
+        //simple, remove the spaces from the string, then return the resultant string.
+        public static string NoSpace(string input)
+        {
+            return input.Replace(" ", "");
+        }
         //Happy Birthday, Darling!
         //As you may know, once some people pass their teens, they jokingly only celebrate their 20th or 21st birthday, forever. 
         //With some maths skills, that's totally possible - you only need to select the correct number base!
