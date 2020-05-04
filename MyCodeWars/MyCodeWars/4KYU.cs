@@ -11,6 +11,18 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //Reverse a Number
+        //Given a number, write a function to output its reverse digits. (e.g.given 123 the answer is 321)
+        //Numbers should preserve their sign; i.e.a negative number should still be negative when reversed.
+        //Examples
+        //123 ->  321
+        //-456 -> -654
+        //1000 ->    1
+        public static int ReverseNumber(int n)
+        {
+            return int.Parse(Regex.Match(n.ToString().Reverse().ToString(), @"-?\d+").Value);          
+        }
+
         //Remove String Spaces
         //simple, remove the spaces from the string, then return the resultant string.
         public static string NoSpace(string input)
