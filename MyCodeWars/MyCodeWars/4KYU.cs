@@ -11,6 +11,21 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //Sorted? yes? no? how?
+        //Complete the method which accepts an array of integers, and returns one of the following:
+        //"yes, ascending" - if the numbers in the array are sorted in an ascending order
+        //"yes, descending" - if the numbers in the array are sorted in a descending order
+        //"no" - otherwise
+        //You can assume the array will always be valid, and there will always be one correct answer.
+        public static string IsSortedAndHow(int[] array)
+        {
+            var sortedAsc = array.OrderBy(x => x);
+            var sortedDesc = array.OrderByDescending(x => x);
+            if (array.SequenceEqual(sortedAsc)) return "yes, ascending";
+            if (array.SequenceEqual(sortedDesc)) return "yes, descending";
+            return "no";
+        }
+
         //Are the numbers in order?
         //In this Kata, your function receives an array of integers as input.Your task is to determine whether 
         //the numbers are in ascending order.An array is said to be in ascending order if there are no two adjacent integers where the left integer exceeds the right integer in value
