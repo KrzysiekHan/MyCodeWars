@@ -11,6 +11,30 @@ namespace MyCodeWars
 {
     public static class _4KYU
     {
+        //Moving Zeros To The End
+        //Write an algorithm that takes an array and moves all of the zeros to the end, preserving the order of the other elements.
+        //Kata.MoveZeroes(new int[] {1, 2, 0, 1, 0, 1, 0, 3, 0, 1}) => new int[] {1, 2, 1, 1, 3, 1, 0, 0, 0, 0}
+        public static int[] MoveZeroes(int[] arr)
+        {
+            List<int> withoutZeros = new List<int>();
+            int zerosCount = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i] == 0) {
+                    zerosCount++;
+                }
+                else
+                {
+                    withoutZeros.Add(arr[i]);
+                }
+            }
+            for (int i = 0; i < zerosCount; i++)
+            {
+                withoutZeros.Add(0);
+            }
+            return withoutZeros.ToArray();
+        }
+
         //Sorted? yes? no? how?
         //Complete the method which accepts an array of integers, and returns one of the following:
         //"yes, ascending" - if the numbers in the array are sorted in an ascending order
