@@ -26,14 +26,22 @@ namespace MyCodeWars
         //has at least one element). The function returns the "best" sum ie the biggest possible sum of k distances less than or equal to the given 
         //limit t, if that sum exists, or otherwise nil, null, None, Nothing, depending on the language.With C++, C, Rust, Swift, Go, Kotlin return -1.
         //Examples:
-        //ts = [50, 55, 56, 57, 58] choose_best_sum(163, 3, ts) -> 163
-        //xs = [50] choose_best_sum(163, 3, xs) -> nil(or null or ... or -1 (C++, C, Rust, Swift, Go)
-        //ys = [91, 74, 73, 85, 73, 81, 87] choose_best_sum(230, 3, ys) -> 228
+        // ts = [50, 55, 56, 57, 58] choose_best_sum(163, 3, ts) -> 163
+        // xs = [50] choose_best_sum(163, 3, xs) -> nil(or null or ... or -1 (C++, C, Rust, Swift, Go)
+        // ys = [91, 74, 73, 85, 73, 81, 87] choose_best_sum(230, 3, ys) -> 228
+        // t maksymalny dystans
+        // k ilość miast do odwiedzenia 
+        // ls lista odległości pomiędzy miastami
         public static int? chooseBestSum(int t, int k, List<int> ls)
         {
             List<int> results = new List<int>();
-            var result = GetPermutations(ls, 2);
-            return null;
+            var result = GetPermutations(ls, k);
+            foreach (var item in result)
+            {
+                results.Add(item.Sum());
+            }
+            var returnVal = results.Select((x, i) => new { sum = x, diff = Math.Abs(x - t) }).OrderBy(x=>x.diff).First(x=>x.sum);
+            return returnVal;
         }
 
         private static IEnumerable<IEnumerable<T>> GetPermutations<T>(IEnumerable<T> items, int count)
